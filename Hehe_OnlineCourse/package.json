@@ -1,0 +1,30 @@
+{
+  "name": "hehe_onlinecourse",
+  "version": "1.0.0",
+  "description": "A website provides online courses for those who want to self-learn software development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "dependencies": {
+    "antd": "^4.20.4",
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "moment": "^2.29.3",
+    "mongoose": "^6.3.2",
+    "nodemon": "^2.0.16",
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuongvyluan/hehe-online-course.git"
+  },
+  "author": "Hehe Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tuongvyluan/hehe-online-course/issues"
+  },
+  "homepage": "https://github.com/tuongvyluan/hehe-online-course#readme"
+}
