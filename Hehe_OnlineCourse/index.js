@@ -18,6 +18,10 @@ app.use('/dishes', dishRouter);
 app.use('/leaders', leaderRouter);
 app.use('/promotions', promoRouter);
 
+app.get('/', (req, res) => {
+	res.send('Hello');
+});
+
 app.use(express.static(__dirname + '/public'));
 
 app.use((req, res, next) => {
