@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index"
   },
+  "keywords": [
+    "heroku"
+  ],
   "dependencies": {
     "antd": "^4.20.4",
     "axios": "^0.27.2",
@@ -23,6 +26,9 @@
   },
   "author": "Hehe Team",
   "license": "ISC",
+  "engines": {
+    "node": "17.x"
+  },
   "bugs": {
     "url": "https://github.com/tuongvyluan/hehe-online-course/issues"
   },
