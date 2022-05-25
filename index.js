@@ -3,9 +3,9 @@ const http = require('http');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const dishRouter = require('./routes/dishRouter');
-const leaderRouter = require('./routes/leaderRouter');
-const promoRouter = require('./routes/promoRouter');
+const home = require('./routes/home');
+const login = require('./routes/login');
+const courses = require('./routes/courses');
 
 const hostname = 'localhost';
 const port = process.env.PORT || '5000';
@@ -14,9 +14,9 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-app.use('/dishes', dishRouter);
-app.use('/leaders', leaderRouter);
-app.use('/promotions', promoRouter);
+app.use('/home', home);
+app.use('/login', login);
+app.use('/courses', courses);
 
 app.get('/', (req, res) => {
 	res.send('Hello');
