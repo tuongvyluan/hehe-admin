@@ -7,6 +7,11 @@ export default function LoginPage() {
 			<Head>
 				<title>Logout</title>
 			</Head>
+			<div>Ahihi</div>
+			<div>Ahihi</div>
+			<div>Ahihi</div>
+			<div>Ahihi</div>
+			<div>Ahihi</div>
 			<Login />
 		</div>
 	);
