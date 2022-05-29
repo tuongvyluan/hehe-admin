@@ -6,7 +6,6 @@ export default function Homepage() {
 		<div>
 			<Head>
 				<title>Hehe Courses</title>
-				<title>Tran sua</title>
 			</Head>
 			<Home />
 		</div>
