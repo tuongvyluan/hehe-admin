@@ -5,7 +5,7 @@ export default function LoginPage() {
 	return (
 		<div>
 			<Head>
-				<title>Learning Paths!!!</title>
+				<title>Learning Paths!!</title>
 			</Head>
 			<LearningPaths />
 		</div>
