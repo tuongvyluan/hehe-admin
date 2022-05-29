@@ -110,7 +110,7 @@ model Section {
   displayIndex Int?
   updatedAt    DateTime  @default(now()) @db.Timestamp(6) @map("UpdatedAt")
   course       Course    @relation(fields: [courseId], references: [id], onUpdate: NoAction, map: "FK__Section__CourseI__440B1D61")
-  yopic        Topic[]
+  topic        Topic[]
 }
 
 model Skill {
