@@ -12,7 +12,6 @@ export default function LoginPage() {
 			<div>Ahihi</div>
 			<div>Ahihi</div>
 			<div>Ahihi</div>
-			<Login />
 		</div>
 	);
 }
