@@ -5,7 +5,7 @@ export default function LoginPage() {
 	return (
 		<div>
 			<Head>
-				<title>Login</title>
+				<title>Logout</title>
 			</Head>
 			<Login />
 		</div>
