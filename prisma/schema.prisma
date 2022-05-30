@@ -8,12 +8,12 @@ datasource db {
 }
 
 model Admin {
-  id        Int       @id(map: "PK__Admin__3214EC07BAEEA6C5") @default(autoincrement()) @map("Id")
-  password  String    @db.VarChar(50)  @map("Password")
-  email     String    @db.VarChar(50) @map("Email")
-  role      String    @db.NVarChar(15) @map("Role")
-  createdAt DateTime  @default(now()) @db.Timestamp(6) @map("CreatedAt")
-  updatedAt DateTime  @default(now()) @db.Timestamp(6) @map("UpdatedAt")
+  id        Int      @id(map: "PK__Admin__3214EC07BAEEA6C5") @default(autoincrement()) @map("Id")
+  password  String   @map("Password") @db.VarChar(50)
+  email     String   @map("Email") @db.VarChar(50)
+  role      String   @map("Role") @db.NVarChar(15)
+  createdAt DateTime @default(now()) @map("CreatedAt") @db.SmallDateTime
+  updatedAt DateTime @default(now()) @map("UpdatedAt") @db.SmallDateTime
 }
 
 model Answer {
@@ -21,8 +21,8 @@ model Answer {
   quizId        Int
   content       String?
   isCorrect     Boolean?
-  createdAt     DateTime        @default(now()) @db.Timestamp(6) @map("CreatedAt")
-  updatedAt     DateTime        @default(now()) @db.Timestamp(6) @map("UpdatedAt")
+  createdAt     DateTime        @default(now()) @map("CreatedAt") @db.SmallDateTime
+  updatedAt     DateTime        @default(now()) @map("UpdatedAt") @db.SmallDateTime
   quiz          Quiz            @relation(fields: [quizId], references: [id], onUpdate: NoAction, map: "FK__Answer__QuizId__4D94879B")
   studentAnswer StudentAnswer[]
 }
@@ -37,17 +37,17 @@ model Author {
   phoneNumber String    @db.Char(10)
   status      String    @db.NVarChar(30)
   role        String    @db.NVarChar(15)
-  createdAt   DateTime  @default(now()) @db.Timestamp(6) @map("CreatedAt")
-  updatedAt   DateTime  @default(now()) @db.Timestamp(6) @map("UpdatedAt")
+  createdAt   DateTime  @default(now()) @map("CreatedAt") @db.SmallDateTime
+  updatedAt   DateTime  @default(now()) @map("UpdatedAt") @db.SmallDateTime
   course      Course[]
 }
 
 model Category {
-  id          Int       @id(map: "PK__Category__3214EC0748434C52") @default(autoincrement()) @map("Id")
-  name        String?   @db.NVarChar(50)
-  description String?   @db.NVarChar(500)
-  status      String?   @db.NVarChar(30)
-  updatedAt   DateTime  @default(now()) @db.Timestamp(6) @map("UpdatedAt")
+  id          Int      @id(map: "PK__Category__3214EC0748434C52") @default(autoincrement()) @map("Id")
+  name        String?  @db.NVarChar(50)
+  description String?  @db.NVarChar(500)
+  status      String?  @db.NVarChar(30)
+  updatedAt   DateTime @default(now()) @map("UpdatedAt") @db.SmallDateTime
   course      Course[]
 }
 
@@ -56,7 +56,7 @@ model Comment {
   masterId       Int?
   studentTopicId Int?
   text           String?         @db.NVarChar(50)
-  date           DateTime        @default(now()) @db.Timestamp(6)
+  date           DateTime        @default(now()) @db.SmallDateTime
   level          Int
   comment        Comment?        @relation("CommentToComment_MasterId", fields: [masterId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Comment_MasterId_Comment_Id")
   studentInTopic StudentInTopic? @relation(fields: [studentTopicId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__Comment__Student__6477ECF3")
@@ -71,8 +71,8 @@ model Course {
   description     String?           @db.NVarChar(500)
   status          String?           @db.NVarChar(30)
   price           Float?            @db.Money
-  createdAt       DateTime          @default(now()) @db.Timestamp(6) @map("CreatedAt")
-  updatedAt       DateTime          @default(now()) @db.Timestamp(6) @map("UpdatedAt")
+  createdAt       DateTime          @default(now()) @map("CreatedAt") @db.SmallDateTime
+  updatedAt       DateTime          @default(now()) @map("UpdatedAt") @db.SmallDateTime
   duration        DateTime          @db.DateTime
   author          Author            @relation(fields: [authorId], references: [id], onUpdate: NoAction, map: "FK__Course__AuthorId__3E52440B")
   category        Category          @relation(fields: [categoryId], references: [id], onUpdate: NoAction, map: "FK__Course__Category__3F466844")
@@ -93,23 +93,23 @@ model Quiz {
   id            Int             @id(map: "PK__Quiz__3214EC07E781E269") @default(autoincrement()) @map("Id")
   topicId       Int?            @unique(map: "UQ__Quiz__022E0F5CE1184124")
   content       String?
-  date          DateTime        @default(now()) @db.Timestamp(6)
+  date          DateTime        @default(now()) @db.SmallDateTime
   numberAnswers Int?
-  createdAt     DateTime        @default(now()) @db.Timestamp(6) @map("CreatedAt")
-  updatedAt     DateTime        @default(now()) @db.Timestamp(6) @map("UpdatedAt")
+  createdAt     DateTime        @default(now()) @map("CreatedAt") @db.SmallDateTime
+  updatedAt     DateTime        @default(now()) @map("UpdatedAt") @db.SmallDateTime
   topic         Topic?          @relation(fields: [topicId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__Quiz__TopicId__4AB81AF0")
   answer        Answer[]
   studentInQuiz StudentInQuiz[]
 }
 
 model Section {
-  id           Int       @id(map: "PK__Section__3214EC072649FE57") @default(autoincrement()) @map("Id")
+  id           Int      @id(map: "PK__Section__3214EC072649FE57") @default(autoincrement()) @map("Id")
   courseId     Int
-  name         String?   @db.NVarChar(50)
-  description  String?   @db.NVarChar(50)
+  name         String?  @db.NVarChar(50)
+  description  String?  @db.NVarChar(50)
   displayIndex Int?
-  updatedAt    DateTime  @default(now()) @db.Timestamp(6) @map("UpdatedAt")
-  course       Course    @relation(fields: [courseId], references: [id], onUpdate: NoAction, map: "FK__Section__CourseI__440B1D61")
+  updatedAt    DateTime @default(now()) @map("UpdatedAt") @db.SmallDateTime
+  course       Course   @relation(fields: [courseId], references: [id], onUpdate: NoAction, map: "FK__Section__CourseI__440B1D61")
   topic        Topic[]
 }
 
@@ -129,8 +129,8 @@ model Student {
   phoneNumber     String            @db.Char(10)
   status          String            @db.NVarChar(30)
   role            String            @db.NVarChar(15)
-  createdAt       DateTime          @default(now()) @db.Timestamp(6) @map("CreatedAt")
-  updatedAt       DateTime          @default(now()) @db.Timestamp(6) @map("UpdatedAt")
+  createdAt       DateTime          @default(now()) @map("CreatedAt") @db.SmallDateTime
+  updatedAt       DateTime          @default(now()) @map("UpdatedAt") @db.SmallDateTime
   studentInCourse StudentInCourse[]
 }
 
@@ -138,7 +138,7 @@ model StudentAnswer {
   id            Int            @id(map: "PK__StudentA__3214EC07611BAF56") @default(autoincrement()) @map("Id")
   studentQuizId Int?
   answerId      Int?
-  createdAt     DateTime       @default(now()) @db.Timestamp(6) @map("CreatedAt")
+  createdAt     DateTime       @default(now()) @map("CreatedAt") @db.SmallDateTime
   answer        Answer?        @relation(fields: [answerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__StudentAn__Answe__5CD6CB2B")
   studentInQuiz StudentInQuiz? @relation(fields: [studentQuizId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__StudentAn__Stude__5BE2A6F2")
 }
@@ -149,8 +149,8 @@ model StudentInCourse {
   courseId       Int?
   displayIndex   Int?
   certificate    String?          @db.VarChar(100)
-  startDate      DateTime         @default(now()) @db.Timestamp(6)
-  deadlineDate   DateTime         @default(now()) @db.Timestamp(6)
+  startDate      DateTime         @default(now()) @db.SmallDateTime
+  deadlineDate   DateTime         @default(now()) @db.SmallDateTime
   status         String?          @db.NVarChar(15)
   course         Course?          @relation(fields: [courseId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__StudentIn__Cours__5165187F")
   student        Student?         @relation(fields: [studentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__StudentIn__Stude__5070F446")
@@ -161,7 +161,7 @@ model StudentInQuiz {
   id             Int             @id(map: "PK__StudentI__3214EC07500FC685") @default(autoincrement()) @map("Id")
   studentTopicId Int?
   quizId         Int?
-  createdAt      DateTime        @default(now()) @db.Timestamp(6) @map("CreatedAt")
+  createdAt      DateTime        @default(now()) @map("CreatedAt") @db.SmallDateTime
   quiz           Quiz?           @relation(fields: [quizId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__StudentIn__QuizI__59063A47")
   studentInTopic StudentInTopic? @relation(fields: [studentTopicId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__StudentIn__Stude__5812160E")
   studentAnswer  StudentAnswer[]
@@ -197,8 +197,8 @@ model Topic {
   description    String?          @db.NVarChar(50)
   status         String?          @db.NVarChar(30)
   displayIndex   Int?
-  createdAt      DateTime         @default(now()) @db.Timestamp(6) @map("CreatedAt")
-  updatedAt      DateTime         @default(now()) @db.Timestamp(6) @map("UpdatedAt")
+  createdAt      DateTime         @default(now()) @map("CreatedAt") @db.SmallDateTime
+  updatedAt      DateTime         @default(now()) @map("UpdatedAt") @db.SmallDateTime
   section        Section          @relation(fields: [sectionId], references: [id], onUpdate: NoAction, map: "FK__Topic__SectionId__46E78A0C")
   quiz           Quiz?
   studentInTopic StudentInTopic[]
