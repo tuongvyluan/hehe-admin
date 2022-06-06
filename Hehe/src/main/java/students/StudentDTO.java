@@ -1,8 +1,8 @@
-package dto;
+package students;
 
 import java.sql.Date;
 
-public class Student {
+public class StudentDTO {
 	int studentId;
     String firstName;
     String lastName;
@@ -14,7 +14,7 @@ public class Student {
     String roleId;
     String createdAt;
     String updatedAt;
-	public Student(int studentId, String firstName, String lastName, Date dob, String email, String password,
+	public StudentDTO(int studentId, String firstName, String lastName, Date dob, String email, String password,
 			String phoneNumber, int status, String roleId, String createdAt, String updatedAt) {
 		super();
 		this.studentId = studentId;

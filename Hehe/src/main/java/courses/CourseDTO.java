@@ -1,6 +1,6 @@
-package dto;
+package courses;
 
-public class Course {
+public class CourseDTO {
 	int courseId;
 	int authorId;
 	int categoryId;
@@ -11,7 +11,7 @@ public class Course {
 	String createdAt;
 	String updatedAt;
 	double duration;
-	public Course(int courseId, int authorId, int categoryId, String courseName, String description, int status,
+	public CourseDTO(int courseId, int authorId, int categoryId, String courseName, String description, int status,
 			double price, String createdAt, String updatedAt, double duration) {
 		super();
 		this.courseId = courseId;

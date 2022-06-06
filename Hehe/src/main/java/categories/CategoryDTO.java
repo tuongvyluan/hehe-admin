@@ -1,13 +1,13 @@
-package dto;
+package categories;
 
-public class Category {
+public class CategoryDTO {
 	int categoryId;
 	String categoryName;
 	String description;
 	int status;
 	String createdAt;
 	String updatedAt;
-	public Category(int categoryId, String categoryName, String description, int status, String createdAt, String updatedAt) {
+	public CategoryDTO(int categoryId, String categoryName, String description, int status, String createdAt, String updatedAt) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;

@@ -1,33 +1,23 @@
-package dto;
+package sections;
 
-public class Topic {
-	int topicId;
+public class SectionDTO {
 	int sectionId;
 	int courseId;
-	String topicName;
+	String sectionName;
 	String description;
-	int status;
 	int displayIndex;
 	String createdAt;
 	String updatedAt;
-	public Topic(int topicId, int sectionId, int courseId, String topicName, String description, int status,
-			int displayIndex, String createdAt, String updatedAt) {
+	public SectionDTO(int sectionId, int courseId, String sectionName, String description, int displayIndex,
+			String createdAt, String updatedAt) {
 		super();
-		this.topicId = topicId;
 		this.sectionId = sectionId;
 		this.courseId = courseId;
-		this.topicName = topicName;
+		this.sectionName = sectionName;
 		this.description = description;
-		this.status = status;
 		this.displayIndex = displayIndex;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-	}
-	public int getTopicId() {
-		return topicId;
-	}
-	public void setTopicId(int topicId) {
-		this.topicId = topicId;
 	}
 	public int getSectionId() {
 		return sectionId;
@@ -41,23 +31,17 @@ public class Topic {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-	public String getTopicName() {
-		return topicName;
+	public String getSectionName() {
+		return sectionName;
 	}
-	public void setTopicName(String topicName) {
-		this.topicName = topicName;
+	public void setSectionName(String sectionName) {
+		this.sectionName = sectionName;
 	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
 	}
 	public int getDisplayIndex() {
 		return displayIndex;

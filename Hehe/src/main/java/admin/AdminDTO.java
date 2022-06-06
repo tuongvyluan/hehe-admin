@@ -1,6 +1,6 @@
-package dto;
+package admin;
 
-public class Admin {
+public class AdminDTO {
 	int adminId;
 	String name;
 	String password;
@@ -10,7 +10,7 @@ public class Admin {
     String updatedAt;
     
     //cons
-	public Admin(int adminId, String name, String password, String email, String roleId, String createdAt,
+	public AdminDTO(int adminId, String name, String password, String email, String roleId, String createdAt,
 			String updatedAt) {
 		super();
 		this.adminId = adminId;

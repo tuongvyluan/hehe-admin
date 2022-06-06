@@ -1,6 +1,6 @@
-package dto;
+package authors;
 
-public class Author {
+public class AuthorDTO {
 	int authorId;
 	String roleId;
 	String firstName;
@@ -10,7 +10,7 @@ public class Author {
 	String password;
 	String createdAt;
 	String updatedAt;
-	public Author(int authorId, String roleId, String firstName, String lastName, String phoneName, String email,
+	public AuthorDTO(int authorId, String roleId, String firstName, String lastName, String phoneName, String email,
 			String password, String createdAt, String updatedAt) {
 		super();
 		this.authorId = authorId;

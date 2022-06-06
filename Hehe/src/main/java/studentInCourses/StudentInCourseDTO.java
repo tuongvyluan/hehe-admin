@@ -1,14 +1,14 @@
 /**
  * 
  */
-package dto;
+package studentInCourses;
 
 /**
  * @author Tuong Vy Luan
  *
  */
 
-public class StudentInCourse {
+public class StudentInCourseDTO {
     int studentInCourseId;
     int studentId;
     int courseId;
@@ -18,7 +18,7 @@ public class StudentInCourse {
     double deadlineDate;
     int status;
 
-    public StudentInCourse(int studentInCourseId, int studentId, int courseId, int displayIndex, String certificate,
+    public StudentInCourseDTO(int studentInCourseId, int studentId, int courseId, int displayIndex, String certificate,
 	    double startDate, double deadlineDate, int status) {
 	super();
 	this.studentInCourseId = studentInCourseId;

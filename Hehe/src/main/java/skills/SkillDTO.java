@@ -1,9 +1,9 @@
-package dto;
+package skills;
 
-public class Skill {
+public class SkillDTO {
 	int skillId;
 	String skillName;
-	public Skill(int skillId, String skillName) {
+	public SkillDTO(int skillId, String skillName) {
 		super();
 		this.skillId = skillId;
 		this.skillName = skillName;

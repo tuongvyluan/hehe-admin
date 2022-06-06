@@ -1,11 +1,11 @@
-package dto;
+package studentInQuizzes;
 
-public class StudentInQuiz {
+public class StudentInQuizDTO {
 	int studentInQuizId;
 	int studentTopicId;
 	int quizId;
 	String createdAt;
-	public StudentInQuiz(int studentInQuizId, int studentTopicId, int quizId, String createdAt) {
+	public StudentInQuizDTO(int studentInQuizId, int studentTopicId, int quizId, String createdAt) {
 		super();
 		this.studentInQuizId = studentInQuizId;
 		this.studentTopicId = studentTopicId;

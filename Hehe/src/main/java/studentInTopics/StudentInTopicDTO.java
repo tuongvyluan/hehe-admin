@@ -1,12 +1,12 @@
-package dto;
+package studentInTopics;
 
-public class StudentInTopic {
+public class StudentInTopicDTO {
 	int studentInTopicId;
 	int studentCourseId;
 	int topicId;
 	double startDate;
 	double deadlineDate;
-	public StudentInTopic(int studentInTopicId, int studentCourseId, int topicId, double startDate,
+	public StudentInTopicDTO(int studentInTopicId, int studentCourseId, int topicId, double startDate,
 			double deadlineDate) {
 		super();
 		this.studentInTopicId = studentInTopicId;

@@ -1,26 +1,25 @@
-package dto;
+package quizzes;
 
-public class Answer {
-	int answerId;
+import java.sql.Date;
+
+public class QuizDTO {
 	int quizId;
+	int topicId;
 	String content;
-	boolean isCorrect;
+	Date date;
+	int numberAnswers;
 	String createdAt;
 	String updatedAt;
-	public Answer(int answerId, int quizId, String content, boolean isCorrect, String createdAt, String updatedAt) {
+	public QuizDTO(int quizId, int topicId, String content, Date date, int numberAnswers, String createdAt,
+			String updatedAt) {
 		super();
-		this.answerId = answerId;
 		this.quizId = quizId;
+		this.topicId = topicId;
 		this.content = content;
-		this.isCorrect = isCorrect;
+		this.date = date;
+		this.numberAnswers = numberAnswers;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-	}
-	public int getAnswerId() {
-		return answerId;
-	}
-	public void setAnswerId(int answerId) {
-		this.answerId = answerId;
 	}
 	public int getQuizId() {
 		return quizId;
@@ -28,17 +27,29 @@ public class Answer {
 	public void setQuizId(int quizId) {
 		this.quizId = quizId;
 	}
+	public int getTopicId() {
+		return topicId;
+	}
+	public void setTopicId(int topicId) {
+		this.topicId = topicId;
+	}
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public boolean isCorrect() {
-		return isCorrect;
+	public Date getDate() {
+		return date;
 	}
-	public void setCorrect(boolean isCorrect) {
-		this.isCorrect = isCorrect;
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public int getNumberAnswers() {
+		return numberAnswers;
+	}
+	public void setNumberAnswers(int numberAnswers) {
+		this.numberAnswers = numberAnswers;
 	}
 	public String getCreatedAt() {
 		return createdAt;
@@ -52,7 +63,6 @@ public class Answer {
 	public void setUpdatedAt(String updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
 	
 	
 }
