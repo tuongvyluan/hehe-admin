@@ -1,86 +1,84 @@
 package admin;
 
 public class AdminDTO {
-	int adminId;
-	String name;
-	String password;
-	String email;
-	String roleId;
-	String createdAt;
+    int adminId;
+    String name;
+    String password;
+    String email;
+    String roleId;
+    String createdAt;
     String updatedAt;
-    
-    //cons
-	public AdminDTO(int adminId, String name, String password, String email, String roleId, String createdAt,
-			String updatedAt) {
-		super();
-		this.adminId = adminId;
-		this.name = name;
-		this.password = password;
-		this.email = email;
-		this.roleId = roleId;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
-	
-	
-	//getter setter
-	public int getAdminId() {
-		return adminId;
-	}
 
-	public void setAdminId(int adminId) {
-		this.adminId = adminId;
-	}
+    // cons
+    public AdminDTO(int adminId, String name, String password, String email, String roleId, String createdAt,
+	    String updatedAt) {
+	super();
+	this.adminId = adminId;
+	this.name = name;
+	this.password = password;
+	this.email = email;
+	this.roleId = roleId;
+	this.createdAt = createdAt;
+	this.updatedAt = updatedAt;
+    }
 
-	public String getName() {
-		return name;
-	}
+    // getter setter
+    public int getAdminId() {
+	return adminId;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setAdminId(int adminId) {
+	this.adminId = adminId;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getPassword() {
+	return password;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setPassword(String password) {
+	this.password = password;
+    }
 
-	public String getRoleId() {
-		return roleId;
-	}
+    public String getEmail() {
+	return email;
+    }
 
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
-	}
+    public void setEmail(String email) {
+	this.email = email;
+    }
 
-	public String getCreatedAt() {
-		return createdAt;
-	}
+    public String getRoleId() {
+	return roleId;
+    }
 
-	public void setCreatedAt(String createdAt) {
-		this.createdAt = createdAt;
-	}
+    public void setRoleId(String roleId) {
+	this.roleId = roleId;
+    }
 
-	public String getUpdatedAt() {
-		return updatedAt;
-	}
+    public String getCreatedAt() {
+	return createdAt;
+    }
 
-	public void setUpdatedAt(String updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-	
-	//method
-	
-    
+    public void setCreatedAt(String createdAt) {
+	this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+	return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+	this.updatedAt = updatedAt;
+    }
+
+    // method
+
 }
