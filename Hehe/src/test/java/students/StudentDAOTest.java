@@ -28,6 +28,12 @@ class StudentDAOTest {
     void testGetInt() {
 	fail("Not yet implemented");
     }
+    
+    @Test
+    void testGetString() throws SQLException {
+	StudentDAO dao = new StudentDAO();
+	assertNotNull(dao.get("mbier1@google.cn"));
+    }
 
     @Test
     void testAdd() {
