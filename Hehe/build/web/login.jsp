@@ -59,7 +59,7 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
+                                                        <button name="action" value="Login" class="login100-form-btn">
 								Login
 							</button>
 						</div>
@@ -67,7 +67,7 @@
 
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<span>
-							Or Sign Up Using
+							Or Login Using
 						</span>
 					</div>
 
@@ -77,7 +77,7 @@
 						</a>
 					</div>
 
-					<div class="flex-col-c p-t-155">
+					<div class="flex-col-c p-t-100">
 						<span class="txt1 p-b-17">
 							Don't have an account ?
 						</span>

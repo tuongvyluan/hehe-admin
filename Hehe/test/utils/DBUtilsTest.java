@@ -3,11 +3,11 @@
  */
 package utils;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * @author Tuong Vy Luan
@@ -22,7 +22,7 @@ class DBUtilsTest {
      */
     @Test
     void testGetConnection() throws ClassNotFoundException, SQLException {
-	assertNotNull(DBUtils.getConnection(), "Create connection failed!");
+	assertNotNull("Create connection failed!", DBUtils.getConnection());
     }
 
 }
