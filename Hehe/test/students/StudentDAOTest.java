@@ -33,6 +33,12 @@ class StudentDAOTest {
 	StudentDAO dao = new StudentDAO();
 	assertNotNull(dao.get("mbier1@google.cn"));
     }
+    
+    @Test
+    void testNormalLogin() throws SQLException {
+	StudentDAO dao = new StudentDAO();
+	assertNotNull(dao.get("mbier1@google.cn", "PggEpkOPvn"));
+    }
 
     @Test
     void testAdd() {

@@ -11,13 +11,13 @@ public class StudentModel {
     private String email;
     private String password;
     private String phoneNumber;
-    private int status;
+    private String status;
     private String role;
     private LocalDate createdAt;
     private LocalDate updatedAt;
 
     public StudentModel(int id, String firstName, String lastName, LocalDate dob, String email, String password,
-	    String phoneNumber, int status, String role, LocalDate createdAt, LocalDate updatedAt) {
+	    String phoneNumber, String status, String role, LocalDate createdAt, LocalDate updatedAt) {
 	this.id = id;
 	this.firstName = firstName;
 	this.lastName = lastName;
@@ -91,11 +91,11 @@ public class StudentModel {
 	this.phoneNumber = phoneNumber;
     }
 
-    public int getStatus() {
+    public String getStatus() {
 	return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
 	this.status = status;
     }
 
@@ -121,6 +121,10 @@ public class StudentModel {
 
     public void setUpdatedAt(LocalDate updatedAt) {
 	this.updatedAt = updatedAt;
+    }
+    
+    public StudentDTO toDTO() {
+        return new StudentDTO(id, firstName, lastName, dob, email, phoneNumber);
     }
 //method
 

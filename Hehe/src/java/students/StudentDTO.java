@@ -11,6 +11,19 @@ public class StudentDTO {
     private String email;
     private String phoneNumber;
     
+    public StudentDTO(){
+        
+    }
+
+    public StudentDTO(int id, String firstName, String lastName, LocalDate dob, String email, String phoneNumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+    
     public int getId() {
         return id;
     }

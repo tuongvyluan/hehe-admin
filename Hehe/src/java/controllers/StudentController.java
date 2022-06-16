@@ -5,38 +5,49 @@
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import students.IStudentBUS;
+import students.StudentBUS;
+import students.StudentModel;
 
 /**
  *
  * @author Luan Tuong Vy
  */
-public class MainController extends HttpServlet {
+public class StudentController extends HttpServlet {
 
     // Action String
     private final String LOGIN_STUDENT = "LoginStudent";
-    private final String LOGIN_AUTHOR = "LoginAuthor";
-    
-    // Controller, Destination String
-    private final String ERROR = "error.jsp";
-    private final String STUDENT_CONTROLLER = "StudentController";
-    private final String AUTHOR_CONTROLLER = "AuthorController";
 
-    
+    // Destination String
+    private final String ERROR = "error.jsp";
+    private final String LOGIN = "login.jsp";
+    private final String STUDENT_PROFILE = "profile.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = LOGIN;
         try {
             String action = request.getParameter("action");
             if (LOGIN_STUDENT.equals(action)) {
-                url = STUDENT_CONTROLLER;
-            } else if (LOGIN_AUTHOR.equals(action)) {
-                url = AUTHOR_CONTROLLER;
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                System.out.println("Email: " + email);
+                System.out.println("Password: " + password);
+                IStudentBUS studentBUS = new StudentBUS();
+                HttpSession session = request.getSession();
+                StudentModel student = studentBUS.checkLogin(email, password);
+                if (student != null) {
+                    session.setAttribute("LOGIN_STUDENT", student.toDTO());
+                    url = STUDENT_PROFILE;
+                } else {
+                    url = LOGIN;
+                }
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());

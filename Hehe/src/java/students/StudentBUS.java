@@ -5,16 +5,16 @@ import java.sql.SQLException;
 public class StudentBUS implements IStudentBUS {
 
     @Override
-    public StudentModel checkLogin(String email, String password) {
-	// TODO Auto-generated method stub
-	return null;
+    public StudentModel checkLogin(String email, String password) throws SQLException {
+	StudentDAO dao = new StudentDAO();
+	StudentModel student = dao.get(email, password);
+        System.out.println(student.toString());
+	return student;
     }
 
     @Override
     public StudentModel checkLogin(String email) throws SQLException {
-	// TODO Auto-generated method stub
 	StudentDAO dao = new StudentDAO();
-	System.out.println("Email in BUS: " + email);
 	StudentModel student = dao.get(email);
 	return student;
     }

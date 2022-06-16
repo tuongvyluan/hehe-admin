@@ -1,3 +1,4 @@
+<%@page import="students.StudentDTO"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,6 +17,16 @@
         <link rel="stylesheet" href="./profile.css" />
     </head>
     <body>
+        <%
+            //Prevent everyone else except the login student go to this page
+            StudentDTO student;
+            if (session.getAttribute("LOGIN_STUDENT") != null) {
+                student = (StudentDTO) session.getAttribute("LOGIN_STUDENT");
+            } else {
+                response.sendRedirect("login.jsp");
+                return;
+            }
+        %>
         <div class="container">
             <div class="row flex-lg-nowrap">
                 <div class="col-12 col-lg-auto mb-3" style="width: 200px">
@@ -65,7 +76,7 @@
                                                 <h4
                                                     class="font-weight-bold mb-0"
                                                 >
-                                                    John Doe
+                                                    <%= student.getFirstName() + ' ' + student.getLastName() %>
                                                 </h4>
                                             </div>
                                         </div>
@@ -91,18 +102,6 @@
                         <div class="row no-gutters row-bordered"></div>
                         <hr class="border-light m-0" />
                         <div class="card-body">
-                            <table class="table user-view-table m-0">
-                                <tbody>
-                                    <tr>
-                                        <td>Name:</td>
-                                        <td>Nelle Maxwell</td>
-                                    </tr>
-                                    <tr>
-                                        <td>E-mail:</td>
-                                        <td>nmaxwell@mail.com</td>
-                                    </tr>
-                                </tbody>
-                            </table>
 
                             <h6 class="mt-4 mb-3">Personal info</h6>
 
@@ -110,11 +109,7 @@
                                 <tbody>
                                     <tr>
                                         <td>Birthday:</td>
-                                        <td>May 3, 1995</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Country:</td>
-                                        <td>Canada</td>
+                                        <td><%= student.getDob().toString() %></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -124,8 +119,12 @@
                             <table class="table user-view-table m-0">
                                 <tbody>
                                     <tr>
+                                        <td>E-mail:</td>
+                                        <td><%= student.getEmail() %></td>
+                                    </tr>
+                                    <tr>
                                         <td>Phone:</td>
-                                        <td>+0 (123) 456 7891</td>
+                                        <td><%= student.getPhoneNumber() %></td>
                                     </tr>
                                 </tbody>
                             </table>
