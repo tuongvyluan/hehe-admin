@@ -4,6 +4,9 @@
     Author     : Luan Tuong Vy
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="categories.CategoryDTO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +16,8 @@
   </head>
   <body>
     <h1>Category</h1>
-    
+    <%
+        List<CategoryDTO> categories = new ArrayList();
+    %>
   </body>
 </html>
