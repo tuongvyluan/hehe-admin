@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
@@ -54,13 +54,13 @@
 					
 					<div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="pass" placeholder="Type your password">
+                                                <input class="input100" type="password" id="password" required  name="pass" placeholder="Type your password">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<span class="label-input100">Confirm password</span>
-						<input class="input100" type="password" name="pass" placeholder="Confirm your password">
+                                                <input class="input100" type="password" id="confirm_password" name="pass" required placeholder="Confirm your password">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					</div> <%-- end input wrapper --%>
@@ -82,7 +82,7 @@
 					
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<span class="label-input100">Phone number</span>
-						<input class="input100" type="password" name="pass" placeholder="Confirm your password">
+                                                <input class="input100" type="text" id="mobile" name="pass" placeholder="Type your phone number">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					</div> <%-- end input wrapper --%>
@@ -139,5 +139,6 @@
 	<footer>
 	<%@ include file="footer.jsp" %>
 	</footer>
+        <script src="js/validate.js"></script>
 </body>
 </html>
