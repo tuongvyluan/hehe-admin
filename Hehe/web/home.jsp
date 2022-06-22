@@ -4,8 +4,10 @@
     Author     : Luan Tuong Vy
 --%>
 
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="categories.CategoryModel"%>
+<%@page import="categories.CategoryBUS"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="categories.CategoryDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +19,21 @@
   <body>
     <h1>Category</h1>
     <%
-        List<CategoryDTO> categories = new ArrayList();
+        int pageNumber = 1;
+        int rowsOfPage = 5;
+        if (request.getParameter("page") != null) {
+            pageNumber = Integer.parseInt(request.getParameter("page"));
+        }
+        CategoryBUS categoryBUS = new CategoryBUS();
+        ArrayList<CategoryModel> categories = categoryBUS.getCategories(pageNumber, rowsOfPage);
+    %>
+    
+    <% 
+        for (CategoryModel category : categories) {
+            %>
+            <h1><%= category.getCategoryName() %></h1>
+    <%
+        }
     %>
   </body>
 </html>

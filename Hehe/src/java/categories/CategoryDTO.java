@@ -12,15 +12,13 @@ public class CategoryDTO {
 
     int categoryId;
     String categoryName;
-    String status;
 
     public CategoryDTO() {
     }
 
-    public CategoryDTO(int categoryId, String categoryName, String status) {
+    public CategoryDTO(int categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
-        this.status = status;
     }
 
     public int getCategoryId() {
@@ -39,17 +37,9 @@ public class CategoryDTO {
         this.categoryName = categoryName;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
         return "CategoryDTO{" + "categoryId=" + categoryId + ", categoryName="
-                + categoryName + ", status=" + status + '}';
+                + categoryName + '}';
     }
 }
