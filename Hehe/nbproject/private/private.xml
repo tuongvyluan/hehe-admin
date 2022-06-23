@@ -5,8 +5,9 @@
         <group>
             <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/courses/CourseDAO.java</file>
             <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/courses/CourseBUS.java</file>
+            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/courses/CourseModel.java</file>
             <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/courses/CourseDTO.java</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/categories/CategoryDAO.java</file>
+            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/controllers/CourseController.java</file>
         </group>
     </open-files>
 </project-private>

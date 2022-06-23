@@ -19,11 +19,13 @@ public class MainController extends HttpServlet {
     // Controller param
     private final String STUDENT = "Student";
     private final String AUTHOR = "Author";
+    private final String COURSE = "Course";
     
     // Controller, Destination String
     private final String ERROR = "error.jsp";
     private final String STUDENT_CONTROLLER = "StudentController";
     private final String AUTHOR_CONTROLLER = "AuthorController";
+    private final String COURSE_CONTROLLER = "CourseController";
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -38,6 +40,8 @@ public class MainController extends HttpServlet {
                 url = AUTHOR_CONTROLLER;
             } else if (STUDENT.equals(controller)) {
                 url = STUDENT_CONTROLLER;
+            } else if (COURSE.equals(controller)) {
+                url = COURSE_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());

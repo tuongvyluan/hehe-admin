@@ -2,16 +2,16 @@ package courses;
 
 public class CourseModel {
 
-    int courseId;
-    int authorId;
-    int categoryId;
-    String courseName;
-    String description;
-    int status;
-    double price;
-    String createdAt;
-    String updatedAt;
-    double duration;
+    private int courseId;
+    private int authorId;
+    private int categoryId;
+    private String courseName;
+    private String description;
+    private int status;
+    private double price;
+    private String createdAt;
+    private String updatedAt;
+    private double duration;
 
     public CourseModel(int courseId, int authorId, int categoryId, String courseName, String description, int status,
             double price, String createdAt, String updatedAt, double duration) {
@@ -25,6 +25,20 @@ public class CourseModel {
         this.price = price;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.duration = duration;
+    }
+    
+    public CourseModel(){
+        
+    }
+
+    public CourseModel(int courseId, int authorId, int categoryId, String courseName, String description, double price, double duration) {
+        this.courseId = courseId;
+        this.authorId = authorId;
+        this.categoryId = categoryId;
+        this.courseName = courseName;
+        this.description = description;
+        this.price = price;
         this.duration = duration;
     }
 

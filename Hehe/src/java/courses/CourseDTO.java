@@ -10,9 +10,9 @@ package courses;
  */
 public class CourseDTO {
     
-    int courseId;
-    int categoryId;
-    String courseName;
+    private int courseId;
+    private int categoryId;
+    private String courseName;
 
     public CourseDTO() {
     }

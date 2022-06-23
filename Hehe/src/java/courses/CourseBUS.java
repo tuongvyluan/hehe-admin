@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public class CourseBUS {
     private CourseDAO dao;
+    private CourseDTO courseDTO;
+    private CourseModel courseModel;
 
     public ArrayList<CourseDTO> getCourses(int pageNumber, int rowsOfPage) throws SQLException {
         dao = new CourseDAO();
@@ -24,5 +26,11 @@ public class CourseBUS {
         dao = new CourseDAO();
         ArrayList<CourseDTO> list = dao.getByCategory(categoryId, pageNumber, rowsOfPage);
         return list;
+    }
+    
+    public CourseModel get(int courseId) throws SQLException {
+        dao = new CourseDAO();
+        courseModel = dao.get(courseId);
+        return courseModel;
     }
 }
