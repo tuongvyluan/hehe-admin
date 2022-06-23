@@ -4,6 +4,7 @@
     Author     : Luan Tuong Vy
 --%>
 
+<%@page import="authors.AuthorBUS"%>
 <%@page import="courses.CourseModel"%>
 <%@page import="students.StudentDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,7 +17,8 @@
   <body>
     <%
         //Prevent everyone else except the login student go to this page
-        StudentDTO student;
+        StudentDTO student = new StudentDTO();
+        AuthorBUS authorBUS = new AuthorBUS();
         CourseModel course = new CourseModel();
         if (session.getAttribute("LOGIN_STUDENT") != null) {
             student = (StudentDTO) session.getAttribute("LOGIN_STUDENT");
@@ -33,6 +35,7 @@
     %>
     <h1>Hello World!</h1>
     <h2><%= course.getCourseName()%></h2>
+    <p>Author: <%= authorBUS.get(course.getAuthorId()).getFirstName() %></p>
     <p><%= course.getDescription()%></p>
     <p><%= course.getDuration()%></p>
     <p><%= course.getPrice()%></p>
