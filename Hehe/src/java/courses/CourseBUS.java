@@ -4,10 +4,25 @@
  */
 package courses;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author Luan Tuong Vy
  */
 public class CourseBUS {
+    private CourseDAO dao;
+
+    public ArrayList<CourseDTO> getCourses(int pageNumber, int rowsOfPage) throws SQLException {
+        dao = new CourseDAO();
+        ArrayList<CourseDTO> list = dao.get(pageNumber, rowsOfPage);
+        return list;
+    }
     
+    public ArrayList<CourseDTO> getCoursesByCategory(int categoryId, int pageNumber, int rowsOfPage) throws SQLException {
+        dao = new CourseDAO();
+        ArrayList<CourseDTO> list = dao.getByCategory(categoryId, pageNumber, rowsOfPage);
+        return list;
+    }
 }

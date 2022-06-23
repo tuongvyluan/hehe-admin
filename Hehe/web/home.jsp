@@ -4,6 +4,8 @@
     Author     : Luan Tuong Vy
 --%>
 
+<%@page import="courses.CourseBUS"%>
+<%@page import="courses.CourseDTO"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="categories.CategoryModel"%>
 <%@page import="categories.CategoryBUS"%>
@@ -27,12 +29,20 @@
         CategoryBUS categoryBUS = new CategoryBUS();
         ArrayList<CategoryModel> categories = categoryBUS.getCategories(pageNumber, rowsOfPage);
     %>
-    
-    <% 
-        for (CategoryModel category : categories) {
-            %>
-            <h1><%= category.getCategoryName() %></h1>
+
     <%
+        ArrayList<CourseDTO> courseList;
+        CourseBUS courseBUS = new CourseBUS();
+        for (CategoryModel category : categories) {
+    %>
+    <h2><%= category.getCategoryName()%></h2>
+    <%
+        courseList = courseBUS.getCoursesByCategory(category.getCategoryId(), 1, 5);
+        for (CourseDTO course : courseList) {
+    %>
+    <p><%= course.getCourseName()%></p>
+    <%
+            }
         }
     %>
   </body>
