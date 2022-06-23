@@ -39,5 +39,8 @@
     <p><%= course.getDescription()%></p>
     <p><%= course.getDuration()%></p>
     <p><%= course.getPrice()%></p>
+    
+    <h2>Section</h2>
+    
   </body>
 </html>
