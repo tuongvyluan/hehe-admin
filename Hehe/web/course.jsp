@@ -34,7 +34,7 @@
     <%
         for (SectionDTO section : sections) {
     %>
-    <h3><%= section.getSectionName()%></h3>
+    <h3><%= section.getDisplayIndex() + ". " + section.getSectionName()%></h3>
 
     <%
         }

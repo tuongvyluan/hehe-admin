@@ -1,100 +1,90 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package topics;
 
+import courses.CourseModel;
+import sections.SectionModel;
+
+/**
+ *
+ * @author Luan Tuong Vy
+ */
 public class TopicDTO {
+    
     int topicId;
-    int sectionId;
-    int courseId;
+    SectionModel section;
+    CourseModel course;
     String topicName;
-    String description;
     int status;
     int displayIndex;
-    String createdAt;
-    String updatedAt;
 
-    public TopicDTO(int topicId, int sectionId, int courseId, String topicName, String description, int status,
-	    int displayIndex, String createdAt, String updatedAt) {
-	super();
-	this.topicId = topicId;
-	this.sectionId = sectionId;
-	this.courseId = courseId;
-	this.topicName = topicName;
-	this.description = description;
-	this.status = status;
-	this.displayIndex = displayIndex;
-	this.createdAt = createdAt;
-	this.updatedAt = updatedAt;
+    public TopicDTO() {
+    }
+
+    public TopicDTO(int topicId, SectionModel section, CourseModel course,
+            String topicName, int status, int displayIndex) {
+        this.topicId = topicId;
+        this.section = section;
+        this.course = course;
+        this.topicName = topicName;
+        this.status = status;
+        this.displayIndex = displayIndex;
     }
 
     public int getTopicId() {
-	return topicId;
+        return topicId;
     }
 
     public void setTopicId(int topicId) {
-	this.topicId = topicId;
+        this.topicId = topicId;
     }
 
-    public int getSectionId() {
-	return sectionId;
+    public SectionModel getSection() {
+        return section;
     }
 
-    public void setSectionId(int sectionId) {
-	this.sectionId = sectionId;
+    public void setSection(SectionModel section) {
+        this.section = section;
     }
 
-    public int getCourseId() {
-	return courseId;
+    public CourseModel getCourse() {
+        return course;
     }
 
-    public void setCourseId(int courseId) {
-	this.courseId = courseId;
+    public void setCourse(CourseModel course) {
+        this.course = course;
     }
 
     public String getTopicName() {
-	return topicName;
+        return topicName;
     }
 
     public void setTopicName(String topicName) {
-	this.topicName = topicName;
-    }
-
-    public String getDescription() {
-	return description;
-    }
-
-    public void setDescription(String description) {
-	this.description = description;
+        this.topicName = topicName;
     }
 
     public int getStatus() {
-	return status;
+        return status;
     }
 
     public void setStatus(int status) {
-	this.status = status;
+        this.status = status;
     }
 
     public int getDisplayIndex() {
-	return displayIndex;
+        return displayIndex;
     }
 
     public void setDisplayIndex(int displayIndex) {
-	this.displayIndex = displayIndex;
+        this.displayIndex = displayIndex;
     }
 
-    public String getCreatedAt() {
-	return createdAt;
+    @Override
+    public String toString() {
+        return "TopicDTO{" + "topicId=" + topicId + ", section=" + section +
+                ", course=" + course + ", topicName=" + topicName + ", status=" +
+                status + ", displayIndex=" + displayIndex + '}';
     }
-
-    public void setCreatedAt(String createdAt) {
-	this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-	return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-	this.updatedAt = updatedAt;
-    }
-
 }
