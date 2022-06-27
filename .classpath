@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="Hehe/src/main/java"/>
+	<classpathentry kind="src" path="Hehe/src/test/java"/>
+	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 10.0/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Harry/Documents/Programming/Essentials/sqljdbc4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
