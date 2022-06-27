@@ -31,13 +31,11 @@ public class AuthorDAO {
                 ptm.setInt(1, authorId);
                 rs = ptm.executeQuery();
                 if (rs.next()) {
-                    System.out.println("Get author successfully");
                     author = new AuthorDTO();
                     author.setAuthorId(authorId);
                     author.setFirstName(rs.getString("FirstName"));
                     author.setLastName(rs.getString("LastName"));
                     author.setEmail(rs.getString("Email"));
-                    System.out.println(author.toString());
                 }
             }
         } catch (ClassNotFoundException | SQLException e) {
