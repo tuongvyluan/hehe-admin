@@ -77,7 +77,7 @@
                 </p>
 
                 <div class="wrap-input100 validate-input">
-                  <span class="label-input100">Confirm password <span
+                  <span class="label-input100">Confirm <span
                         style="color: red">*</span></span>
                   <input value="" class="input100" required="" type="password" name="confirm"
                          placeholder="Confirm password" minlength="4" maxlength="50">
