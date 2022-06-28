@@ -4,8 +4,8 @@
  */
 package topics;
 
-import courses.CourseModel;
-import sections.SectionModel;
+import courses.CourseDTO;
+import sections.SectionDTO;
 
 /**
  *
@@ -14,8 +14,8 @@ import sections.SectionModel;
 public class TopicDTO {
     
     private int topicId;
-    private SectionModel section;
-    private CourseModel course;
+    private SectionDTO section;
+    private CourseDTO course;
     private String topicName;
     private int status;
     private int displayIndex;
@@ -23,7 +23,7 @@ public class TopicDTO {
     public TopicDTO() {
     }
 
-    public TopicDTO(int topicId, SectionModel section, CourseModel course,
+    public TopicDTO(int topicId, SectionDTO section, CourseDTO course,
             String topicName, int status, int displayIndex) {
         this.topicId = topicId;
         this.section = section;
@@ -41,19 +41,19 @@ public class TopicDTO {
         this.topicId = topicId;
     }
 
-    public SectionModel getSection() {
+    public SectionDTO getSection() {
         return section;
     }
 
-    public void setSection(SectionModel section) {
+    public void setSection(SectionDTO section) {
         this.section = section;
     }
 
-    public CourseModel getCourse() {
+    public CourseDTO getCourse() {
         return course;
     }
 
-    public void setCourse(CourseModel course) {
+    public void setCourse(CourseDTO course) {
         this.course = course;
     }
 

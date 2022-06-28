@@ -3,21 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/sections/SectionBUS.java</file>
             <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/topics/TopicDTO.java</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/controllers/MainController.java</file>
+            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/studentInTopics/StudentInTopicDTO.java</file>
             <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/topics/TopicModel.java</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/sections/SectionDAO.java</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/web/css/about.jsp</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/topics/TopicBUS.java</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/students/StudentDAO.java</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/topics/TopicDAO.java</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/sections/SectionModel.java</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/web/css/css/About.css</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/web/course.jsp</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/web/home.jsp</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/web/login.jsp</file>
-            <file>file:/D:/Homework/SWP/hehe/Hehe/src/java/controllers/CourseController.java</file>
         </group>
     </open-files>
 </project-private>

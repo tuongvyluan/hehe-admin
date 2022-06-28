@@ -107,7 +107,7 @@ public class TopicModel {
     }
 
     public TopicDTO toDTO() {
-        return new TopicDTO(topicId, section, course, topicName, status, displayIndex);
+        return new TopicDTO(topicId, section.toDTO(), course.toDTO(), topicName, status, displayIndex);
     }
 
     @Override

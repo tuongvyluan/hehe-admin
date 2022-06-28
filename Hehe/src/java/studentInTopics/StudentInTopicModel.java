@@ -11,7 +11,8 @@ public class StudentInTopicModel {
     private double startDate;
     private double deadlineDate;
 
-    public StudentInTopicModel(int id, StudentInCourseModel studentCourse, TopicModel topic, double startDate, double deadlineDate) {
+    public StudentInTopicModel(int id, StudentInCourseModel studentCourse,
+            TopicModel topic, double startDate, double deadlineDate) {
         this.id = id;
         this.studentCourse = studentCourse;
         this.topic = topic;
