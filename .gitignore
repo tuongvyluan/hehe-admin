@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NetBeans specific #
 Hehe/nbproject/private/
 Hehe/build/
@@ -14,3 +15,9 @@ Hehe/nb-configuration.xml
 *.jar
 *.war
 *.ear
+=======
+/.metadata/
+/Hehe-courses/Hehe/nbproject/private/
+/Hehe-courses/Hehe/build/
+/Hehe/dist/
+>>>>>>> 56df7c0717fc4aa8400fc6cef8b5ba98008d9e9b
