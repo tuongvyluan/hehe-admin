@@ -23,6 +23,10 @@
         AuthorBUS authorBUS = new AuthorBUS();
         CourseModel course = (CourseModel) request.getAttribute("CURRENT_COURSE");
         ArrayList<SectionDTO> sections = (ArrayList) request.getAttribute("SECTION_LIST");
+        if (course == null || sections == null) {
+            response.sendRedirect("home.jsp");
+            return;
+        }
     %>
     <h1><%= course.getCourseName()%></h1>
     <p>Author: <%= authorBUS.get(course.getAuthorId()).getFirstName()%></p>

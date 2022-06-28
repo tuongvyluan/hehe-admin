@@ -13,12 +13,12 @@ import sections.SectionModel;
  */
 public class TopicDTO {
     
-    int topicId;
-    SectionModel section;
-    CourseModel course;
-    String topicName;
-    int status;
-    int displayIndex;
+    private int topicId;
+    private SectionModel section;
+    private CourseModel course;
+    private String topicName;
+    private int status;
+    private int displayIndex;
 
     public TopicDTO() {
     }

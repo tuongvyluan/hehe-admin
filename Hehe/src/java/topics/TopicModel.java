@@ -6,15 +6,15 @@ import sections.SectionModel;
 
 public class TopicModel {
 
-    int topicId;
-    SectionModel section;
-    CourseModel course;
-    String topicName;
-    String description;
-    int status;
-    int displayIndex;
-    LocalDate createdAt;
-    LocalDate updatedAt;
+    private int topicId;
+    private SectionModel section;
+    private CourseModel course;
+    private String topicName;
+    private String description;
+    private int status;
+    private int displayIndex;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
 
     public TopicModel() {
 
