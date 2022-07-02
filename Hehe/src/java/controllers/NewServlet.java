@@ -1,51 +1,38 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package controllers;
 
-import courses.CourseBUS;
 import courses.CourseDAO;
-import courses.CourseModel;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import sections.SectionBUS;
-import sections.SectionDTO;
 
 /**
  *
- * @author Luan Tuong Vy
+ * @author Harry
  */
-@WebServlet(name = "CourseController", urlPatterns = {"/CourseController"})
-public class CourseController extends HttpServlet {
+public class NewServlet extends HttpServlet {
 
-    //Action String
-    private final String VIEW_COURSE = "ViewCourse";
-    private final String CREATE_COURSE = "CreateCourse";
-    private final String EDIT_COURSE = "EditCourse";
-    private final String DELETE_COURSE = "DeleteCourse";
-
-    //Destination String
-    private final String ERROR = "error.jsp";
-    private final String HOME = "home.jsp";
-    private final String COURSE = "course.jsp";
-    private final String CREATE_COURSE_PAGE = "createCourse.jsp";
-    private final String EDIT_COURSE_PAGE = "editCourse.jsp";
-    private final String DELETE_COURSE_PAGE = "deleteCourse.jsp";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
-            String url = "";
             switch (action) {
                 case "CreateCourse": {
                     String courseName = request.getParameter("txtCourseName");
@@ -61,11 +48,9 @@ public class CourseController extends HttpServlet {
                     double courseDuration = (hour * 3600 + minute * 60 + second) / 3600;
                     boolean result = CourseDAO.createCourse(courseAuthorId, courseCategoryId, courseName, courseDescription, courseStatus, coursePrice, courseDuration);
                     if (result == true) {
-//                        response.sendRedirect("home.jsp");
-                        url = CREATE_COURSE_PAGE;
+                        response.sendRedirect("home.jsp");
                     } else {
-//                        response.sendRedirect("error.jsp");
-                        url = ERROR;
+                        response.sendRedirect("error.jsp");
                     }
                     break;
                 }
@@ -83,33 +68,18 @@ public class CourseController extends HttpServlet {
                     double courseDuration = (double) (hour * 3600 + minute * 60 + second) / 3600;
                     boolean result = CourseDAO.editCourse(courseToEdit, courseNewCategoryId, courseNewName, courseNewDescription, courseNewStatus, courseNewPrice, courseDuration);
                     if (result == true) {
-//                        response.sendRedirect("home.jsp");
-                        url = EDIT_COURSE_PAGE;
+                        response.sendRedirect("home.jsp");
                     } else {
-//                        response.sendRedirect("error.jsp");
-                        url = ERROR;
-                    }
-                    break;
-                }
-
-                case DELETE_COURSE: {
-                    int courseToDeleteId = Integer.parseInt(request.getParameter("txtCourseToDelete"));
-                    boolean result = CourseDAO.deleteCourse(courseToDeleteId);
-                    if (result == true) {
-//                        response.sendRedirect("home.jsp");
-                        url = DELETE_COURSE_PAGE;
-                    } else {
-//                        response.sendRedirect("error.jsp");
-                        url = ERROR;
+                        response.sendRedirect("error.jsp");
                     }
                     break;
                 }
             }
-            request.getRequestDispatcher(url).forward(request, response);
+
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -165,4 +165,72 @@ public class CourseDAO {
         }
         return course;
     }
+    
+    public static boolean createCourse(int authorId, int categoryId, String name, String description, String status, double price, double duration) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "INSERT INTO Course (AuthorId, CategoryId, [Name], [Description], [Status], Price, Duration) VALUES (?,?,?,?,?,?,?)"; 
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, authorId);
+                pst.setInt(2, categoryId);
+                pst.setString(3, name);
+                pst.setString(4, description);
+                pst.setString(5, status);
+                pst.setDouble(6, price);
+                pst.setDouble(7, duration);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean editCourse(int courseId, int newCategoryId, String newName, String newDescription, String newStatus, double newPrice, double newDuration) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Course SET CategoryId = ?, Name = ?, Description = ?, Status = ?, Price = ?, Duration = ? "
+                        + "WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, newCategoryId);
+                pst.setString(2, newName);
+                pst.setString(3, newDescription);
+                pst.setString(4, newStatus);
+                pst.setDouble(5, newPrice);
+                pst.setDouble(6, newDuration);
+                pst.setInt(7, courseId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean deleteCourse(int courseId) {
+        Connection cn = null;
+        CourseDTO course = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "DELETE FROM Course WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, courseId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

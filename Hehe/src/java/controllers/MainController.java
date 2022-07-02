@@ -25,12 +25,18 @@ public class MainController extends HttpServlet {
     private final String AUTHOR = "Author";
     private final String COURSE = "Course";
     private final String VIEW_COURSE = "ViewCourse";
+    private final String CREATE_COURSE = "CreateCourse";
+    private final String EDIT_COURSE = "EditCourse";
+    private final String DELETE_COURSE = "DeleteCourse";
+    private final String CREATE_SECTION = "CreateSection";
+    private final String DELETE_SECTION = "DeleteSection";
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
     private final String STUDENT_CONTROLLER = "StudentController";
     private final String AUTHOR_CONTROLLER = "AuthorController";
     private final String COURSE_CONTROLLER = "CourseController";
+    private final String SECTION_CONTROLLER = "SectionController";
     private final String STUDENT_IN_COURSE_CONTROLLER = "StudentInCourseController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,8 +47,7 @@ public class MainController extends HttpServlet {
         StudentDTO currentStudent = (StudentDTO) session.getAttribute("LOGIN_STUDENT");
 
         try {
-            String controller = request.getParameter("controller");
-            System.out.println("Before switch");
+            String controller = request.getParameter("action");
             switch (controller) {
                 case STUDENT: {
                     url = STUDENT_CONTROLLER;
@@ -72,6 +77,31 @@ public class MainController extends HttpServlet {
                         }
                     }
                     url = COURSE_CONTROLLER;
+                    break;
+                }
+
+                case CREATE_COURSE: {
+                    url = COURSE_CONTROLLER;
+                    break;
+                }
+
+                case EDIT_COURSE: {
+                    url = COURSE_CONTROLLER;
+                    break;
+                }
+
+                case DELETE_COURSE: {
+                    url = COURSE_CONTROLLER;
+                    break;
+                }
+
+                case CREATE_SECTION: {
+                    url = SECTION_CONTROLLER;
+                    break;
+                }
+                
+                case DELETE_SECTION: {
+                    url = SECTION_CONTROLLER;
                     break;
                 }
             }

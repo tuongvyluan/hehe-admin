@@ -8,6 +8,14 @@
         <servlet-name>StudentController</servlet-name>
         <servlet-class>controllers.StudentController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SectionController</servlet-name>
+        <servlet-class>controllers.SectionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>controllers.NewServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -16,12 +24,20 @@
         <servlet-name>StudentController</servlet-name>
         <url-pattern>/StudentController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SectionController</servlet-name>
+        <url-pattern>/SectionController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>createCourse.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

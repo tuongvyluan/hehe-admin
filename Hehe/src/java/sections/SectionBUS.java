@@ -22,4 +22,10 @@ public class SectionBUS {
         ArrayList<SectionDTO> list = dao.get(courseId);
         return list;
     }
+    
+    public ArrayList<SectionDTO> get() throws SQLException {
+        dao = new SectionDAO();
+        ArrayList<SectionDTO> list = dao.get();
+        return list;
+    }
 }
