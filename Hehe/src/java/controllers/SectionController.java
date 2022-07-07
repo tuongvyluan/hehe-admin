@@ -21,12 +21,17 @@ public class SectionController extends HttpServlet {
     
     // Action String
     private final String CREATE_SECTION = "CreateSection";
+    private final String EDIT_SECTION = "EditSection";
     private final String DELETE_SECTION = "DeleteSection";
+    private final String ADD_SECTION_TO_COURSE = "AddSectionToCourse";
     
     // Destination String
     private final String ERROR = "error.jsp";
+    private final String CREATE_COURSE_PAGE = "createCourse.jsp";
     private final String EDIT_COURSE_PAGE = "editCourse.jsp";
+    private final String EDIT_SECTION_PAGE = "editSection.jsp";
     private final String DELETE_SECTION_PAGE = "deleteSection.jsp";
+    private final String ADD_SECTION_TO_COURSE_PAGE = "addSectionToCourse.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,6 +40,7 @@ public class SectionController extends HttpServlet {
             String action = request.getParameter("action");
             String url = "";
             switch(action){
+                
                 case CREATE_SECTION: {
                     int sectionCourseId = Integer.parseInt(request.getParameter("txtSectionCourseId"));
                     String sectionName = request.getParameter("txtSectionName");
@@ -49,11 +55,37 @@ public class SectionController extends HttpServlet {
                     break;
                 }
                 
+                case EDIT_SECTION: {
+                    int sectionId = Integer.parseInt(request.getParameter("txtSectionToEdit"));
+                    String sectionNewName = request.getParameter("txtSectionNewName");
+                    String sectionNewDescription = request.getParameter("txtSectionNewDescription");
+                    int sectionNewDisplayIndex = Integer.parseInt(request.getParameter("txtSectionNewDisplayIndex"));
+                    boolean result = SectionDAO.editSection(sectionId, sectionNewName, sectionNewDescription, sectionNewDisplayIndex);
+                    if (result == true) {
+                        url = EDIT_SECTION_PAGE;
+                    } else {
+                        url = ERROR;
+                    }
+                    break;
+                }
+                
                 case DELETE_SECTION: {
                     int sectionToDelete = Integer.parseInt(request.getParameter("txtSectionToDelete"));
                     boolean result = SectionDAO.deleteSection(sectionToDelete);
                     if (result == true) {
                         url = DELETE_SECTION_PAGE;
+                    } else {
+                        url = ERROR;
+                    }
+                    break;
+                }
+                
+                case ADD_SECTION_TO_COURSE:{
+                    int courseIdToAddSection = Integer.parseInt(request.getParameter("txtCourseToAddSection"));
+                    int sectionIdToAdd = Integer.parseInt(request.getParameter("txtSectionToAdd"));
+                    boolean result = SectionDAO.AddSectionToCourse(courseIdToAddSection, sectionIdToAdd);
+                    if (result == true) {
+                        url = ADD_SECTION_TO_COURSE_PAGE;
                     } else {
                         url = ERROR;
                     }

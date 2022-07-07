@@ -18,18 +18,18 @@ import utils.DBUtils;
  * @author Luan Tuong Vy
  */
 public class SectionDAO {
-    
+
     private SectionDTO sectionDTO;
-    
+
     //Fields
     private final String SECTION_DTO_FIELDS = "Id, Name, DisplayIndex";
-    
+
     //Sql queries
     private final String GET_SECTIONS_BY_COURSE = "SELECT " + SECTION_DTO_FIELDS
             + " FROM Section WHERE CourseId=? ORDER BY DisplayIndex";
-    
+
     private final String GET_SECTIONS = "SELECT" + SECTION_DTO_FIELDS + "FROM Section";
-    
+
     public ArrayList<SectionDTO> get(int courseId) throws SQLException {
         ArrayList<SectionDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -65,7 +65,7 @@ public class SectionDAO {
         }
         return list;
     }
-    
+
     public ArrayList<SectionDTO> get() throws SQLException {
         ArrayList<SectionDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -100,13 +100,13 @@ public class SectionDAO {
         }
         return list;
     }
-    
+
     public static boolean createSection(int sectionCourseId, String sectionName, String sectionDescription, int sectionDisplayIndex) {
         Connection cn = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-                String sql = "INSERT INTO Section (CourseId, Name, Description, DisplayIndex) VALUES (?,?,?,?)"; 
+                String sql = "INSERT INTO Section (CourseId, Name, Description, DisplayIndex) VALUES (?,?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, sectionCourseId);
                 pst.setString(2, sectionName);
@@ -121,16 +121,55 @@ public class SectionDAO {
         }
         return true;
     }
-    
+
+    public static boolean editSection(int id, String name, String description, int displayIndex) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Section SET Name = ?, Description = ?, DisplayIndex = ? WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, id);
+                pst.setString(2, name);
+                pst.setString(3, description);
+                pst.setInt(4, displayIndex);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     public static boolean deleteSection(int sectionId) {
         Connection cn = null;
-        CourseDTO section = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
                 String sql = "DELETE FROM Section WHERE Id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, sectionId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean AddSectionToCourse(int courseId, int sectionId) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Section SET CourseId = ? WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, courseId);
+                pst.setInt(2, sectionId);
                 int rs = pst.executeUpdate();
                 cn.close();
             }

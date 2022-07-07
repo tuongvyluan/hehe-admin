@@ -19,6 +19,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="./miniHeader.jsp" %>
          <form action="MainController" method="POST">
             <table>
                 <tr>
@@ -91,8 +92,8 @@
                 <tr>
                     <td><label>Add section:</label></td>
                     <td>
-                        <select name="txtSectionId">
-                            <%
+                        <select name="txtSectionToAdd">
+                             <%
 //                            CourseBUS courseBUS = new CourseBUS();
                             SectionBUS sectionBUS = new SectionBUS();
 //                            ArrayList<CourseDTO> courseList;
@@ -101,12 +102,13 @@
                             for (SectionDTO section : sectionList) {
                             %>
                             <option value="<%= section.getSectionId() %>">
-                                <%= section.getSectionName()%>
+                                <%= section.getSectionName() %>
                             </option>
                             <%        
                             }
                             %>
                         </select>
+                        <button type="submit" value="AddSectionToCourse" name="action">Add</button>
                     </td>
                 </tr>
                 <tr>

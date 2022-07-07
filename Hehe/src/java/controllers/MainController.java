@@ -29,7 +29,9 @@ public class MainController extends HttpServlet {
     private final String EDIT_COURSE = "EditCourse";
     private final String DELETE_COURSE = "DeleteCourse";
     private final String CREATE_SECTION = "CreateSection";
+    private final String EDIT_SECTION = "EditSection";
     private final String DELETE_SECTION = "DeleteSection";
+    private final String ADD_SECTION_TO_COURSE = "AddSectionToCourse";
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
@@ -100,7 +102,17 @@ public class MainController extends HttpServlet {
                     break;
                 }
                 
+                case EDIT_SECTION: {
+                    url = SECTION_CONTROLLER;
+                    break;
+                }
+                
                 case DELETE_SECTION: {
+                    url = SECTION_CONTROLLER;
+                    break;
+                }
+                
+                case ADD_SECTION_TO_COURSE:{
                     url = SECTION_CONTROLLER;
                     break;
                 }

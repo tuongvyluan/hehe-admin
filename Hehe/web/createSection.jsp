@@ -16,6 +16,7 @@
         <title>Create Section Page</title>
     </head>
     <body>
+        <%@include file="./miniHeader.jsp" %>
         <form action="MainController" method="POST">
             <%--<%
                 CourseModel course = (CourseModel)request.getAttribute("CURRENT_COURSE");

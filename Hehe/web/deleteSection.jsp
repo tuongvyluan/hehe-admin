@@ -15,6 +15,7 @@
         <title>Delete Section Page</title>
     </head>
     <body>
+        <%@include file="./miniHeader.jsp" %>
         <form action="MainController" method="POST">
             <table>
                 <tr>

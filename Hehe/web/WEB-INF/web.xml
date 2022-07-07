@@ -38,6 +38,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>createCourse.jsp</welcome-file>
+        <welcome-file>editSection.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
