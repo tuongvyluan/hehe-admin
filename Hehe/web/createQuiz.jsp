@@ -95,7 +95,7 @@
                 <tbody>
                      <tr>
                     <td><label>Enter Quiz content:</label></td>
-                    <td><input type="text" name="txtQuizContent"></td>
+                    <td><textarea name="txtQuizContent" rows="10" cols="21"></textarea></td>
                 </tr>
                 <tr>
                     <td>
