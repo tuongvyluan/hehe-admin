@@ -110,4 +110,22 @@ public class TopicDAO {
         }
         return true;
     }
+    
+    public static boolean deleteTopic(int topicId) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "DELETE FROM Topic WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, topicId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

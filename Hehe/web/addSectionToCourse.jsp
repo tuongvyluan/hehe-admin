@@ -24,7 +24,7 @@
                         <label>Choose a course to start:</label>
                     </td>
                     <td>
-                        <select name="txtCourseToAddSection">
+                        <select name="txtCourseToAddSection" onchange="location.href='addSectionToCourse.jsp?courseId=' + this.value;">
                             <%
                             int pageNumber = 1;
                             int rowsOfPage = 200;
@@ -43,23 +43,24 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label>This course already contains these sections:</label></td>
+                    <td>This course already contains these sections:</td>
                     <td>
-                        <table>
                             <%
-                            SectionBUS sectionBUS = new SectionBUS();
-                            ArrayList<SectionDTO> sectionList = sectionBUS.get();
+                            SectionBUS sectionBUS = null;
+                            sectionBUS = new SectionBUS();
+                            ArrayList<SectionDTO> sectionList = null;
+                            if (request.getParameter("courseId") != null) {
+                                int courseId = Integer.parseInt(request.getParameter("courseId"));
+                                sectionList = sectionBUS.get(courseId);
+                            } else {
+                                sectionList = sectionBUS.get(0);
+                            }
                             for (SectionDTO section : sectionList) {
                             %>
-                            <tr>
-                                <td>
-                                    <%--<%= section.getSectionName() %>--%>${param.txtCourseToAddSection}
-                                </td>
-                            </tr>
+                            <p><%= section.getSectionId() %> <%= section.getSectionName() %></p>
                             <%        
                             }
                             %>
-                        </table>
                     </td>
                 </tr>
                 <tr>

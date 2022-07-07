@@ -12,10 +12,12 @@ public class TopicController extends HttpServlet {
     // Action string:
     private final String CREATE_TOPIC = "CreateTopic";
     private final String EDIT_TOPIC = "EditTopic";
+    private final String DELETE_TOPIC = "DeleteTopic";
     
     // Destination string:
     private final String CREATE_TOPIC_PAGE = "createTopic.jsp";
     private final String EDIT_TOPIC_PAGE = "editTopic.jsp";
+    private final String DELETE_TOPIC_PAGE = "deleteTopic.jsp";
     private final String ERROR = "error.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -51,6 +53,16 @@ public class TopicController extends HttpServlet {
                     boolean result = TopicDAO.editTopic(topicIdToEdit, topicSectionId, topicCourseId, topicName, topicDescription, topicStatus, topicDisplayIndex);
                     if (result == true) {
                         url = EDIT_TOPIC_PAGE;
+                    } else {
+                        url = ERROR;
+                    }
+                }
+                
+                case DELETE_TOPIC: {
+                    int topicIdToDelete = Integer.parseInt(request.getParameter("txtTopicIdToDelete"));
+                    boolean result = TopicDAO.deleteTopic(topicIdToDelete);
+                    if (result == true) {
+                        url = DELETE_TOPIC_PAGE;
                     } else {
                         url = ERROR;
                     }
