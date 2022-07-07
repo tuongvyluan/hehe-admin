@@ -14,21 +14,23 @@ import sections.SectionDTO;
 public class TopicDTO {
     
     private int topicId;
-    private SectionDTO section;
-    private CourseDTO course;
+    private int sectionId;
+    private int courseId;
     private String topicName;
-    private int status;
+    private String topicDescription;
+    private String status;
     private int displayIndex;
 
     public TopicDTO() {
     }
 
-    public TopicDTO(int topicId, SectionDTO section, CourseDTO course,
-            String topicName, int status, int displayIndex) {
+    public TopicDTO(int topicId, int sectionId, int courseId,
+            String topicName, String topicDescription, String status, int displayIndex) {
         this.topicId = topicId;
-        this.section = section;
-        this.course = course;
+        this.sectionId = sectionId;
+        this.courseId = courseId;
         this.topicName = topicName;
+        this.topicDescription = topicDescription;
         this.status = status;
         this.displayIndex = displayIndex;
     }
@@ -41,20 +43,20 @@ public class TopicDTO {
         this.topicId = topicId;
     }
 
-    public SectionDTO getSection() {
-        return section;
+    public int getSectionId() {
+        return sectionId;
     }
 
-    public void setSection(SectionDTO section) {
-        this.section = section;
+    public void setSectionId(int sectionId) {
+        this.sectionId = sectionId;
     }
 
-    public CourseDTO getCourse() {
-        return course;
+    public int getCourseId() {
+        return courseId;
     }
 
-    public void setCourse(CourseDTO course) {
-        this.course = course;
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     public String getTopicName() {
@@ -65,11 +67,11 @@ public class TopicDTO {
         this.topicName = topicName;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -83,8 +85,8 @@ public class TopicDTO {
 
     @Override
     public String toString() {
-        return "TopicDTO{" + "topicId=" + topicId + ", section=" + section +
-                ", course=" + course + ", topicName=" + topicName + ", status=" +
+        return "TopicDTO{" + "topicId=" + topicId + ", sectionId=" + sectionId +
+                ", courseId=" + courseId + ", topicName=" + topicName + ", status=" +
                 status + ", displayIndex=" + displayIndex + '}';
     }
 }

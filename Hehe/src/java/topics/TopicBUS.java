@@ -4,10 +4,21 @@
  */
 package topics;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author Luan Tuong Vy
  */
 public class TopicBUS {
-    
+    private TopicDAO dao;
+    private TopicDTO topicDTO;
+
+    public ArrayList<TopicDTO> getTopics() throws SQLException {
+        dao = new TopicDAO();
+        ArrayList<TopicDTO> list = dao.get();
+        return list;
+        
+    }
 }

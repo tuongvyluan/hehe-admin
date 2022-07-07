@@ -7,31 +7,26 @@ import sections.SectionModel;
 public class TopicModel {
 
     private int topicId;
-    private SectionModel section;
-    private CourseModel course;
+    private int sectionId;
+    private int courseId;
     private String topicName;
     private String description;
     private int status;
     private int displayIndex;
-    private LocalDate createdAt;
-    private LocalDate updatedAt;
 
     public TopicModel() {
 
     }
 
-    public TopicModel(int topicId, SectionModel section, CourseModel course,
-            String topicName, String description, int status, int displayIndex,
-            LocalDate createdAt, LocalDate updatedAt) {
+    public TopicModel(int topicId, int sectionId, int courseId,
+            String topicName, String description, int status, int displayIndex) {
         this.topicId = topicId;
-        this.section = section;
-        this.course = course;
+        this.sectionId = sectionId;
+        this.courseId = courseId;
         this.topicName = topicName;
         this.description = description;
         this.status = status;
         this.displayIndex = displayIndex;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public int getTopicId() {
@@ -42,20 +37,20 @@ public class TopicModel {
         this.topicId = topicId;
     }
 
-    public SectionModel getSection() {
-        return section;
+    public int getSectionId() {
+        return sectionId;
     }
 
-    public void setSection(SectionModel section) {
-        this.section = section;
+    public void setSectionId(int sectionId) {
+        this.sectionId = sectionId;
     }
 
-    public CourseModel getCourse() {
-        return course;
+    public int getCourseId() {
+        return courseId;
     }
 
-    public void setCourse(CourseModel course) {
-        this.course = course;
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     public String getTopicName() {
@@ -90,31 +85,15 @@ public class TopicModel {
         this.displayIndex = displayIndex;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDate getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDate updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     public TopicDTO toDTO() {
-        return new TopicDTO(topicId, section.toDTO(), course.toDTO(), topicName, status, displayIndex);
+        return new TopicDTO(topicId, sectionId, courseId, topicName, description, topicName, displayIndex);
     }
 
     @Override
     public String toString() {
-        return "TopicModel{" + "topicId=" + topicId + ", section=" + section
-                + ", course=" + course + ", topicName=" + topicName + ", description="
+        return "TopicModel{" + "topicId=" + topicId + ", sectionId=" + sectionId
+                + ", courseId=" + courseId + ", topicName=" + topicName + ", description="
                 + description + ", status=" + status + ", displayIndex=" + displayIndex
-                + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
+                + '}';
     }
 }

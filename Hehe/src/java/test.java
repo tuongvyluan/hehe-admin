@@ -1,5 +1,9 @@
 
 import courses.CourseDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import topics.TopicDAO;
+import topics.TopicDTO;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,12 +16,10 @@ import courses.CourseDAO;
  * @author Harry
  */
 public class test {
-    public static void main(String[] args) {
-        boolean result = CourseDAO.createCourse(8, 2, "asd", "asd", "active", 0, 0.5);
-        if (result = true) {
-            System.out.println("Ok");
-        } else {
-            System.out.println("Cac djt me");
+    public static void main(String[] args) throws SQLException{
+        ArrayList<TopicDTO> list = TopicDAO.get();
+        for (TopicDTO topicDTO : list) {
+            System.out.println(topicDTO.getTopicName());
         }
     }
 }

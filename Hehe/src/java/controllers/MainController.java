@@ -32,6 +32,8 @@ public class MainController extends HttpServlet {
     private final String EDIT_SECTION = "EditSection";
     private final String DELETE_SECTION = "DeleteSection";
     private final String ADD_SECTION_TO_COURSE = "AddSectionToCourse";
+    private final String CREATE_TOPIC = "CreateTopic";
+    private final String EDIT_TOPIC = "EditTopic";
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
@@ -40,6 +42,7 @@ public class MainController extends HttpServlet {
     private final String COURSE_CONTROLLER = "CourseController";
     private final String SECTION_CONTROLLER = "SectionController";
     private final String STUDENT_IN_COURSE_CONTROLLER = "StudentInCourseController";
+    private final String TOPIC_CONTROLLER = "TopicController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -114,6 +117,16 @@ public class MainController extends HttpServlet {
                 
                 case ADD_SECTION_TO_COURSE:{
                     url = SECTION_CONTROLLER;
+                    break;
+                }
+                
+                case CREATE_TOPIC: {
+                    url = TOPIC_CONTROLLER;
+                    break;
+                }
+                
+                case EDIT_TOPIC: {
+                    url = TOPIC_CONTROLLER;
                     break;
                 }
             }

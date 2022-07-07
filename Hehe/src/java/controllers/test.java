@@ -6,6 +6,7 @@
 package controllers;
 
 import courses.CourseDAO;
+import topics.TopicDAO;
 
 /**
  *
@@ -14,7 +15,7 @@ import courses.CourseDAO;
 public class test {
 
     public static void main(String[] args) {
-        boolean result = CourseDAO.editCourse(28, 3, "Tasukete kudasai", "Help me", "Active", 2.20, 3.24);
+        boolean result = TopicDAO.editTopic(37, 1, 1, "ASD", "ASD", "Active", 2);
         if (result == true) {
             System.out.println("Ok");
         } else {
