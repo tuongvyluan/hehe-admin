@@ -10,6 +10,17 @@ public class QuizDTO {
     int numberAnswers;
     String createdAt;
     String updatedAt;
+    
+     public QuizDTO() {
+	super();
+	this.quizId = 0;
+	this.topicId =  0;
+	this.content = null;
+	this.date = null;
+	this.numberAnswers = 0;
+	this.createdAt = null;
+	this.updatedAt = null;
+    }
 
     public QuizDTO(int quizId, int topicId, String content, Date date, int numberAnswers, String createdAt,
 	    String updatedAt) {

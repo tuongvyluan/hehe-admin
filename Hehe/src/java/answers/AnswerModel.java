@@ -1,24 +1,14 @@
 package answers;
 
-public class AnswerDTO {
+public class AnswerModel {
     int answerId;
     int quizId;
     String content;
     boolean isCorrect;
     String createdAt;
     String updatedAt;
-    
-     public AnswerDTO() {
-	super();
-	this.answerId = 0;
-	this.quizId = 0;
-	this.content = null;
-	this.isCorrect = false;
-	this.createdAt = null;
-	this.updatedAt = null;
-    }
 
-    public AnswerDTO(int answerId, int quizId, String content, boolean isCorrect, String createdAt, String updatedAt) {
+    public AnswerModel(int answerId, int quizId, String content, boolean isCorrect, String createdAt, String updatedAt) {
 	super();
 	this.answerId = answerId;
 	this.quizId = quizId;
