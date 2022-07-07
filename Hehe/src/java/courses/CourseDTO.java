@@ -15,6 +15,9 @@ public class CourseDTO {
     private String courseName;
 
     public CourseDTO() {
+        this.courseId = 0;
+        this.categoryId = 0;
+        this.courseName = null;
     }
     
     public CourseDTO(int courseId, int categoryId, String courseName) {
