@@ -16,9 +16,9 @@ public class TopicBUS {
     private TopicDTO topicDTO;
     private TopicModel topicModel;
     
-    public ArrayList<TopicDTO> get(int sectionId) throws SQLException {
+    public ArrayList<TopicDTO> getBySection(int sectionId) throws SQLException {
         dao = new TopicDAO();
-        ArrayList<TopicDTO> list = dao.get(sectionId);
+        ArrayList<TopicDTO> list = dao.getBySection(sectionId);
         return list;
     }
 }

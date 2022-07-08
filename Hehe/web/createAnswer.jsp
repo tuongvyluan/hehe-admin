@@ -4,6 +4,8 @@
     Author     : admin
 --%>
 
+<%@page import="quizzes.QuizDTO"%>
+<%@page import="quizzes.QuizBUS"%>
 <%@page import="courses.CourseDTO"%>
 <%@page import="courses.CourseBUS"%>
 <%@page import="sections.SectionDTO"%>
@@ -16,7 +18,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Create Quiz</title>
+        <title>Create Answer</title>
     </head>
     <body>
         <form action="MainController" method="POST">
@@ -29,7 +31,6 @@
                                 int rowsOfPage = 100;
                                 CourseBUS courseBUS = null;
                                 courseBUS = new CourseBUS();
-                                CourseDTO courseDTO = new CourseDTO();
                                 ArrayList<CourseDTO> courseList = courseBUS.getCourses(pageNumber, rowsOfPage);
                             %>
                         <td>
@@ -127,15 +128,63 @@
                             </select>
                         </td>
                     </tr>
+                    <tr>
+                        <th>Quiz:</th>
+                            <%
+                                QuizBUS quizBUS = null;
+                                quizBUS = new QuizBUS();
+                                ArrayList<QuizDTO> quizList = null;
+                                if (request.getParameter("topicId") != null) {
+                                    int topicId = Integer.parseInt(request.getParameter("topicId"));
+                                    quizList = quizBUS.getByTopic(topicId);
+                                } else {
+                                    quizList = quizBUS.getByTopic(0);
+                                }
+                            %>
+                        <td>
+                            <select style="width: 175px" id="txtQuizTopicId" name ="txtQuizTopicId" onchange="location.href = 'createQuiz.jsp?courseId=' +${param.courseId} + '&sectionId=' +${param.sectionId} + '&topicId=' + ${param.topicId} + '&quizId=' + this.value">
+                                <option value = 0>Select Topic</option>
+                                <%
+                                    for (QuizDTO quiz : quizList) {
+                                        if (request.getParameter("quizId") != null && quiz.getQuizId() == Integer.parseInt(request.getParameter("quizId"))) {
+                                %>
+                                <option selected="selected" value="<%= quiz.getQuizId()%>">
+                                    <%= quiz.getQuizId()%>
+                                </option>
+                                <%
+                                } else {
+                                %>
+                                <option value="<%= quiz.getQuizId()%>">
+                                    <%= quiz.getQuizId()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+                        </td>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><label for="quiz">Quiz content:</label></td>
-                        <td><textarea id="quiz" name="txtQuizContent" rows="10" cols="21" placeholder="Write down your quiz here..."></textarea></td>
+                        <td><label for="answer1">Answer 1:</label></td>
+                        <td><textarea id="answer1" name="txtAnswerContent" rows="10" cols="21" placeholder="Write answer for your quiz here..."></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="answer2">Answer 2:</label></td>
+                        <td><textarea id="answer2" name="txtAnswerContent" rows="10" cols="21" placeholder="Write answer for your quiz here..."></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="answer3">Answer 3:</label></td>
+                        <td><textarea id="answer3" name="txtAnswerContent" rows="10" cols="21" placeholder="Write answer for your quiz here..."></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="answer4">Answer 4:</label></td>
+                        <td><textarea id="answer4" name="txtAnswerContent" rows="10" cols="21" placeholder="Write answer for your quiz here..."></textarea></td>
                     </tr>
                     <tr>
                         <td>
-                            <button type="submit" name="action" value="CreateQuiz">Create quiz</button>
+                            <button type="submit" name="action" value="CreateAnswer">Create Answer</button>
                         </td>
                     </tr>
                 </tbody>

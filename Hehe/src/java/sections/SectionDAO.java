@@ -30,7 +30,7 @@ public class SectionDAO {
     
     private final String GET_SECTIONS = "SELECT" + SECTION_DTO_FIELDS + "FROM Section";
     
-    public ArrayList<SectionDTO> get(int courseId) throws SQLException {
+    public ArrayList<SectionDTO> getByCourse(int courseId) throws SQLException {
         ArrayList<SectionDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;

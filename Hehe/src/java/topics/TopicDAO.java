@@ -26,7 +26,7 @@ public class TopicDAO {
     private final String GET_TOPIC_BY_SECTION = "SELECT " + TOPIC_DTO_FIELDS
             + " FROM Topic WHERE SectionId=? ORDER BY DisplayIndex";
     
-    public ArrayList<TopicDTO> get(int sectionId) throws SQLException {
+    public ArrayList<TopicDTO> getBySection(int sectionId) throws SQLException {
         ArrayList<TopicDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
