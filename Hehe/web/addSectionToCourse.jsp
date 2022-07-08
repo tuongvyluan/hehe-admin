@@ -17,6 +17,7 @@
         <title>Add Section Page</title>
     </head>
     <body>
+        <%@include file="./miniHeader.jsp" %>
         <form>
             <table>
                 <tr>
@@ -25,6 +26,7 @@
                     </td>
                     <td>
                         <select name="txtCourseToAddSection" onchange="location.href='addSectionToCourse.jsp?courseId=' + this.value;">
+                            <option>Select course</option> 
                             <%
                             int pageNumber = 1;
                             int rowsOfPage = 200;
@@ -42,7 +44,7 @@
                         </select>
                     </td>
                 </tr>
-                <tr>
+                <%--<tr>
                     <td>This course already contains these sections:</td>
                     <td>
                             <%
@@ -62,16 +64,19 @@
                             }
                             %>
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
                     <td><label>Add section:</label></td>
                     <td>
                         <select name="txtSectionToAdd">
                             <%
+                                SectionBUS sectionBUS = new SectionBUS();
+                             ArrayList<SectionDTO> sectionList = null;   
+                            sectionList = sectionBUS.get();
                             for (SectionDTO section : sectionList) {
                             %>
                             <option value="<%= section.getSectionId() %>">
-                                <%= section.getSectionName() %>
+                                <%= section.getSectionId() %> <%= section.getSectionName() %>
                             </option>
                             <%        
                             }

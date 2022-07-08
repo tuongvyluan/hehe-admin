@@ -6,6 +6,7 @@
 package controllers;
 
 import courses.CourseDAO;
+import sections.SectionDAO;
 import topics.TopicDAO;
 
 /**
@@ -15,7 +16,7 @@ import topics.TopicDAO;
 public class test {
 
     public static void main(String[] args) {
-        boolean result = TopicDAO.editTopic(37, 1, 1, "ASD", "ASD", "Active", 2);
+        boolean result = SectionDAO.AddSectionToCourse(10, 61);
         if (result == true) {
             System.out.println("Ok");
         } else {

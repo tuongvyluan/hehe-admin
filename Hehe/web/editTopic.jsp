@@ -20,6 +20,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Topic Page</title>
     </head>
+    <%@include file="./miniHeader.jsp" %>
     <body>
         <form action="MainController" method="POST">
             <table>

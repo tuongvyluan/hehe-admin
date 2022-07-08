@@ -4,6 +4,8 @@
     Author     : Harry
 --%>
 
+<%@page import="sections.SectionDTO"%>
+<%@page import="sections.SectionBUS"%>
 <%@page import="courses.CourseDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="courses.CourseBUS"%>
@@ -33,7 +35,8 @@
                         ArrayList<CourseDTO> courseList = courseBUS.getCourses(pageNumber, rowsOfPage);
                     %>
                     <td>
-                        <select name="txtSectionCourseId">
+                        <select name="txtSectionCourseId" onchange="location.href='createSection.jsp?courseId=' + this.value;">
+                            <option>Select course</option>
                             <%
                                 for (CourseDTO course : courseList) {
                             %>
@@ -44,6 +47,27 @@
                                 }
                             %>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>This course already contains these sections:</td>
+                    <td>
+                            <%
+                            SectionBUS sectionBUS = null;
+                            sectionBUS = new SectionBUS();
+                            ArrayList<SectionDTO> sectionList = null;
+                            if (request.getParameter("courseId") != null) {
+                                int courseId = Integer.parseInt(request.getParameter("courseId"));
+                                sectionList = sectionBUS.get(courseId);
+                            } else {
+                                sectionList = sectionBUS.get(0);
+                            }
+                            for (SectionDTO section : sectionList) {
+                            %>
+                            <p><%= section.getSectionId() %> <%= section.getSectionName() %></p>
+                            <%        
+                            }
+                            %>
                     </td>
                 </tr>
                 <tr>
