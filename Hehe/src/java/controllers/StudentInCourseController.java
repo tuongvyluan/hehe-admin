@@ -42,7 +42,7 @@ public class StudentInCourseController extends HttpServlet {
             switch (action) {
                 case VIEW_COURSE: {
                     studentCourse = (StudentInCourseModel) request.getAttribute("STUDENT_COURSE");
-                    ArrayList<SectionDTO> sections = sectionBUS.get(courseId);
+                    ArrayList<SectionDTO> sections = sectionBUS.getByCourse(courseId);
                     request.setAttribute("STUDENT_COURSE", studentCourse);
                     request.setAttribute("SECTION_LIST", sections);
                     url = COURSE;

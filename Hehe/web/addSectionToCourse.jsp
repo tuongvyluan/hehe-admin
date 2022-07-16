@@ -18,9 +18,9 @@
     </head>
     <body>
         <%@include file="./miniHeader.jsp" %>
-        <form>
+        <form action="MainController" method="POST">
             <table>
-                <tr>
+                <%--<tr>
                     <td>
                         <label>Choose a course to start:</label>
                     </td>
@@ -44,7 +44,7 @@
                         </select>
                     </td>
                 </tr>
-                <%--<tr>
+                <tr>
                     <td>This course already contains these sections:</td>
                     <td>
                             <%
@@ -66,12 +66,79 @@
                     </td>
                 </tr>--%>
                 <tr>
+                        <th>Course:</th>
+                            <%
+                                int pageNumber = 1;
+                                int rowsOfPage = 100;
+                                CourseBUS courseBUS = null;
+                                courseBUS = new CourseBUS();
+                                CourseDTO courseDTO = new CourseDTO();
+                                ArrayList<CourseDTO> courseList = courseBUS.getCourses(pageNumber, rowsOfPage);
+                            %>
+                        <td>
+                            <select style="width: 175px" name="txtCourseToAddSection" onchange="location.href = 'addSectionToCourse.jsp?courseId=' + this.value;">
+                                <option value = 0>Select Course</option>
+                                <%
+                                    for (CourseDTO course : courseList) {
+                                        if (request.getParameter("courseId") != null && course.getCourseId() == Integer.parseInt(request.getParameter("courseId"))) {
+                                %>
+                                <option selected="selected" value="<%= course.getCourseId()%>">
+                                    <%= course.getCourseName()%>
+                                </option>
+                                <%
+                                } else {
+                                %>
+                                <option value="<%= course.getCourseId()%>">
+                                    <%= course.getCourseName()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Section in this course:</th>
+                            <%
+                                SectionBUS sectionBUS = null;
+                                sectionBUS = new SectionBUS();
+                                ArrayList<SectionDTO> sectionList = null;
+                                if (request.getParameter("courseId") != null) {
+                                    int courseId = Integer.parseInt(request.getParameter("courseId"));
+                                    sectionList = sectionBUS.getByCourse(courseId);
+                                } else {
+                                    sectionList = sectionBUS.getByCourse(0);
+                                }
+                            %>
+                        <td>
+                            <select style="width: 175px" onchange="location.href = 'addSectionToCourse.jsp?courseId=' +${param.courseId} + '&sectionId=' + this.value">
+                                <option value = 0>Select section</option>
+                                <%
+                                    for (SectionDTO section : sectionList) {
+                                        if (request.getParameter("sectionId") != null && section.getSectionId() == Integer.parseInt(request.getParameter("sectionId"))) {
+                                %>
+                                <option selected="selected" value="<%= section.getSectionId()%>">
+                                    <%= section.getSectionId()%> <%= section.getSectionName()%>
+                                </option>
+                                <%
+                                } else {
+                                %>
+                                <option value="<%= section.getSectionId()%>">
+                                    <%= section.getSectionId()%> <%= section.getSectionName()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+                        </td>
+                    </tr>
+                <tr>
                     <td><label>Add section:</label></td>
                     <td>
                         <select name="txtSectionToAdd">
-                            <%
-                                SectionBUS sectionBUS = new SectionBUS();
-                             ArrayList<SectionDTO> sectionList = null;   
+                            <% 
                             sectionList = sectionBUS.get();
                             for (SectionDTO section : sectionList) {
                             %>
@@ -82,7 +149,11 @@
                             }
                             %>
                         </select>
-                        <button type="submit" value="AddSectionToCourse" name="action">Add</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       <button type="submit" name="action" value="AddSectionToCourse" >Add</button> 
                     </td>
                 </tr>
             </table>

@@ -221,7 +221,26 @@ public class CourseDAO {
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-                String sql = "DELETE FROM Course WHERE Id = ?";
+                String sql = "UPDATE Course SET Status = 'Inactive' WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, courseId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean reactivateCourse(int courseId) {
+        Connection cn = null;
+        CourseDTO course = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Course SET Status = 'Active' WHERE Id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, courseId);
                 int rs = pst.executeUpdate();

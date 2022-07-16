@@ -35,6 +35,7 @@ public class MainController extends HttpServlet {
     private final String CREATE_TOPIC = "CreateTopic";
     private final String EDIT_TOPIC = "EditTopic";
     private final String DELETE_TOPIC = "DeleteTopic";
+    private final String ADD_TOPIC_TO_SECTION = "AddTopicToSection";
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
@@ -132,6 +133,11 @@ public class MainController extends HttpServlet {
                 }
                 
                 case DELETE_TOPIC: {
+                    url = TOPIC_CONTROLLER;
+                    break;
+                }
+                
+                case ADD_TOPIC_TO_SECTION:{
                     url = TOPIC_CONTROLLER;
                     break;
                 }

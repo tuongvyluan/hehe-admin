@@ -16,7 +16,7 @@ import topics.TopicDAO;
 public class test {
 
     public static void main(String[] args) {
-        boolean result = SectionDAO.AddSectionToCourse(10, 61);
+        boolean result = TopicDAO.addTopicToSection(10, 61, 37);
         if (result == true) {
             System.out.println("Ok");
         } else {
