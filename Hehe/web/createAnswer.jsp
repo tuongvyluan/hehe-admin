@@ -133,13 +133,6 @@
                             <%
                                 QuizBUS quizBUS = null;
                                 quizBUS = new QuizBUS();
-                                ArrayList<QuizDTO> quizList = null;
-                                if (request.getParameter("topicId") != null) {
-                                    int topicId = Integer.parseInt(request.getParameter("topicId"));
-                                    quizList = quizBUS.getByTopic(topicId);
-                                } else {
-                                    quizList = quizBUS.getByTopic(0);
-                                }
                             %>
                         <td>
                             <select style="width: 175px" id="txtQuizTopicId" name ="txtQuizTopicId" onchange="location.href = 'createQuiz.jsp?courseId=' +${param.courseId} + '&sectionId=' +${param.sectionId} + '&topicId=' + ${param.topicId} + '&quizId=' + this.value">
