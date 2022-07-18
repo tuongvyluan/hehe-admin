@@ -16,9 +16,9 @@ public class QuizBUS {
     private QuizDTO quizDTO;
     private QuizModel quizModel;
     
-    public ArrayList<QuizDTO> getByTopic (int topicId) throws SQLException{
+    public QuizDTO getByTopic (int topicId) throws SQLException{
         dao = new QuizDAO();
-        ArrayList<QuizDTO> list= dao.get(topicId);
-        return list;
+        quizDTO= dao.getByTopic(topicId);
+        return quizDTO;
     }
 }

@@ -25,7 +25,7 @@ public class AnswerDAO {
     //Sql queries
     private final String GET_ANSWER_BY_QUIZ = "SELECT " + ANSWER_DTO_FIELDS + " FROM Answer Where QuizId=?";
 
-    public ArrayList<AnswerDTO> get(int topicId) throws SQLException {
+    public ArrayList<AnswerDTO> getByQuiz(int quizId) throws SQLException {
         ArrayList<AnswerDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -35,7 +35,7 @@ public class AnswerDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(GET_ANSWER_BY_QUIZ);
-                ptm.setInt(1, topicId);
+                ptm.setInt(1, quizId);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     answerDTO = new AnswerDTO();

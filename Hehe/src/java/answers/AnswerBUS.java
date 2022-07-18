@@ -17,9 +17,9 @@ public class AnswerBUS {
     private AnswerDTO answerDTO;
     private AnswerModel answerModel;
 
-    public ArrayList<AnswerDTO> get(int quizId) throws SQLException {
+    public ArrayList<AnswerDTO> getByQuiz(int quizId) throws SQLException {
         dao = new AnswerDAO();
-        ArrayList<AnswerDTO> list = dao.get(quizId);
+        ArrayList<AnswerDTO> list = dao.getByQuiz(quizId);
         return list;
     }
 }

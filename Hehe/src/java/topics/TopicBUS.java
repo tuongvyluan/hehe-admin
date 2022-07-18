@@ -12,13 +12,20 @@ import java.util.ArrayList;
  * @author Luan Tuong Vy
  */
 public class TopicBUS {
+
     private TopicDAO dao;
     private TopicDTO topicDTO;
     private TopicModel topicModel;
-    
+
     public ArrayList<TopicDTO> getBySection(int sectionId) throws SQLException {
         dao = new TopicDAO();
         ArrayList<TopicDTO> list = dao.getBySection(sectionId);
         return list;
+    }
+
+    public TopicModel get(int topicId)throws SQLException {
+        dao=new TopicDAO();
+        topicModel=dao.get(topicId);
+        return topicModel;
     }
 }

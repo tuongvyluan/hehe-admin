@@ -17,16 +17,15 @@ import utils.DBUtils;
  */
 public class QuizDAO {
 
-    private QuizDTO quizDTO;
+    private QuizDTO quizDTO = null;
 
     //Fields
-    private final String QUIZ_DTO_FIELDS = "Id, TopicId, Content, Date, NumberAnswers";
+    private final String QUIZ_DTO_FIELDS = "Id, TopicId, Content";
 
     //Sql queries
     private final String GET_QUIZ_BY_TOPIC = "SELECT " + QUIZ_DTO_FIELDS + " FROM Quiz Where TopicId=?";
 
-    public ArrayList<QuizDTO> get(int topicId) throws SQLException {
-        ArrayList<QuizDTO> list = new ArrayList<>();
+    public QuizDTO getByTopic(int topicId) throws SQLException {
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -44,7 +43,6 @@ public class QuizDAO {
                     quizDTO.setContent(rs.getString("Content"));
                     quizDTO.setDate(rs.getDate("Date"));
                     quizDTO.setNumberAnswers(rs.getInt("NumberAnswers"));
-                    list.add(quizDTO);
                 }
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -60,6 +58,6 @@ public class QuizDAO {
                 conn.close();
             }
         }
-        return list;
+        return quizDTO;
     }
 }
