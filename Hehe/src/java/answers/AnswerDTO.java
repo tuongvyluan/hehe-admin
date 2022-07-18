@@ -18,6 +18,16 @@ public class AnswerDTO {
 	this.updatedAt = updatedAt;
     }
 
+    public AnswerDTO() {
+    super();
+    this.answerId = 0;
+    this.quizId = 0;
+    this.content = null;
+    this.isCorrect = false;
+    this.createdAt = null;
+    this.updatedAt = null;
+    }
+
     public int getAnswerId() {
 	return answerId;
     }

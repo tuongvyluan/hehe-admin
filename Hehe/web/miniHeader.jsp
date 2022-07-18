@@ -32,6 +32,8 @@
             <a href="./editTopic.jsp">EDIT TOPIC</a>
             <br>
             <a href="./deleteTopic.jsp">DELETE TOPIC</a>
+            <br>
+            <a href="">QUIZ & ANSWER</a>
         </header>
     </body>
 </html>
