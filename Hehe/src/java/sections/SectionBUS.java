@@ -17,7 +17,7 @@ public class SectionBUS {
     private SectionDTO sectionDTO;
     private SectionModel sectionModel;
     
-    public ArrayList<SectionDTO> get(int courseId) throws SQLException {
+    public ArrayList<SectionDTO> getByCourse(int courseId) throws SQLException {
         dao = new SectionDAO();
         ArrayList<SectionDTO> list = dao.get(courseId);
         return list;

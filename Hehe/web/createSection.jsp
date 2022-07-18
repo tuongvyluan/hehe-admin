@@ -58,9 +58,9 @@
                             ArrayList<SectionDTO> sectionList = null;
                             if (request.getParameter("courseId") != null) {
                                 int courseId = Integer.parseInt(request.getParameter("courseId"));
-                                sectionList = sectionBUS.get(courseId);
+                                sectionList = sectionBUS.getByCourse(courseId);
                             } else {
-                                sectionList = sectionBUS.get(0);
+                                sectionList = sectionBUS.getByCourse(0);
                             }
                             for (SectionDTO section : sectionList) {
                             %>

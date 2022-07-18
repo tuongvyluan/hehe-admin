@@ -13,11 +13,13 @@ public class TopicController extends HttpServlet {
     private final String CREATE_TOPIC = "CreateTopic";
     private final String EDIT_TOPIC = "EditTopic";
     private final String DELETE_TOPIC = "DeleteTopic";
+    private final String ADD_TOPIC_TO_SECTION = "AddTopicToSection";
     
     // Destination string:
     private final String CREATE_TOPIC_PAGE = "createTopic.jsp";
     private final String EDIT_TOPIC_PAGE = "editTopic.jsp";
     private final String DELETE_TOPIC_PAGE = "deleteTopic.jsp";
+    private final String ADD_TOPIC_TO_SECTION_PAGE = "addTopicToSection.jsp";
     private final String ERROR = "error.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -66,6 +68,20 @@ public class TopicController extends HttpServlet {
                     } else {
                         url = ERROR;
                     }
+                }
+                
+                case ADD_TOPIC_TO_SECTION:{
+                    int courseIdToAddTopic = Integer.parseInt(request.getParameter("txtCourseToAddTopic"));
+                    int sectionIdToAddTopic = Integer.parseInt(request.getParameter("txtSectionToAddTopic"));
+                    int topicIdToAdd = Integer.parseInt(request.getParameter("txtTopicToAdd"));
+                    boolean result = TopicDAO.addTopicToSection(courseIdToAddTopic, sectionIdToAddTopic, topicIdToAdd);
+                    if (result == true) {
+                        url = ADD_TOPIC_TO_SECTION_PAGE;
+                    } else {
+                        url = ERROR;
+                    }
+                    out.println("<p>"+result+"</p>");
+                    break;
                 }
             }
             request.getRequestDispatcher(url).forward(request, response);
