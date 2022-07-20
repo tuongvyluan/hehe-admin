@@ -24,6 +24,7 @@ public class MainController extends HttpServlet {
     private final String STUDENT = "Student";
     private final String AUTHOR = "Author";
     private final String COURSE = "Course";
+    private final String LOGIN_AUTHOR = "LoginAuthor";
     private final String VIEW_COURSE = "ViewCourse";
     private final String CREATE_COURSE = "CreateCourse";
     private final String EDIT_COURSE = "EditCourse";
@@ -68,6 +69,11 @@ public class MainController extends HttpServlet {
 
                 case COURSE: {
                     url = COURSE_CONTROLLER;
+                    break;
+                }
+                
+                case LOGIN_AUTHOR:{
+                    url = AUTHOR_CONTROLLER;
                     break;
                 }
 

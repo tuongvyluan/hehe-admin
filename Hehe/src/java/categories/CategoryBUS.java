@@ -20,4 +20,10 @@ public class CategoryBUS {
         ArrayList<CategoryModel> list = dao.get(pageNumber, rowsOfPage);
         return list;
     }
+    
+    public ArrayList<CategoryModel> getCategories() throws SQLException {
+        dao = new CategoryDAO();
+        ArrayList<CategoryModel> list = dao.getCategories();
+        return list;
+    }
 }

@@ -13,12 +13,12 @@
         <servlet-class>controllers.SectionController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>NewServlet</servlet-name>
-        <servlet-class>controllers.NewServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>TopicController</servlet-name>
         <servlet-class>controllers.TopicController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AuthorController</servlet-name>
+        <servlet-class>controllers.AuthorController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -33,12 +33,12 @@
         <url-pattern>/SectionController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>NewServlet</servlet-name>
-        <url-pattern>/NewServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>TopicController</servlet-name>
         <url-pattern>/TopicController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthorController</servlet-name>
+        <url-pattern>/AuthorController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

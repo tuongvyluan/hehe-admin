@@ -1,17 +1,27 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package admin;
 
-public class AdminDTO {
-    int adminId;
+/**
+ *
+ * @author triud
+ */
+public class AdminModels {
+        int adminId;
     
     String password;
     String email;
+    
 
-    public AdminDTO(int adminId, String password, String email) {
+    // cons
+     public AdminModels(int adminId, String password, String email) {   
         this.adminId = adminId;
         this.password = password;
         this.email = email;
     }
-
     public int getAdminId() {
         return adminId;
     }
@@ -32,22 +42,15 @@ public class AdminDTO {
         return email;
     }
 
-    public void setEmail(String email) {
+    // getter setter
+    public void setEmail(String email) {     
         this.email = email;
     }
 
-    
-
-    // cons
-   
-    // getter setter
-    
-
     // method
-    @Override
-    public String toString(){
-               return "StudentDTO{" + "id=" + adminId + ", email=" + email + ", password=" + password+ '}';
-
+    public AdminDTO toDTO() {
+        return new AdminDTO(adminId, password, email);
     }
-
+    
+     
 }

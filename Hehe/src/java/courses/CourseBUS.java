@@ -34,4 +34,16 @@ public class CourseBUS {
         courseModel = dao.get(courseId);
         return courseModel;
     }
+    
+    public ArrayList<CourseDTO> getCoursesByAuthor(int authorId) throws SQLException {
+        dao = new CourseDAO();
+        ArrayList<CourseDTO> list = dao.getByAuthor(authorId);
+        return list;
+    }
+    
+    public ArrayList<CourseDTO> getCoursesByAuthorCate(int authorId, int categoryId) throws SQLException {
+        dao = new CourseDAO();
+        ArrayList<CourseDTO> list = dao.getByAuthorCate(authorId, categoryId);
+        return list;
+    }
 }
