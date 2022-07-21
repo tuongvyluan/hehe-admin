@@ -5,7 +5,11 @@
  */
 package controllers;
 
+import courses.CourseBUS;
 import courses.CourseDAO;
+import courses.CourseDTO;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import sections.SectionDAO;
 import topics.TopicDAO;
 
@@ -15,12 +19,11 @@ import topics.TopicDAO;
  */
 public class test {
 
-    public static void main(String[] args) {
-        boolean result = TopicDAO.addTopicToSection(10, 61, 37);
-        if (result == true) {
-            System.out.println("Ok");
-        } else {
-            System.out.println("Cc");
+    public static void main(String[] args) throws SQLException {
+        CourseBUS courseBUS = new CourseBUS();
+        ArrayList<CourseDTO> list = courseBUS.getCoursesByAuthorCate(1, 1);
+        for (CourseDTO o : list) {
+            System.out.println(o.getCourseName());
         }
     }
 }

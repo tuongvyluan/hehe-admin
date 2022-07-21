@@ -37,6 +37,10 @@ public class CourseDAO {
             + " FROM Course ORDER BY UpdatedAt " + PAGINATION;
     private final String GET_COURSES_BY_CATEGORY = DECLARE_PAGINATION + "SELECT Id, Name"
             + " FROM Course WHERE CategoryId = ? ORDER BY UpdatedAt " + PAGINATION;
+    private final String GET_COURSES_BY_AUTHOR = "SELECT Id, Name"
+            + " FROM Course WHERE AuthorId = ? ORDER BY UpdatedAt ";
+    private final String GET_COURSES_BY_AUTHOR_CATE = "SELECT Id, Name, Duration"
+            + " FROM Course WHERE AuthorId = ? AND CategoryId = ? ORDER BY UpdatedAt ";
     private final String GET_COURSE = "SELECT " + COURSE_MODEL_FIELDS
             + " FROM Course WHERE Id=?";
 
@@ -128,6 +132,82 @@ public class CourseDAO {
         return list;
     }
 
+    public ArrayList<CourseDTO> getByAuthor(int authorId) throws SQLException {
+        ArrayList<CourseDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_COURSES_BY_AUTHOR);
+                ptm.setInt(1, authorId);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    courseDTO = new CourseDTO();
+                    courseDTO.setCourseId(rs.getInt("Id"));
+                    courseDTO.setCourseName(rs.getString("Name"));
+                    list.add(courseDTO);
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<CourseDTO> getByAuthorCate(int authorId, int categoryId) throws SQLException {
+        ArrayList<CourseDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("SELECT CO.Id AS Id, CO.AuthorId AS AuthorId, "
+                        + "CO.CategoryId AS CategoryId, CO.[Name] AS CourseName, CO.Status AS CourseStatus, "
+                        + "CO.Duration AS CourseDuration, CA.Name AS CategoryName, CA.Status AS CategoryStatus\n"
+                        + "FROM Course CO JOIN Category CA ON CO.CategoryId = CA.Id \n"
+                        + "WHERE CO.AuthorId = ? AND CO.CategoryId = ?");
+                ptm.setInt(1, authorId);
+                ptm.setInt(2, categoryId);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int courseId = rs.getInt("Id");
+                    String courseName = rs.getString("CourseName");
+                    String courseStatus = rs.getString("CourseStatus");
+                    double duration = rs.getDouble("CourseDuration");
+                    String categoryName = rs.getString("CategoryName");
+                    String categoryStatus = rs.getString("CategoryStatus");
+                    list.add(new CourseDTO(courseId, categoryId, authorId, courseName, duration, courseStatus, categoryStatus, categoryName));
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
     public CourseModel get(int courseId) throws SQLException {
         CourseModel course = null;
         Connection conn = null;
@@ -165,13 +245,13 @@ public class CourseDAO {
         }
         return course;
     }
-    
+
     public static boolean createCourse(int authorId, int categoryId, String name, String description, String status, double price, double duration) {
         Connection cn = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-                String sql = "INSERT INTO Course (AuthorId, CategoryId, [Name], [Description], [Status], Price, Duration) VALUES (?,?,?,?,?,?,?)"; 
+                String sql = "INSERT INTO Course (AuthorId, CategoryId, [Name], [Description], [Status], Price, Duration) VALUES (?,?,?,?,?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, authorId);
                 pst.setInt(2, categoryId);
@@ -189,7 +269,7 @@ public class CourseDAO {
         }
         return true;
     }
-    
+
     public static boolean editCourse(int courseId, int newCategoryId, String newName, String newDescription, String newStatus, double newPrice, double newDuration) {
         Connection cn = null;
         try {
@@ -214,7 +294,7 @@ public class CourseDAO {
         }
         return true;
     }
-    
+
     public static boolean deleteCourse(int courseId) {
         Connection cn = null;
         CourseDTO course = null;
@@ -233,7 +313,7 @@ public class CourseDAO {
         }
         return true;
     }
-    
+
     public static boolean reactivateCourse(int courseId) {
         Connection cn = null;
         CourseDTO course = null;

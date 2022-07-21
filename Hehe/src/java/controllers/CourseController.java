@@ -36,6 +36,7 @@ public class CourseController extends HttpServlet {
     private final String ERROR = "error.jsp";
     private final String HOME = "home.jsp";
     private final String COURSE = "course.jsp";
+    private final String AUTHOR_HOME_PAGE = "landing.jsp";
     private final String CREATE_COURSE_PAGE = "createCourse.jsp";
     private final String EDIT_COURSE_PAGE = "editCourse.jsp";
     private final String DELETE_COURSE_PAGE = "deleteCourse.jsp";
@@ -53,18 +54,14 @@ public class CourseController extends HttpServlet {
                     int courseAuthorId = Integer.parseInt(request.getParameter("txtCourseAuthorId"));
 //                    int courseAuthorId = 7;
                     int courseCategoryId = Integer.parseInt(request.getParameter("txtCourseCategoryId"));
-                    String courseStatus = request.getParameter("txtCourseStatus");
-                    double coursePrice = Double.parseDouble(request.getParameter("txtPrice"));
                     int hour = Integer.parseInt(request.getParameter("txtHour"));
                     int minute = Integer.parseInt(request.getParameter("txtMinute"));
                     int second = Integer.parseInt(request.getParameter("txtSecond"));
-                    double courseDuration = (hour * 3600 + minute * 60 + second) / 3600;
-                    boolean result = CourseDAO.createCourse(courseAuthorId, courseCategoryId, courseName, courseDescription, courseStatus, coursePrice, courseDuration);
+                    double courseDuration = (double)(hour * 3600 + minute * 60 + second) / 3600;
+                    boolean result = CourseDAO.createCourse(courseAuthorId, courseCategoryId, courseName, courseDescription, "Active", 0, courseDuration);
                     if (result == true) {
-//                        response.sendRedirect("home.jsp");
-                        url = CREATE_COURSE_PAGE;
+                        url = AUTHOR_HOME_PAGE;
                     } else {
-//                        response.sendRedirect("error.jsp");
                         url = ERROR;
                     }
                     break;

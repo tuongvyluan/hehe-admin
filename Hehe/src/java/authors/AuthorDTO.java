@@ -11,15 +11,19 @@ package authors;
 public class AuthorDTO {
 
     private int authorId;
+    private String password;
     private String firstName;
     private String lastName;
     private String email;
+    private String phoneNumber;
 
-    public AuthorDTO(int authorId, String firstName, String lastName, String email) {
+    public AuthorDTO(int authorId, String password, String firstName, String lastName, String email, String phoneNumber) {
         this.authorId = authorId;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     public AuthorDTO() {
@@ -31,6 +35,14 @@ public class AuthorDTO {
 
     public void setAuthorId(int authorId) {
         this.authorId = authorId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -55,6 +67,14 @@ public class AuthorDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
