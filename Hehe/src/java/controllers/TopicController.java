@@ -9,14 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import topics.TopicDAO;
 
 public class TopicController extends HttpServlet {
+
     // Action string:
     private final String CREATE_TOPIC = "CreateTopic";
     private final String EDIT_TOPIC = "EditTopic";
     private final String DELETE_TOPIC = "DeleteTopic";
     private final String ADD_TOPIC_TO_SECTION = "AddTopicToSection";
-    
+    private final String EDIT_DESCRIPTION = "EditDescription";
+
     // Destination string:
     private final String CREATE_TOPIC_PAGE = "createTopic.jsp";
+    private final String CREATE_TOPIC_CONTENT_PAGE = "createTopicContent.jsp";
     private final String EDIT_TOPIC_PAGE = "editTopic.jsp";
     private final String DELETE_TOPIC_PAGE = "deleteTopic.jsp";
     private final String ADD_TOPIC_TO_SECTION_PAGE = "addTopicToSection.jsp";
@@ -27,13 +30,13 @@ public class TopicController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
-            String url = "";  
-            switch(action){
+            String url = "";
+            switch (action) {
                 case CREATE_TOPIC: {
                     String topicName = request.getParameter("txtTopicName");
                     String topicDescription = request.getParameter("txtTopicDescription");
                     int topicCourseId = Integer.parseInt(request.getParameter("txtTopicCourseId"));
-                    int topicSectionId = Integer.parseInt(request.getParameter("txtTopicSectionId")); 
+                    int topicSectionId = Integer.parseInt(request.getParameter("txtTopicSectionId"));
                     String topicStatus = request.getParameter("txtTopicStatus");
                     int topicDisplayIndex = Integer.parseInt(request.getParameter("txtTopicDisplayIndex"));
                     boolean result = TopicDAO.createTopic(topicSectionId, topicCourseId, topicName, topicDescription, topicStatus, topicDisplayIndex);
@@ -42,14 +45,15 @@ public class TopicController extends HttpServlet {
                     } else {
                         url = ERROR;
                     }
+                    break;
                 }
-                
+
                 case EDIT_TOPIC: {
                     int topicIdToEdit = Integer.parseInt(request.getParameter("txtTopicToEdit"));
                     String topicName = request.getParameter("txtTopicNewName");
                     String topicDescription = request.getParameter("txtTopicNewDescription");
                     int topicCourseId = Integer.parseInt(request.getParameter("txtTopicNewCourseId"));
-                    int topicSectionId = Integer.parseInt(request.getParameter("txtTopicNewSectionId")); 
+                    int topicSectionId = Integer.parseInt(request.getParameter("txtTopicNewSectionId"));
                     String topicStatus = request.getParameter("txtTopicNewStatus");
                     int topicDisplayIndex = Integer.parseInt(request.getParameter("txtTopicNewDisplayIndex"));
                     boolean result = TopicDAO.editTopic(topicIdToEdit, topicSectionId, topicCourseId, topicName, topicDescription, topicStatus, topicDisplayIndex);
@@ -58,8 +62,9 @@ public class TopicController extends HttpServlet {
                     } else {
                         url = ERROR;
                     }
+                    break;
                 }
-                
+
                 case DELETE_TOPIC: {
                     int topicIdToDelete = Integer.parseInt(request.getParameter("txtTopicIdToDelete"));
                     boolean result = TopicDAO.deleteTopic(topicIdToDelete);
@@ -68,9 +73,10 @@ public class TopicController extends HttpServlet {
                     } else {
                         url = ERROR;
                     }
+                    break;
                 }
-                
-                case ADD_TOPIC_TO_SECTION:{
+
+                case ADD_TOPIC_TO_SECTION: {
                     int courseIdToAddTopic = Integer.parseInt(request.getParameter("txtCourseToAddTopic"));
                     int sectionIdToAddTopic = Integer.parseInt(request.getParameter("txtSectionToAddTopic"));
                     int topicIdToAdd = Integer.parseInt(request.getParameter("txtTopicToAdd"));
@@ -80,7 +86,19 @@ public class TopicController extends HttpServlet {
                     } else {
                         url = ERROR;
                     }
-                    out.println("<p>"+result+"</p>");
+                    out.println("<p>" + result + "</p>");
+                    break;
+                }
+
+                case EDIT_DESCRIPTION: {
+                    int topicIdToEditDescription = Integer.parseInt(request.getParameter("TopicToEditDescription"));
+                    String descriptionToAdd = request.getParameter("txtDescriptionToEdit");
+                    boolean result = TopicDAO.editDescription(topicIdToEditDescription, descriptionToAdd);
+                    if (result == true) {
+                        url = CREATE_TOPIC_CONTENT_PAGE;
+                    } else {
+                        url = ERROR;
+                    }
                     break;
                 }
             }

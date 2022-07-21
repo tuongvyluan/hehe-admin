@@ -37,6 +37,12 @@ public class MainController extends HttpServlet {
     private final String EDIT_TOPIC = "EditTopic";
     private final String DELETE_TOPIC = "DeleteTopic";
     private final String ADD_TOPIC_TO_SECTION = "AddTopicToSection";
+    private final String EDIT_DESCRIPTION = "EditDescription";
+    private final String EDIT_QUIZ = "EditQuiz";
+    private final String ADD_QUIZ_TO_TOPIC = "AddQuizToTopic";
+    private final String EDIT_ANSWER = "EditAnswer";
+    private final String DELETE_ANSWER = "DeleteAnswer";
+    private final String ADD_ANSWER_TO_QUIZ = "AddAnswerToQuiz";
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
@@ -46,6 +52,8 @@ public class MainController extends HttpServlet {
     private final String SECTION_CONTROLLER = "SectionController";
     private final String STUDENT_IN_COURSE_CONTROLLER = "StudentInCourseController";
     private final String TOPIC_CONTROLLER = "TopicController";
+    private final String QUIZ_CONTROLLER = "QuizController";
+    private final String ANSWER_CONTROLLER = "AnswerController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -53,7 +61,6 @@ public class MainController extends HttpServlet {
         String url = ERROR;
         HttpSession session = request.getSession();
         StudentDTO currentStudent = (StudentDTO) session.getAttribute("LOGIN_STUDENT");
-
         try {
             String controller = request.getParameter("action");
             switch (controller) {
@@ -112,39 +119,69 @@ public class MainController extends HttpServlet {
                     url = SECTION_CONTROLLER;
                     break;
                 }
-                
+
                 case EDIT_SECTION: {
                     url = SECTION_CONTROLLER;
                     break;
                 }
-                
+
                 case DELETE_SECTION: {
                     url = SECTION_CONTROLLER;
                     break;
                 }
-                
-                case ADD_SECTION_TO_COURSE:{
+
+                case ADD_SECTION_TO_COURSE: {
                     url = SECTION_CONTROLLER;
                     break;
                 }
-                
+
                 case CREATE_TOPIC: {
                     url = TOPIC_CONTROLLER;
                     break;
                 }
-                
+
                 case EDIT_TOPIC: {
                     url = TOPIC_CONTROLLER;
                     break;
                 }
-                
+
                 case DELETE_TOPIC: {
                     url = TOPIC_CONTROLLER;
                     break;
                 }
-                
-                case ADD_TOPIC_TO_SECTION:{
+
+                case ADD_TOPIC_TO_SECTION: {
                     url = TOPIC_CONTROLLER;
+                    break;
+                }
+
+                case EDIT_DESCRIPTION: {
+                    url = TOPIC_CONTROLLER;
+                    break;
+                }
+
+                case EDIT_QUIZ: {
+                    url = QUIZ_CONTROLLER;
+                    break;
+                }
+
+                case ADD_QUIZ_TO_TOPIC: {
+                    url = QUIZ_CONTROLLER;
+                    break;
+                }
+
+                case EDIT_ANSWER: {
+                    url = ANSWER_CONTROLLER;
+                    break;
+                }
+                
+                case DELETE_ANSWER: {
+                    url = ANSWER_CONTROLLER;
+                    break;
+                }
+
+                case ADD_ANSWER_TO_QUIZ: {
+                    url = ANSWER_CONTROLLER;
                     break;
                 }
             }

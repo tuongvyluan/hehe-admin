@@ -50,4 +50,42 @@ public class QuizDAO {
         }
         return quizDTO;
     }
+    
+     public static boolean editQuiz(int topicId,String content){
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Quiz SET Content=? WHERE TopicId = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, content);
+                pst.setInt(2, topicId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+     
+      public static boolean addQuiz(int topicId,String content){
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "INSERT INTO Quiz (TopicId, Content, Status) VALUES (?,?,'Active')";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, topicId);
+                pst.setString(2, content);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

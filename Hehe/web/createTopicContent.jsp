@@ -21,11 +21,7 @@
             TopicBUS topicBUS = null;
             topicBUS = new TopicBUS();
             int topicId = Integer.parseInt(request.getParameter("topicId"));
-            if (topicId == 0) {
-                topicModel = topicBUS.get(0);
-            } else {
-                topicModel = topicBUS.get(topicId);
-            }
+            topicModel = topicBUS.get(topicId);
         %>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -71,36 +67,63 @@
                                     </h4>
                                 </li>
                             </ul>
-                            <form>
-                                <textarea id="" name="" rows="25" cols="80"><%= topicModel.getDescription()%></textarea>
-                                <button class="submit__style" type="submit" value="ChangeDescriptionOfTopic">Save changes</button>
+                            <%if (topicModel.getDescription().trim() != null) {%>
+                            <form action="MainController" method="POST">
+                                <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
+                                <input type="hidden" name="TopicToEditDescription" value="<%=topicModel.getTopicId()%>"/>
+                                <textarea id="" name="txtDescriptionToEdit" rows="25" cols="80"><%= topicModel.getDescription()%></textarea>
+                                <div class="btn__editCourse">
+                                    <button class="submit__style" type="submit" name="action" value="EditDescription">Save changes</button>
+                                </div>
                             </form>
+                            <%} else {%> 
+                            <form action="MainController" method="POST">
+                                <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
+                                <input type="hidden" name="TopicToEditDescription" value="<%=topicModel.getTopicId()%>"/>
+                                <textarea id="" name="txtDescriptionToEdit" rows="25" cols="80" placeholder="Input your content here"></textarea>
+                                <div class="btn__editCourse">
+                                    <button class="submit__style" type="submit" name="action" value="EditDescription">Save changes</button>
+                                </div>
+                            </form>
+                            <%}%>
                             <br>
-                            <form>
+                            <%
+                                QuizDTO quizDTO = null;
+                                QuizBUS quizBUS = null;
+                                quizBUS = new QuizBUS();
+                                quizDTO = quizBUS.getByTopic(topicId);
+                                if (quizDTO != null) {
+                            %>
+                            <form action="MainController" method="POST">
                                 <h3>Bài tập</h3>
-                                <%
-                                    QuizDTO quizDTO = null;
-                                    QuizBUS quizBUS = null;
-                                    quizBUS = new QuizBUS();
-                                    quizDTO = quizBUS.getByTopic(topicId);
-                                    if (quizDTO != null) {
-                                %>
                                 <ul>
                                     <h4>Input your question</h4>
                                     <li class="lesson_question" id="question" style="list-style: none;width: 100%;">
-                                        <textarea id="" name="name" rows="5" cols="80"><%=quizDTO.getContent()%></textarea>
+                                        <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
+                                        <input type="hidden" name="TopicToEditQuiz" value="<%=topicModel.getTopicId()%>"/>
+                                        <textarea id="" name="txtQuizToEdit" rows="5" cols="80" placeholder="Input Your Question Here"><%=quizDTO.getContent()%></textarea>
                                     </li>
-                                    <button class="submit__style" type="submit" value="ChangeQuestionOfTopic">Save changes</button>
+                                    <div class="btn__editCourse">
+                                        <button class="submit__style" type="submit" name="action" value="EditQuiz">Save changes</button>
+                                    </div>
                                 </ul>
-                                <%} else {%>
+                            </form>
+                            <%} else {%>
+                            <form action="MainController" method="POST">
+                                <h3>Bài tập</h3>
                                 <ul>
                                     <h4>Input your question</h4>
                                     <li class="lesson_question" id="question" style="list-style: none;width: 100%;">
-                                        <textarea id="" name="name" rows="5" cols="80"></textarea>
+                                        <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
+                                        <input type="hidden" name="TopicToAddQuiz" value="<%=topicModel.getTopicId()%>"/>
+                                        <textarea id="" name="txtQuizToAdd" rows="5" cols="80" placeholder="Input Your Question Here" required></textarea>
                                     </li>
-                                    <button class="submit__style" type="submit" value="ChangeQuestionOfTopic">Save changes</button>
+                                    <div class="btn__editCourse">
+                                        <button class="submit__style" type="submit" name="action" value="AddQuizToTopic">Save changes</button>
+                                    </div>
                                 </ul>
-                                <%}%>
+                            </form>
+                            <%}%>
                             </form>
                         </div>
                     </div>
@@ -111,93 +134,117 @@
                     </button>
                 </div>
                 <div class="container__right">
-
-                    <form method="post" action="https://www.google.com.vn/?hl=vi" name="answerForm" id="answerForm">
-                        <div class="right-header">
-                            <div class="reset-menu">
-                                <a class="reset-button" id="reset">
-                                    <i class="fa-solid fa-rotate"></i>
-                                    <span>Reset</span>
-                                </a>
-                            </div>
+                    <div class="right-header">
+                        <div class="reset-menu">
+                            <a class="reset-button" id="reset">
+                                <i class="fa-solid fa-rotate"></i>
+                                <span>Reset</span>
+                            </a>
                         </div>
-                        <div class="answer">
-
-                            <div class="answer-input">
-                                <div class="answer-list">
-                                    <ul>
-                                        <%
-                                            ArrayList<AnswerDTO> answerList = null;
-                                            AnswerBUS answerBUS = null;
-                                            answerBUS = new AnswerBUS();
-                                            if (quizDTO != null) {
-                                                answerList = answerBUS.getByQuiz(quizDTO.getQuizId());
-                                            } else {
-                                                answerList = null;
-                                            }
-                                            if (answerList != null) {
-                                                for (AnswerDTO answerDTO : answerList) {
-                                        %>
-                                        <li class="answer-select" id="answer-select">
-                                            <form>
-                                                <div class="answer-content">
-                                                    <textarea class="answer-content__input" id="" name="answerContent" rows="3" ><%=answerDTO.getContent()%></textarea>
+                    </div>
+                    <div class="answer">
+                        <div class="answer-input">
+                            <div class="answer-list">
+                                <ul>
+                                    <%
+                                        ArrayList<AnswerDTO> answerList = null;
+                                        AnswerBUS answerBUS = null;
+                                        answerBUS = new AnswerBUS();
+                                        if (quizDTO != null) {
+                                            answerList = answerBUS.getByQuiz(quizDTO.getQuizId());
+                                        } else {
+                                            answerList = null;
+                                        }
+                                        if (answerList != null) {
+                                            for (AnswerDTO answerDTO : answerList) {
+                                                String status = answerDTO.getStatus();
+                                                if (status.trim().equalsIgnoreCase("Active") == true) {
+                                    %>
+                                    <li class="answer-select" id="answer-select">
+                                        <form action="MainController" method="POST">
+                                            <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
+                                            <input type="hidden" name="quizToEditOrDeleteAnswer" value="<%=quizDTO.getQuizId()%>"/>
+                                            <input type="hidden" name="answerId" value="<%=answerDTO.getAnswerId()%>"/>
+                                            <div class="answer-content">
+                                                <textarea class="answer-content__input" id="" name="txtAnswerToEditOrDelete" rows="3" style="width: 600px;" required><%=answerDTO.getContent()%></textarea>
+                                            </div>
+                                            <div class="btn__editCourse">
+                                                <div>
+                                                    <%if (answerDTO.isCorrect() == true) {%>
+                                                    <input type="radio" id="answerTrue" name="answerIsCorrect" value="true" checked="checked">TRUE</input>
+                                                    <input type="radio" id="answerFalse" name="answerIsCorrect" value="false">FALSE</input>
+                                                    <%} else {%>
+                                                    <input type="radio" id="answerTrue" name="answerIsCorrect" value="true" >TRUE</input>
+                                                    <input type="radio" id="answerFalse" name="answerIsCorrect" value="false" checked="checked">FALSE</input>
+                                                    <%}%>
                                                 </div>
                                                 <div class="btn__editCourse">
-                                                    <input type="checkbox" id="answerTrue" name="answerTrue" value="1"/>
-                                                    <button type="submit" value="ChangeAnswerOfTopic">Save change</button>
-                                                    <button type="submit" value="DeleteAnswerOfTopic">Delete</button>  
-                                                </div>
-                                            </form>
-                                        </li>
-                                        <%}%>
-                                        <li class="answer-select answer__select__new" id="answer-select">
-                                            <form>
-                                                <h4>Add new answer option</h4>
-                                                <div class="answer-content">
-                                                    <textarea class="answer-content__input" id="" name="answerContent" rows="3" ></textarea>
+                                                    <button type="submit" name="action" value="EditAnswer">Save change</button>
                                                 </div>
                                                 <div class="btn__editCourse">
-                                                    <button type="submit" value="AddAnswerToTopic">Add option</button>
+                                                    <button type="submit" name="action" value="DeleteAnswer">Delete</button>  
                                                 </div>
-                                            </form>
-                                        </li>
-                                        <%} else {%>
-                                        <li class="answer-select answer__select__new" id="answer-select">
-                                            <form>
-                                                <h4>Add new answer option</h4>
-                                                <div class="answer-content">
-                                                    <textarea class="answer-content__input" id="" name="answerContent" rows="3" ></textarea>
-                                                </div>
-                                                <div class="btn__editCourse">
-                                                    <button type="submit" value="AddAnswerToTopic">Add option</button>
-                                                </div>
-                                            </form>
-                                        </li>
-                                        <%}%>
-                                    </ul>
-                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                    <%}%>
+                                    <% }%>
+                                    <li class="answer-select answer__select__new" id="answer-select">
+                                        <form action="MainController"  method="POST">
+                                            <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
+                                            <input type="hidden" name="quizToAddAnswer" value="<%=quizDTO.getQuizId()%>"/>
+                                            <h4>Add new answer option</h4>
+                                            <div class="answer-content">
+                                                <textarea class="answer-content__input" id="" name="txtAnswerToAdd" rows="3" style="width: 600px;" placeholder="Input Your Answer Here" required></textarea>
+                                            </div>
+                                            <div class="btn__editCourse">
+                                                <input type="radio" id="answerTrue" name="answerIsCorrect" value="true" required>TRUE</input>
+                                                <input type="radio" id="answerFalse" name="answerIsCorrect" value="false">FALSE</input>
+                                                <button type="submit" name="action" value="AddAnswerToQuiz">Add option</button>
+                                            </div>
+                                        </form>
+                                    </li>
+                                    <%} else {
+                                        if (quizDTO != null) {%>
+                                    <li class="answer-select answer__select__new" id="answer-select">
+                                        <form action="MainController" method="POST">
+                                            <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
+                                            <input type="hidden" name="quizToAddAnswer" value="<%=quizDTO.getQuizId()%>"/>
+                                            <h4>Add new answer option</h4>
+                                            <div class="answer-content">
+                                                <textarea class="answer-content__input" id="" name="txtAnswerToAdd" rows="3" style="width: 600px;" placeholder="Input Your Answer Here" required></textarea>
+                                            </div>
+                                            <div class="btn__editCourse">
+                                                <input type="radio" id="answerTrue" name="answerIsCorrect" value="true" required>TRUE</input>
+                                                <input type="radio" id="answerFalse" name="answerIsCorrect" value="false">FALSE</input>
+                                                <button type="submit" name="action" value="AddAnswerToQuiz">Add option</button>
+                                            </div>
+                                        </form>
+                                    </li>
+                                    <%}
+                                        }%>
+                                </ul>
                             </div>
                         </div>
-                        <!--phần dưới này ô nhắm xử lí đc thi để ko đc thì xóa cho khỏe nha-->
-                        <div class="right-footer">
-                            <div class="submit-menu">
-                                <a class="previous-button" id="prevbtn">
-                                    <!--dung jsp redirect den trang hien tai-->
-                                    <i class="fa-solid fa-arrow-left"></i>
-                                    <span>Previous</span>
-                                </a>
-                                <a class="next-button" id="nextbtn">
-                                    <span>Next</span>
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                                <a class="submit-button" id="submitbtn" input type="submit" value="Submit" onclick="check();">
-                                    <i class="fa-solid fa-floppy-disk"></i>
-                                    <span>Submit</span>
-                                </a>
-                            </div>
+                    </div>
+                    <!--phần dưới này ô nhắm xử lí đc thi để ko đc thì xóa cho khỏe nha-->
+                    <div class="right-footer">
+                        <div class="submit-menu">
+                            <a class="previous-button" id="prevbtn">
+                                <!--dung jsp redirect den trang hien tai-->
+                                <i class="fa-solid fa-arrow-left"></i>
+                                <span>Previous</span>
+                            </a>
+                            <a class="next-button" id="nextbtn">
+                                <span>Next</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a class="submit-button" id="submitbtn" input type="submit" value="Submit">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                                <span>Submit</span>
+                            </a>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </main>

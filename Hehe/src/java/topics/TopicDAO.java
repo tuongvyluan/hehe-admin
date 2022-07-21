@@ -253,4 +253,23 @@ public class TopicDAO {
         }
         return true;
     }
+    
+    public static boolean editDescription(int topicId,String description){
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Topic SET Description=? WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, description);
+                pst.setInt(2, topicId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }
