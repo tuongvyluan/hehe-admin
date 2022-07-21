@@ -20,6 +20,14 @@
         <servlet-name>AuthorController</servlet-name>
         <servlet-class>controllers.AuthorController</servlet-class>
     </servlet>
+    <servlet>   
+        <servlet-name>QuizController</servlet-name>
+        <servlet-class>controllers.QuizController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AnswerController</servlet-name>
+        <servlet-class>controllers.AnswerController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>AuthorController</servlet-name>
         <url-pattern>/AuthorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuizController</servlet-name>
+        <url-pattern>/QuizController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AnswerController</servlet-name>
+        <url-pattern>/AnswerController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-admin/Hehe/web/loginAuthor.jsp</file>
             <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-admin/Hehe/src/java/controllers/AuthorController.java</file>
             <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-admin/Hehe/src/java/authors/AuthorDAO.java</file>
@@ -10,6 +11,15 @@
             <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-admin/Hehe/src/java/authors/AuthorBUS.java</file>
             <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-admin/Hehe/src/java/controllers/MainController.java</file>
             <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-admin/Hehe/src/java/controllers/CourseController.java</file>
+=======
+            <file>file:/C:/web%20code/hehe-admin/Hehe/src/java/controllers/MainController.java</file>
+            <file>file:/C:/web%20code/hehe-admin/Hehe/src/java/controllers/TopicController.java</file>
+            <file>file:/C:/web%20code/hehe-admin/Hehe/web/js/studyAnswerScript.js</file>
+            <file>file:/C:/web%20code/hehe-admin/Hehe/web/createTopicContent.jsp</file>
+            <file>file:/C:/web%20code/hehe-admin/Hehe/src/java/answers/AnswerDAO.java</file>
+            <file>file:/C:/web%20code/hehe-admin/Hehe/src/java/controllers/AnswerController.java</file>
+            <file>file:/C:/web%20code/hehe-admin/Hehe/src/java/topics/TopicDAO.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
