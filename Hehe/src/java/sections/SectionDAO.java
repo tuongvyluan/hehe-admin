@@ -165,6 +165,25 @@ public class SectionDAO {
         }
         return true;
     }
+    
+    public static boolean editSectionName(int id, String name) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Section SET Name = ? WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, name);
+                pst.setInt(2, id);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
     public static boolean deleteSection(int sectionId) {
         Connection cn = null;

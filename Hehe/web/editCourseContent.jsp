@@ -149,12 +149,18 @@
                     </div>
                 </section>
                 <section class="description">
-                    <h1>Description <i id="edit-input__description" class="fa fa-edit" onclick="editDes('input__description')" style="font-size: 25px; padding-left: 10px; cursor: pointer;"></i>
-                        <i id="save-input__description" class="fa fa-check" onclick="saveDes('input__description')" style="font-size: 25px;display: none; color: green;padding-left: 10px;cursor: pointer;"></i></h1>
-                    <p></p>
-                    <p>
-                        <textarea name="txtCourseNewDescription" id="input__description" Class="input__description" name="" id="" cols="30" rows="10" disabled style="border: none; "><%= currentCourse.getDescription()%></textarea>
-                    </p>
+                    <form id="form-<%= currentCourse.getCourseId()%>" action="MainController" method="POST">
+                        <input type="hidden" name="action" value="EditCourseDesc">
+                        <input type="hidden" name="CourseToEdit" value="<%= currentCourse.getCourseId() %>">
+                        <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId() %>">
+                        <h1>Description <i id="edit-input__description" class="fa fa-edit" onclick="editDes('input__description')" style="font-size: 25px; padding-left: 10px; cursor: pointer;"></i>
+                            <i id="save-input__description" class="fa fa-check" onclick="saveDes('input__description')" style="font-size: 25px;display: none; color: green;padding-left: 10px;cursor: pointer;"></i></h1>
+                        <p></p>
+                        <p>
+                            <textarea name="txtCourseNewDescription" id="input__description" onchange="submitCourseDescChange('<%= currentCourse.getCourseId()%>')" Class="input__description" name="" id="" cols="30" rows="10" disabled style="border: none; "><%= currentCourse.getDescription()%></textarea>
+                        </p>
+                    </form>
+
                 </section>
                 <section class="lessonConntent">
                     <h1>Course Curriculum</h1>
@@ -178,10 +184,15 @@
                                     aria-controls="panelsStayOpen-collapse2"
                                     >
                                     <div class="section__Name" style="display: flex;">
-                                        <input id="<%= section.getSectionId()%>" class="section__Name__input" type="text" value="<%= section.getDisplayIndex()%>. <%= section.getSectionName()%>" disabled style="border: none;">
-                                        <i id="edit-<%= section.getSectionId()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionId()%>')" style="font-size: 25px; padding-left: 10px"></i>
-                                        <i id="save-<%= section.getSectionId()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionId()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
-                                        <i id="delete-<%= section.getSectionId()%>"class="fa fa-trash-alt" onclick="deleteField('<%= section.getSectionId()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
+                                        <form id="form-<%= section.getSectionId()%>" action="MainController" method="POST">
+                                            <input type="hidden" name="action" value="EditSectionName">
+                                            <input type="hidden" name="SectionToEdit" value="<%= section.getSectionId()%>">
+                                            <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
+                                            <input id="<%= section.getSectionName()%>" class="section__Name__input" type="text" name="txtSectionName" onchange="submitSectionChange(<%= section.getSectionId()%>);" value="<%= section.getSectionName()%>" disabled style="border: none;">
+                                            <i id="edit-<%= section.getSectionName()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionName()%>')" style="font-size: 25px; padding-left: 10px"></i>
+                                            <i id="save-<%= section.getSectionName()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionName()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
+                                            <i id="delete-<%= section.getSectionName()%>"class="fa fa-trash-alt" onclick="deleteField('<%= section.getSectionId()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
+                                        </form>
                                     </div>
                                 </button>
                             </h2>
@@ -300,6 +311,14 @@
                 document.getElementById("delete-" + id).style.display = "inline-block";
                 document.getElementById("open-" + id).style.display = "inline-block";
             }
+            function submitCourseDescChange(id) {
+                var form = document.getElementById("form-" + id);
+                form.submit();
+            }
+            function submitSectionChange(id) {
+                var form = document.getElementById("form-" + id);
+                form.submit();
+            }
             function submitTopicChange(id) {
                 var form = document.getElementById("form-" + id);
                 form.submit();
@@ -309,14 +328,12 @@
                 document.getElementById(id).style.border = "1px solid grey";
                 document.getElementById("edit-" + id).style.display = "none";
                 document.getElementById("save-" + id).style.display = "inline-block";
-
             }
             function saveDes(id) {
                 document.getElementById(id).disabled = true;
                 document.getElementById(id).style.border = "none";
                 document.getElementById("edit-" + id).style.display = "inline-block";
                 document.getElementById("save-" + id).style.display = "none";
-
             }
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -339,14 +356,3 @@
     </script>
 </body>
 </html>
-
-
-
-<%--<%
-                                    CourseModel currentCourse = (CourseModel) session.getAttribute("CURRENT_COURSE");
-                                %>
-                                <form method="MainController" action="POST">
-                                    <input type="hidden" name="txtSectionCourseId" value="<%= currentCourse.getCourseId()%>">
-                                    <input class="add__section" type="text" name="txtSectionName" placeholder="Add course's section">
-                                    <button class="btn__addSection" type="submit" name="action" value="CreateSection">Add section</button>
-                                </form>--%>

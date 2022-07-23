@@ -28,9 +28,11 @@ public class MainController extends HttpServlet {
     private final String VIEW_COURSE = "ViewCourse";
     private final String CREATE_COURSE = "CreateCourse";
     private final String EDIT_COURSE = "EditCourse";
+    private final String EDIT_COURSE_DESC = "EditCourseDesc";
     private final String DELETE_COURSE = "DeleteCourse";
     private final String CREATE_SECTION = "CreateSection";
     private final String EDIT_SECTION = "EditSection";
+    private final String EDIT_SECTION_NAME = "EditSectionName";
     private final String DELETE_SECTION = "DeleteSection";
     private final String ADD_SECTION_TO_COURSE = "AddSectionToCourse";
     private final String CREATE_TOPIC = "CreateTopic";
@@ -111,6 +113,11 @@ public class MainController extends HttpServlet {
                     url = COURSE_CONTROLLER;
                     break;
                 }
+                
+                case EDIT_COURSE_DESC: {
+                    url = COURSE_CONTROLLER;
+                    break;
+                }
 
                 case DELETE_COURSE: {
                     url = COURSE_CONTROLLER;
@@ -123,6 +130,11 @@ public class MainController extends HttpServlet {
                 }
 
                 case EDIT_SECTION: {
+                    url = SECTION_CONTROLLER;
+                    break;
+                }
+                
+                case EDIT_SECTION_NAME: {
                     url = SECTION_CONTROLLER;
                     break;
                 }

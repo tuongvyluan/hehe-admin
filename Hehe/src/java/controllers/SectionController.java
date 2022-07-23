@@ -22,6 +22,7 @@ public class SectionController extends HttpServlet {
     // Action String
     private final String CREATE_SECTION = "CreateSection";
     private final String EDIT_SECTION = "EditSection";
+    private final String EDIT_SECTION_NAME = "EditSectionName";
     private final String DELETE_SECTION = "DeleteSection";
     private final String ADD_SECTION_TO_COURSE = "AddSectionToCourse";
     
@@ -64,6 +65,18 @@ public class SectionController extends HttpServlet {
                     boolean result = SectionDAO.editSection(sectionId, sectionNewName, sectionNewDescription, sectionNewDisplayIndex);
                     if (result == true) {
                         url = EDIT_SECTION_PAGE;
+                    } else {
+                        url = ERROR;
+                    }
+                    break;
+                }
+                
+                case EDIT_SECTION_NAME: {
+                    int sectionId = Integer.parseInt(request.getParameter("SectionToEdit"));
+                    String sectionNewName = request.getParameter("txtSectionName");
+                    boolean result = SectionDAO.editSectionName(sectionId, sectionNewName);
+                    if (result == true) {
+                        url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
                     }
