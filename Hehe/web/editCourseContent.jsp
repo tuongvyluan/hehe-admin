@@ -178,10 +178,10 @@
                                     aria-controls="panelsStayOpen-collapse2"
                                     >
                                     <div class="section__Name" style="display: flex;">
-                                        <input id="<%= section.getSectionName()%>" class="section__Name__input" type="text" value="<%= section.getDisplayIndex()%>. <%= section.getSectionName()%>" disabled style="border: none;">
-                                        <i id="edit-<%= section.getSectionName()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionName()%>')" style="font-size: 25px; padding-left: 10px"></i>
-                                        <i id="save-<%= section.getSectionName()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionName()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
-                                        <i id="delete-<%= section.getSectionName()%>"class="fa fa-trash-alt" onclick="deleteField('<%= section.getSectionName()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
+                                        <input id="<%= section.getSectionId()%>" class="section__Name__input" type="text" value="<%= section.getDisplayIndex()%>. <%= section.getSectionName()%>" disabled style="border: none;">
+                                        <i id="edit-<%= section.getSectionId()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionId()%>')" style="font-size: 25px; padding-left: 10px"></i>
+                                        <i id="save-<%= section.getSectionId()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionId()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
+                                        <i id="delete-<%= section.getSectionId()%>"class="fa fa-trash-alt" onclick="deleteField('<%= section.getSectionId()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
                                     </div>
                                 </button>
                             </h2>
@@ -196,15 +196,15 @@
                                             for (TopicDTO topic : topicList) {
                                         %>
                                         <li>
-                                            <form id="form<%= topic.getTopicId() %>" action="MainController" method="POST">
+                                            <form id="form-<%= topic.getTopicId()%>" action="MainController" method="POST">
                                                 <input type="hidden" name="action" value="EditTopicName">
-                                                <input type="hidden" name="topicId" value="<%= topic.getTopicId() %>">
-                                                <input type="hidden" name="courseId" value="<%= topic.getCourseId() %>">
-                                                <input id="<%= topic.getTopicName()%>" class="topic__Name__input" type="text" value="<%= topic.getTopicName()%>" disabled style="border: none;width: 100%;">
-                                                <i id="edit-<%= topic.getTopicName()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicName()%>')" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
-                                                <i id="save-<%= topic.getTopicId()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicId()%>')" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
-                                                <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="deleteTopic('<%= topic.getTopicName()%>')" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
-                                                <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic('<%= topic.getTopicId()%>')" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
+                                                <input type="hidden" name="TopicToEdit" value="<%= topic.getTopicId()%>">
+                                                <input type="hidden" name="courseId" value="<%= topic.getCourseId()%>">
+                                                <input id="<%= topic.getTopicName()%>" class="topic__Name__input" type="text" name="txtTopicName" value="<%= topic.getTopicName()%>" onchange="submitTopicChange(<%= topic.getTopicId()%>);" disabled style="border: none;width: 100%;">
+                                                <i id="edit-<%= topic.getTopicName()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
+                                                <i id="save-<%= topic.getTopicName()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicName()%>');" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
+                                                <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="deleteTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
+                                                <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
                                             </form>
                                         </li>
                                         <%
@@ -212,9 +212,9 @@
                                         %>
                                         <div>+ Add topic</div>
                                         <form>
-                                            <input type="hidden" name="courseId" value="<%= section.getCourseId() %>">
-                                            <input type="hidden" name="txtTopicCourseId" value="<%= section.getCourseId() %>">
-                                            <input type="hidden" name="txtTopicSectionId" value="<%= section.getSectionId() %>">
+                                            <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
+                                            <input type="hidden" name="txtTopicCourseId" value="<%= section.getCourseId()%>">
+                                            <input type="hidden" name="txtTopicSectionId" value="<%= section.getSectionId()%>">
                                             <input class="input__topic" type="text" name="txtTopicName" placeholder="Input topic's name">
                                             <button class="btn__addTopic" type="submit" name="action" value="CreateTopic">Add topic</button>
                                         </form>
@@ -265,7 +265,7 @@
         <!-- Footer -->
         <!-- Footer -->
         <script>
-            function openTopic(id){
+            function openTopic(id) {
                 location.href = "editTopicContent.jsp?topicId=" + id;
             }
             function editSection(id) {
@@ -273,7 +273,7 @@
                 document.getElementById(id).style.border = "1px solid grey";
                 document.getElementById("edit-" + id).style.display = "none";
                 document.getElementById("save-" + id).style.display = "block";
-                document.getElementById("delete-" + id).style.display = "none"
+                document.getElementById("delete-" + id).style.display = "none";
             }
             function saveSection(id) {
                 document.getElementById(id).disabled = true;
@@ -288,8 +288,8 @@
                 document.getElementById(id).style.border = "1px solid grey";
                 document.getElementById("edit-" + id).style.display = "none";
                 document.getElementById("save-" + id).style.display = "inline-block";
-                document.getElementById("delete-" + id).style.display = "none"
-                document.getElementById("open-" + id).style.display = "none"
+                document.getElementById("delete-" + id).style.display = "none";
+                document.getElementById("open-" + id).style.display = "none";
             }
             function saveTopic(id) {
                 document.getElementById(id).disabled = true;
@@ -299,7 +299,10 @@
                 document.getElementById("save-" + id).style.display = "none";
                 document.getElementById("delete-" + id).style.display = "inline-block";
                 document.getElementById("open-" + id).style.display = "inline-block";
-                document.getElementById("form" + id).submit();
+            }
+            function submitTopicChange(id) {
+                var form = document.getElementById("form-" + id);
+                form.submit();
             }
             function editDes(id) {
                 document.getElementById(id).disabled = false;
