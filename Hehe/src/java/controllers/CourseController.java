@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
@@ -62,7 +62,7 @@ public class CourseController extends HttpServlet {
                     int hour = Integer.parseInt(request.getParameter("txtHour"));
                     int minute = Integer.parseInt(request.getParameter("txtMinute"));
                     int second = Integer.parseInt(request.getParameter("txtSecond"));
-                    double courseDuration = (double)(hour * 3600 + minute * 60 + second) / 3600;
+                    double courseDuration = (double) (hour * 3600 + minute * 60 + second) / 3600;
                     boolean result = CourseDAO.createCourse(courseAuthorId, courseCategoryId, courseName, courseDescription, "Active", 0, courseDuration);
                     CourseModel currentCourse = CourseDAO.getNewestCourse();
                     session.setAttribute("CURRENT_COURSE", currentCourse);
@@ -91,7 +91,7 @@ public class CourseController extends HttpServlet {
                     }
                     break;
                 }
-                
+
                 case EDIT_COURSE_NAME: {
                     int courseToEdit = Integer.parseInt(request.getParameter("txtCourseToEdit"));
                     String courseNewName = request.getParameter("txtCourseNewName");
@@ -103,13 +103,13 @@ public class CourseController extends HttpServlet {
                     }
                     break;
                 }
-                
+
                 case EDIT_COURSE_DESC: {
-                    int courseToEdit = Integer.parseInt(request.getParameter("CourseToEdit"));
-                    String courseDesc = request.getParameter("txtCourseNewDescription");
-                    boolean result = CourseDAO.editCourseDesc(courseToEdit, courseDesc);
+                    int courseIdToEdit = Integer.parseInt(request.getParameter("CourseToEdit"));
+                    String courseDescription = request.getParameter("txtCourseNewDescription");
+                    boolean result = CourseDAO.editCourseDesc(courseIdToEdit, courseDescription);
                     if (result == true) {
-                        url = AUTHOR_HOME_PAGE;
+                        url = EDIT_COURSE_PAGE;
                     } else {
                         url = ERROR;
                     }

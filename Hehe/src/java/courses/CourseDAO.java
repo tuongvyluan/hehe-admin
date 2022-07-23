@@ -249,7 +249,7 @@ public class CourseDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "SELECT Id, AuthorId, CategoryId, Name, Status, Duration FROM Course WHERE Id = ?";
+                String sql = "SELECT Id, AuthorId, CategoryId, Name, Description, Status, Duration FROM Course WHERE Id = ?";
                 pst = conn.prepareStatement(sql);
                 pst.setInt(1, courseId);
                 rs = pst.executeQuery();
@@ -260,6 +260,7 @@ public class CourseDAO {
                     course.setCategoryId(rs.getInt("CategoryId"));
                     course.setCourseName(rs.getString("Name"));
                     course.setDuration(rs.getDouble("Duration"));
+                    course.setDescription(rs.getString("Description"));
                 }
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -362,15 +363,15 @@ public class CourseDAO {
         }
         return true;
     }
-    
-    public static boolean editCourseName(int courseId, String newName) {
+
+    public static boolean editCourseName(int courseId, String newDescription) {
         Connection cn = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-                String sql = "UPDATE Course SET Name = ? WHERE Id = ?";
+                String sql = "UPDATE Course SET Description = ? WHERE Id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, newName);
+                pst.setString(1, newDescription);
                 pst.setInt(2, courseId);
                 int rs = pst.executeUpdate();
                 cn.close();
@@ -381,7 +382,7 @@ public class CourseDAO {
         }
         return true;
     }
-    
+
     public static boolean editCourseDesc(int courseId, String newDesc) {
         Connection cn = null;
         try {
