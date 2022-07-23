@@ -33,6 +33,8 @@ public class CourseController extends HttpServlet {
     private final String VIEW_COURSE = "ViewCourse";
     private final String CREATE_COURSE = "CreateCourse";
     private final String EDIT_COURSE = "EditCourse";
+    private final String EDIT_COURSE_NAME = "EditCourseName";
+    private final String EDIT_COURSE_DESC = "EditCourseDesc";
     private final String DELETE_COURSE = "DeleteCourse";
 
     //Destination String
@@ -52,7 +54,7 @@ public class CourseController extends HttpServlet {
             HttpSession session = null;
             String url = "";
             switch (action) {
-                case "CreateCourse": {
+                case CREATE_COURSE: {
                     String courseName = request.getParameter("txtCourseName");
                     String courseDescription = request.getParameter("txtCourseDescription");
                     int courseAuthorId = Integer.parseInt(request.getParameter("txtCourseAuthorId"));
@@ -72,7 +74,7 @@ public class CourseController extends HttpServlet {
                     break;
                 }
 
-                case "EditCourse": {
+                case EDIT_COURSE: {
                     int courseToEdit = Integer.parseInt(request.getParameter("txtCourseToEdit"));
                     int courseNewCategoryId = Integer.parseInt(request.getParameter("txtCourseNewCategoryId"));
                     String courseNewName = request.getParameter("txtCourseNewName");
@@ -82,6 +84,30 @@ public class CourseController extends HttpServlet {
                     int second = Integer.parseInt(request.getParameter("txtNewSecond"));
                     double courseDuration = (double) (hour * 3600 + minute * 60 + second) / 3600;
                     boolean result = CourseDAO.editCourse(courseToEdit, courseNewCategoryId, courseNewName, courseNewDescription, courseDuration);
+                    if (result == true) {
+                        url = AUTHOR_HOME_PAGE;
+                    } else {
+                        url = ERROR;
+                    }
+                    break;
+                }
+                
+                case EDIT_COURSE_NAME: {
+                    int courseToEdit = Integer.parseInt(request.getParameter("txtCourseToEdit"));
+                    String courseNewName = request.getParameter("txtCourseNewName");
+                    boolean result = CourseDAO.editCourseName(courseToEdit, courseNewName);
+                    if (result == true) {
+                        url = AUTHOR_HOME_PAGE;
+                    } else {
+                        url = ERROR;
+                    }
+                    break;
+                }
+                
+                case EDIT_COURSE_DESC: {
+                    int courseToEdit = Integer.parseInt(request.getParameter("CourseToEdit"));
+                    String courseDesc = request.getParameter("txtCourseNewDescription");
+                    boolean result = CourseDAO.editCourseDesc(courseToEdit, courseDesc);
                     if (result == true) {
                         url = AUTHOR_HOME_PAGE;
                     } else {

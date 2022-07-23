@@ -362,6 +362,44 @@ public class CourseDAO {
         }
         return true;
     }
+    
+    public static boolean editCourseName(int courseId, String newName) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Course SET Name = ? WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, newName);
+                pst.setInt(2, courseId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean editCourseDesc(int courseId, String newDesc) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Course SET Description = ? WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, newDesc);
+                pst.setInt(2, courseId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
     public static boolean deleteCourse(int courseId) {
         Connection cn = null;

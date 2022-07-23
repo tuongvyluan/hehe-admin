@@ -67,8 +67,8 @@ public class TopicController extends HttpServlet {
                 }
                 
                 case EDIT_TOPIC_NAME: {
-                    int topicIdToEdit = Integer.parseInt(request.getParameter("txtTopicToEdit"));
-                    String topicName = request.getParameter("txtTopicNewName");
+                    int topicIdToEdit = Integer.parseInt(request.getParameter("TopicToEdit"));
+                    String topicName = request.getParameter("txtTopicName");
                     boolean result = TopicDAO.editTopicName(topicIdToEdit, topicName);
                     if (result == true) {
                         url = EDIT_COURSE_CONTENT;
