@@ -13,6 +13,7 @@ public class TopicController extends HttpServlet {
     // Action string:
     private final String CREATE_TOPIC = "CreateTopic";
     private final String EDIT_TOPIC = "EditTopic";
+    private final String EDIT_TOPIC_NAME = "EditTopicName";
     private final String DELETE_TOPIC = "DeleteTopic";
     private final String ADD_TOPIC_TO_SECTION = "AddTopicToSection";
     private final String EDIT_DESCRIPTION = "EditDescription";
@@ -22,6 +23,7 @@ public class TopicController extends HttpServlet {
     private final String CREATE_TOPIC_CONTENT_PAGE = "createTopicContent.jsp";
     private final String EDIT_TOPIC_PAGE = "editTopic.jsp";
     private final String DELETE_TOPIC_PAGE = "deleteTopic.jsp";
+    private final String EDIT_COURSE_CONTENT = "editCourseContent.jsp";
     private final String ADD_TOPIC_TO_SECTION_PAGE = "addTopicToSection.jsp";
     private final String ERROR = "error.jsp";
 
@@ -34,14 +36,13 @@ public class TopicController extends HttpServlet {
             switch (action) {
                 case CREATE_TOPIC: {
                     String topicName = request.getParameter("txtTopicName");
-                    String topicDescription = request.getParameter("txtTopicDescription");
+                    String topicDescription = "";
                     int topicCourseId = Integer.parseInt(request.getParameter("txtTopicCourseId"));
                     int topicSectionId = Integer.parseInt(request.getParameter("txtTopicSectionId"));
-                    String topicStatus = request.getParameter("txtTopicStatus");
-                    int topicDisplayIndex = Integer.parseInt(request.getParameter("txtTopicDisplayIndex"));
-                    boolean result = TopicDAO.createTopic(topicSectionId, topicCourseId, topicName, topicDescription, topicStatus, topicDisplayIndex);
+                    int topicDisplayIndex = TopicDAO.getDisplayIndex(topicCourseId, topicSectionId) + 1;
+                    boolean result = TopicDAO.createTopic(topicSectionId, topicCourseId, topicName, topicDescription, topicDisplayIndex);
                     if (result == true) {
-                        url = CREATE_TOPIC_PAGE;
+                        url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
                     }
@@ -59,6 +60,18 @@ public class TopicController extends HttpServlet {
                     boolean result = TopicDAO.editTopic(topicIdToEdit, topicSectionId, topicCourseId, topicName, topicDescription, topicStatus, topicDisplayIndex);
                     if (result == true) {
                         url = EDIT_TOPIC_PAGE;
+                    } else {
+                        url = ERROR;
+                    }
+                    break;
+                }
+                
+                case EDIT_TOPIC_NAME: {
+                    int topicIdToEdit = Integer.parseInt(request.getParameter("txtTopicToEdit"));
+                    String topicName = request.getParameter("txtTopicNewName");
+                    boolean result = TopicDAO.editTopicName(topicIdToEdit, topicName);
+                    if (result == true) {
+                        url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
                     }

@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import utils.DBUtils;
 
@@ -208,6 +209,75 @@ public class CourseDAO {
         return list;
     }
 
+    public static CourseModel getNewestCourse() throws SQLException {
+        CourseModel course = null;
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "SELECT TOP 1 Id, AuthorId, CategoryId, Name, Status, Duration FROM Course ORDER BY Id DESC";
+                rs = st.executeQuery(sql);
+                if (rs.next()) {
+                    course = new CourseModel();
+                    course.setCourseId(rs.getInt("Id"));
+                    course.setAuthorId(rs.getInt("AuthorId"));
+                    course.setCategoryId(rs.getInt("CourseId"));
+                    course.setCourseName(rs.getString("Name"));
+                    course.setDuration(rs.getDouble("Duration"));
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return course;
+    }
+
+    public static CourseModel getCurrentCourse(int courseId) throws SQLException {
+        CourseModel course = null;
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "SELECT Id, AuthorId, CategoryId, Name, Status, Duration FROM Course WHERE Id = ?";
+                pst = conn.prepareStatement(sql);
+                pst.setInt(1, courseId);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    course = new CourseModel();
+                    course.setCourseId(rs.getInt("Id"));
+                    course.setAuthorId(rs.getInt("AuthorId"));
+                    course.setCategoryId(rs.getInt("CategoryId"));
+                    course.setCourseName(rs.getString("Name"));
+                    course.setDuration(rs.getDouble("Duration"));
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return course;
+    }
+
     public CourseModel get(int courseId) throws SQLException {
         CourseModel course = null;
         Connection conn = null;
@@ -270,21 +340,19 @@ public class CourseDAO {
         return true;
     }
 
-    public static boolean editCourse(int courseId, int newCategoryId, String newName, String newDescription, String newStatus, double newPrice, double newDuration) {
+    public static boolean editCourse(int courseId, int newCategoryId, String newName, String newDescription, double newDuration) {
         Connection cn = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-                String sql = "UPDATE Course SET CategoryId = ?, Name = ?, Description = ?, Status = ?, Price = ?, Duration = ? "
+                String sql = "UPDATE Course SET CategoryId = ?, Name = ?, Description = ?, Duration = ? "
                         + "WHERE Id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, newCategoryId);
                 pst.setString(2, newName);
                 pst.setString(3, newDescription);
-                pst.setString(4, newStatus);
-                pst.setDouble(5, newPrice);
-                pst.setDouble(6, newDuration);
-                pst.setInt(7, courseId);
+                pst.setDouble(4, newDuration);
+                pst.setInt(5, courseId);
                 int rs = pst.executeUpdate();
                 cn.close();
             }

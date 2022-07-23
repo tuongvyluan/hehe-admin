@@ -9,7 +9,10 @@ import courses.CourseDAO;
 import courses.CourseModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +41,7 @@ public class CourseController extends HttpServlet {
     private final String COURSE = "course.jsp";
     private final String AUTHOR_HOME_PAGE = "landing.jsp";
     private final String CREATE_COURSE_PAGE = "createCourse.jsp";
-    private final String EDIT_COURSE_PAGE = "editCourse.jsp";
+    private final String EDIT_COURSE_PAGE = "editCourseContent.jsp";
     private final String DELETE_COURSE_PAGE = "deleteCourse.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -46,21 +49,23 @@ public class CourseController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
+            HttpSession session = null;
             String url = "";
             switch (action) {
                 case "CreateCourse": {
                     String courseName = request.getParameter("txtCourseName");
                     String courseDescription = request.getParameter("txtCourseDescription");
                     int courseAuthorId = Integer.parseInt(request.getParameter("txtCourseAuthorId"));
-//                    int courseAuthorId = 7;
                     int courseCategoryId = Integer.parseInt(request.getParameter("txtCourseCategoryId"));
                     int hour = Integer.parseInt(request.getParameter("txtHour"));
                     int minute = Integer.parseInt(request.getParameter("txtMinute"));
                     int second = Integer.parseInt(request.getParameter("txtSecond"));
                     double courseDuration = (double)(hour * 3600 + minute * 60 + second) / 3600;
                     boolean result = CourseDAO.createCourse(courseAuthorId, courseCategoryId, courseName, courseDescription, "Active", 0, courseDuration);
+                    CourseModel currentCourse = CourseDAO.getNewestCourse();
+                    session.setAttribute("CURRENT_COURSE", currentCourse);
                     if (result == true) {
-                        url = AUTHOR_HOME_PAGE;
+                        url = EDIT_COURSE_PAGE;
                     } else {
                         url = ERROR;
                     }
@@ -72,18 +77,14 @@ public class CourseController extends HttpServlet {
                     int courseNewCategoryId = Integer.parseInt(request.getParameter("txtCourseNewCategoryId"));
                     String courseNewName = request.getParameter("txtCourseNewName");
                     String courseNewDescription = request.getParameter("txtCourseNewDescription");
-                    String courseNewStatus = request.getParameter("txtCourseNewStatus");
-                    double courseNewPrice = Double.parseDouble(request.getParameter("txtCourseNewPrice"));
                     int hour = Integer.parseInt(request.getParameter("txtNewHour"));
                     int minute = Integer.parseInt(request.getParameter("txtNewMinute"));
                     int second = Integer.parseInt(request.getParameter("txtNewSecond"));
                     double courseDuration = (double) (hour * 3600 + minute * 60 + second) / 3600;
-                    boolean result = CourseDAO.editCourse(courseToEdit, courseNewCategoryId, courseNewName, courseNewDescription, courseNewStatus, courseNewPrice, courseDuration);
+                    boolean result = CourseDAO.editCourse(courseToEdit, courseNewCategoryId, courseNewName, courseNewDescription, courseDuration);
                     if (result == true) {
-//                        response.sendRedirect("home.jsp");
-                        url = EDIT_COURSE_PAGE;
+                        url = AUTHOR_HOME_PAGE;
                     } else {
-//                        response.sendRedirect("error.jsp");
                         url = ERROR;
                     }
                     break;
@@ -103,6 +104,8 @@ public class CourseController extends HttpServlet {
                 }
             }
             request.getRequestDispatcher(url).forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -121,6 +121,29 @@ public class SectionDAO {
         }
         return true;
     }
+    
+    public static int getDisplayIndex(int courseId){
+        Connection cn = null;
+        ResultSet rs = null;
+        int displayIndex = 0;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "SELECT TOP 1 DisplayIndex FROM Section WHERE CourseId = ? ORDER BY DisplayIndex DESC";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, courseId);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    displayIndex = rs.getInt("DisplayIndex");
+                }
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -100;
+        }
+        return displayIndex;
+    }
 
     public static boolean editSection(int id, String name, String description, int displayIndex) {
         Connection cn = null;

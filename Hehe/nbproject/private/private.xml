@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/web%20code/hehe-admin/Hehe/src/java/controllers/MainController.java</file>
-            <file>file:/C:/web%20code/hehe-admin/Hehe/src/java/controllers/TopicController.java</file>
-            <file>file:/C:/web%20code/hehe-admin/Hehe/web/createTopicContent.jsp</file>
-            <file>file:/C:/web%20code/hehe-admin/Hehe/src/java/answers/AnswerDAO.java</file>
-            <file>file:/C:/web%20code/hehe-admin/Hehe/src/java/topics/TopicDAO.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-admin/Hehe/web/loginAuthor.jsp</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-admin/Hehe/web/editCourseContent.jsp</file>
         </group>
     </open-files>
 </project-private>

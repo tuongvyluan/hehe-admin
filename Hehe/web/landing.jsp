@@ -80,40 +80,12 @@
                                 <span class="text nav-text">Create course</span>
                             </a>
                         </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <i class="bx bx-bell icon"></i>
-                                <span class="text nav-text"></span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <i class="bx bx-pie-chart-alt icon"></i>
-                                <span class="text nav-text"></span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <i class="bx bx-heart icon"></i>
-                                <span class="text nav-text"></span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <i class="bx bx-wallet icon"></i>
-                                <span class="text nav-text"></span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
 
                 <div class="bottom-content">
                     <li class="">
-                        <a href="#">
+                        <a href="MainController?action=Logout">
                             <i class="bx bx-log-out icon"></i>
                             <span class="text nav-text">Logout</span>
                         </a>
@@ -156,7 +128,7 @@
                                     <p>Time to complete: <%= course.getDuration() %> hours</p>
                                 </div>
                                 <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
+                                    <a href="editCourseContent.jsp?courseId=<%= course.getCourseId() %>"><button class="buttonCourse" type="button">Edit</button></a>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +141,7 @@
             <%
                 }
             %>
-            <div class="CategoryName">
+            <!--<div class="CategoryName">
                 <h2 style="font-size: 39px; padding-left: 1%">Category 1</h2>
                 <div class="row card-container">
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
@@ -368,7 +340,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </section>
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

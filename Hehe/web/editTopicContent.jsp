@@ -27,7 +27,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" href="images/icons/read_book_study_icon.ico"/>
-        <link rel="stylesheet" href="css/createTopicContent.css">
+        <link rel="stylesheet" href="css/editTopicContent.css">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
         <link rel="stylesheet" href="css/nicepage.css" media="screen">
         <link rel="stylesheet" href="css/About.css" media="screen">

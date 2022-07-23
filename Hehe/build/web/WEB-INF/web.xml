@@ -20,7 +20,7 @@
         <servlet-name>AuthorController</servlet-name>
         <servlet-class>controllers.AuthorController</servlet-class>
     </servlet>
-    <servlet>   
+    <servlet>
         <servlet-name>QuizController</servlet-name>
         <servlet-class>controllers.QuizController</servlet-class>
     </servlet>
@@ -62,6 +62,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>editSection.jsp</welcome-file>
+        <welcome-file>loginAuthor.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

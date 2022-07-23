@@ -35,6 +35,7 @@ public class MainController extends HttpServlet {
     private final String ADD_SECTION_TO_COURSE = "AddSectionToCourse";
     private final String CREATE_TOPIC = "CreateTopic";
     private final String EDIT_TOPIC = "EditTopic";
+    private final String EDIT_TOPIC_NAME = "EditTopicName";
     private final String DELETE_TOPIC = "DeleteTopic";
     private final String ADD_TOPIC_TO_SECTION = "AddTopicToSection";
     private final String EDIT_DESCRIPTION = "EditDescription";
@@ -43,6 +44,7 @@ public class MainController extends HttpServlet {
     private final String EDIT_ANSWER = "EditAnswer";
     private final String DELETE_ANSWER = "DeleteAnswer";
     private final String ADD_ANSWER_TO_QUIZ = "AddAnswerToQuiz";
+    private final String LOG_OUT = "Logout";
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
@@ -144,6 +146,11 @@ public class MainController extends HttpServlet {
                     url = TOPIC_CONTROLLER;
                     break;
                 }
+                
+                case EDIT_TOPIC_NAME: {
+                    url = TOPIC_CONTROLLER;
+                    break;
+                }
 
                 case DELETE_TOPIC: {
                     url = TOPIC_CONTROLLER;
@@ -182,6 +189,11 @@ public class MainController extends HttpServlet {
 
                 case ADD_ANSWER_TO_QUIZ: {
                     url = ANSWER_CONTROLLER;
+                    break;
+                }
+                
+                case LOG_OUT: {
+                    url = AUTHOR_CONTROLLER;
                     break;
                 }
             }

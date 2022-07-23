@@ -31,6 +31,7 @@ public class SectionController extends HttpServlet {
     private final String EDIT_COURSE_PAGE = "editCourse.jsp";
     private final String EDIT_SECTION_PAGE = "editSection.jsp";
     private final String DELETE_SECTION_PAGE = "deleteSection.jsp";
+    private final String EDIT_COURSE_CONTENT = "editCourseContent.jsp";
     private final String ADD_SECTION_TO_COURSE_PAGE = "addSectionToCourse.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -44,11 +45,11 @@ public class SectionController extends HttpServlet {
                 case CREATE_SECTION: {
                     int sectionCourseId = Integer.parseInt(request.getParameter("txtSectionCourseId"));
                     String sectionName = request.getParameter("txtSectionName");
-                    String sectionDescription = request.getParameter("txtSectionDescription");
-                    int sectionDisplayIndex = Integer.parseInt(request.getParameter("txtSectionDisplayIndex"));
+                    String sectionDescription = "";
+                    int sectionDisplayIndex = SectionDAO.getDisplayIndex(sectionCourseId) + 1;
                     boolean result = SectionDAO.createSection(sectionCourseId, sectionName, sectionDescription, sectionDisplayIndex);
                     if (result == true) {
-                        url = EDIT_COURSE_PAGE;
+                        url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
                     }

@@ -75,6 +75,30 @@ public class TopicDAO {
         return list;
     }
     
+    public static int getDisplayIndex(int courseId, int sectionId){
+        Connection cn = null;
+        ResultSet rs = null;
+        int displayIndex = 0;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "SELECT TOP 1 DisplayIndex FROM Topic WHERE CourseId = ? AND SectionId = ? ORDER BY DisplayIndex DESC";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, courseId);
+                pst.setInt(2, sectionId);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    displayIndex = rs.getInt("DisplayIndex");
+                }
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -100;
+        }
+        return displayIndex;
+    }
+    
     public ArrayList<TopicDTO> getBySection(int sectionId) throws SQLException {
         ArrayList<TopicDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -150,20 +174,19 @@ public class TopicDAO {
     }
 
     
-    public static boolean createTopic(int sectionId, int courseId, String name, String description, String status, int displayIndex) {
+    public static boolean createTopic(int sectionId, int courseId, String name, String description, int displayIndex) {
         Connection cn = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
                 String sql = "INSERT INTO Topic (SectionId, CourseId, Name, "
-                        + "Description, Status, DisplayIndex) VALUES (?,?,?,?,?,?)"; 
+                        + "Description, DisplayIndex) VALUES (?,?,?,?,?)"; 
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, sectionId);
                 pst.setInt(2, courseId);
                 pst.setString(3, name);
                 pst.setString(4, description);
-                pst.setString(5, status);
-                pst.setInt(6, displayIndex);
+                pst.setInt(5, displayIndex);
                 int rs = pst.executeUpdate();
                 cn.close();
             }
@@ -188,6 +211,25 @@ public class TopicDAO {
                 pst.setString(5, status);
                 pst.setInt(6, displayIndex);
                 pst.setInt(7, topicId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean editTopicName(int topicId, String name) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Topic SET Name = ? WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, name);
+                pst.setInt(2, topicId);
                 int rs = pst.executeUpdate();
                 cn.close();
             }

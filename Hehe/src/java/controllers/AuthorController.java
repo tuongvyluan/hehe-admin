@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 public class AuthorController extends HttpServlet {
 
     private final String LOGIN_AUTHOR = "LoginAuthor";
+    private final String LOG_OUT = "Logout";
 
     private final String LOGIN = "loginAuthor.jsp";
     private final String ERROR = "error.jsp";
@@ -42,11 +43,20 @@ public class AuthorController extends HttpServlet {
                         session.setAttribute("LOGIN_AUTHOR", author);
                         url = AUTHOR_HOME_PAGE;
                     } else {
+                        request.setAttribute("ERROR","Invalid Username or Password");
                         url = LOGIN;
                     }
                     break;
                 }
-
+                
+                case LOG_OUT: {
+                    session = request.getSession();
+                    if (session != null) {
+                        session.invalidate();
+                        url = LOGIN;
+                    }
+                    break;
+                }
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

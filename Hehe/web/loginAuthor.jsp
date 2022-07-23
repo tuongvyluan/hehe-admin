@@ -29,6 +29,12 @@
         <!--===============================================================================================-->
     </head>
     <body>
+        <%
+            String login_msg = (String) request.getAttribute("ERROR");
+            if (login_msg != null) {
+                out.println("<font color=red size=4px>" + login_msg + "</font>");
+            }
+        %>
         <div class="limiter">
             <div class="container-login100" style="background-image: url('images/loginBackground.jpg');">
                 <div class="wrap-login100 p-l-55 p-r-55 p-t-40 p-b-40">

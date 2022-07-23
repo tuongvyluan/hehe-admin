@@ -84,40 +84,12 @@
                                 <span class="text nav-text">Create course</span>
                             </a>
                         </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <i class="bx bx-bell icon"></i>
-                                <span class="text nav-text"></span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <i class="bx bx-pie-chart-alt icon"></i>
-                                <span class="text nav-text"></span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <i class="bx bx-heart icon"></i>
-                                <span class="text nav-text"></span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <i class="bx bx-wallet icon"></i>
-                                <span class="text nav-text"></span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
 
                 <div class="bottom-content">
                     <li class="">
-                        <a href="#">
+                        <a href="MainController?action=Logout">
                             <i class="bx bx-log-out icon"></i>
                             <span class="text nav-text">Logout</span>
                         </a>
@@ -155,7 +127,6 @@
                         </select>
                     </div>
                     <input type="hidden" name="txtCourseAuthorId" value="<%= author.getAuthorId()%>">
-                    <%--<input type="hidden" name="txtCourseAuthorId" value="<%= authorId %>">--%>
                     <input
                         class="input__sectionName"
                         type="text" name="txtCourseName"

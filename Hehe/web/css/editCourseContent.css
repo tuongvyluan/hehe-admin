@@ -1,0 +1,227 @@
+html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+i{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.addCourse__title{
+    text-align: center;
+    font-size: 4em;
+}
+.banner {
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    height: 400px;
+    min-height: 300px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    backdrop-filter: opacity(); 
+    background-repeat: no-repeat;
+    background-position: right;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    filter: blur(1.5px);
+
+}
+
+.banner__content {
+    padding-left: 2.5%;
+    font-size: 3em;
+}
+ .banner__content__category {
+    font-size: 0.65em;
+    color: black;
+    font-weight: 700;
+    margin: 10px 0;
+}
+.banner__content h3 {
+    font-size: 1.25em;
+    color: blanchedalmond;
+    text-transform: capitalize;
+    font-weight: 700;
+    text-align: left;
+}
+.banner__searchCourse{
+    display: block;
+    margin-right: 0px;
+    margin-top: 10px;
+    background: none;
+    border: solid 1px ;
+    border-radius: 5px;
+}
+
+
+.description,
+.lessonConntent, .banner {
+    margin-top: 20px;
+    border: 1px solid;
+    border-color: rgba(17, 1, 1, 0.2);
+    border-radius: 15px;
+    box-shadow: -1px 1px px grey;
+    padding: 1% 2.5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+
+.dropdown-menu {
+    outline: none;
+    position: relative;
+    border: none;
+}
+.banner__content__category__input{
+
+    border: solid 1px ;
+}
+.lessonConntent h1{
+    margin-bottom: 20px;
+}
+.input__sectionName{
+    margin: 10px 0;
+    width: 50vw;
+    
+    word-wrap: break-word;
+}
+
+.input__duration{
+    margin: 20px 0;
+}
+.banner__content__detail{
+    font-size: 0.75em;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+.add__section,.section__Name__input{
+    font-size: 2.5em;
+    width: 80vh;
+}
+.btn__addTopic{
+    margin-top: 10px;
+    background: none;
+    border: solid 1px ;
+    border-radius: 5px;
+}
+
+.btn__addSection{
+    margin-top: 10px;
+    margin-left: 10px;
+    background: none;
+    border: solid 1px ;
+    border-radius: 5px;
+}
+.btn__addSection:hover,.btn__addTopic:hover{
+    background-color: #D9F3F1 ;
+}
+.btn__submit{
+    text-align: right;
+}
+.enrollBtn{
+    border: none;
+    border-radius: 20px;
+    text-transform: uppercase;
+    padding:10px 15px;
+    font-weight: 700;
+    color: #004AAD;
+    transition: all 0.5s ease-in-out;
+    font-size: 3em;
+}
+.enrollBtn:hover{
+    background:#FFBD59;
+    border: 1px solid #004AAD;
+    box-shadow: 5px 5px #004AAD;
+    color: #004AAD;
+}
+/* .description----------------------------- */
+.description h1{
+    font-size: 3em;
+    font-weight: 700;
+}
+.description p{
+    font-size: 2em;
+    text-align: justify;
+}
+.input__description{
+    margin-top: 10px;
+    width: 100%;
+    height:  150px;
+    border: 1px solid;
+    border-color: rgba(17, 1, 1, 0.2);
+    border-radius: 5px;
+
+}
+/* lessonConntent---------------- */
+.lessonConntent h1{
+    font-size: 3em;
+    font-weight: 700;
+}
+.input__topic{
+    width: 100%;
+}
+.accordion-item{
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+.accordion-button{
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.accordion-header h2{
+    font-size: 2em;;
+    text-transform: capitalize;
+}
+.lessonConntent .accordion{
+    border-radius: 10px;
+}
+.accordion-body{
+    font-size: 2em;
+    margin-left: 2%;
+}
+.accordion-body li{
+    margin-bottom: 0.4em;
+}
+.accordion-body a{
+    text-decoration: none;
+    color: black;
+   
+}
+footer{
+    margin-top: 20px;
+}
+@media only screen and (min-width: 680px) {
+
+    .description,
+    .lessonConntent,
+    .banner,.btn__submit {
+        width:80%;
+        margin: 20px auto;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+
+    .description,
+    .lessonConntent,
+    .banner,.btn__submit {
+        width:60%;
+        margin: 20px auto;
+    }
+    
+}
+@media only screen and (min-width: 1100px){
+  
+    .banner__content h3 {
+        font-weight: 700;
+        font-size: 1.75em;
+        }
+}
