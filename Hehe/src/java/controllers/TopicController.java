@@ -40,7 +40,8 @@ public class TopicController extends HttpServlet {
                     int topicCourseId = Integer.parseInt(request.getParameter("txtTopicCourseId"));
                     int topicSectionId = Integer.parseInt(request.getParameter("txtTopicSectionId"));
                     int topicDisplayIndex = TopicDAO.getDisplayIndex(topicCourseId, topicSectionId) + 1;
-                    boolean result = TopicDAO.createTopic(topicSectionId, topicCourseId, topicName, topicDescription, topicDisplayIndex);
+                    String status = "Active";
+                    boolean result = TopicDAO.createTopic(topicSectionId, topicCourseId, topicName, topicDescription, status, topicDisplayIndex);
                     if (result == true) {
                         url = EDIT_COURSE_CONTENT;
                     } else {

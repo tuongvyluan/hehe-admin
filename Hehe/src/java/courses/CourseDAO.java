@@ -249,7 +249,7 @@ public class CourseDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "SELECT Id, AuthorId, CategoryId, Name, Status, Duration FROM Course WHERE Id = ?";
+                String sql = "SELECT Id, AuthorId, CategoryId, Name, Description, Status, Duration FROM Course WHERE Id = ?";
                 pst = conn.prepareStatement(sql);
                 pst.setInt(1, courseId);
                 rs = pst.executeQuery();
@@ -259,6 +259,8 @@ public class CourseDAO {
                     course.setAuthorId(rs.getInt("AuthorId"));
                     course.setCategoryId(rs.getInt("CategoryId"));
                     course.setCourseName(rs.getString("Name"));
+                    course.setDescription(rs.getString("Description"));
+                    course.setStatus(rs.getString("Status"));
                     course.setDuration(rs.getDouble("Duration"));
                 }
             }

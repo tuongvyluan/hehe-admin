@@ -23,6 +23,12 @@ public class SectionBUS {
         return list;
     }
     
+    public ArrayList<SectionDTO> getByCourseChecked(int courseId) throws SQLException {
+        dao = new SectionDAO();
+        ArrayList<SectionDTO> list = dao.getWithChecked(courseId);
+        return list;
+    }
+    
     public ArrayList<SectionDTO> get() throws SQLException {
         dao = new SectionDAO();
         ArrayList<SectionDTO> list = dao.get();

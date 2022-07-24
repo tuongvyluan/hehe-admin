@@ -14,12 +14,14 @@ public class SectionDTO {
     private int courseId;
     private String sectionName;
     private int displayIndex;
+    private String status;
 
-    public SectionDTO(int sectionId, int courseId, String sectionName, int displayIndex) {
+    public SectionDTO(int sectionId, int courseId, String sectionName, int displayIndex, String status) {
         this.sectionId = sectionId;
         this.courseId = courseId;
         this.sectionName = sectionName;
         this.displayIndex = displayIndex;
+        this.status = status;
     }
 
     public SectionDTO() {
@@ -35,6 +37,14 @@ public class SectionDTO {
 
     public int getCourseId() {
         return courseId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setCourseId(int courseId) {

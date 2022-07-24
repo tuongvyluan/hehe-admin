@@ -9,6 +9,7 @@ public class SectionModel {
     private String sectionName;
     private String description;
     private int displayIndex;
+    private String status;
     private LocalDate createdAt;
     private LocalDate updatedAt;
 
@@ -19,6 +20,14 @@ public class SectionModel {
         this.sectionName = sectionName;
         this.description = description;
         this.displayIndex = displayIndex;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getSectionId() {
@@ -78,7 +87,7 @@ public class SectionModel {
     }
     
     public SectionDTO toDTO() {
-        return new SectionDTO(sectionId, courseId, sectionName, displayIndex);
+        return new SectionDTO(sectionId, courseId, sectionName, displayIndex, status);
     }
 
     @Override

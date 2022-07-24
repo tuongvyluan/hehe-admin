@@ -47,8 +47,9 @@ public class SectionController extends HttpServlet {
                     int sectionCourseId = Integer.parseInt(request.getParameter("txtSectionCourseId"));
                     String sectionName = request.getParameter("txtSectionName");
                     String sectionDescription = "";
+                    String status = "Active";
                     int sectionDisplayIndex = SectionDAO.getDisplayIndex(sectionCourseId) + 1;
-                    boolean result = SectionDAO.createSection(sectionCourseId, sectionName, sectionDescription, sectionDisplayIndex);
+                    boolean result = SectionDAO.createSection(sectionCourseId, sectionName, sectionDescription, status, sectionDisplayIndex);
                     if (result == true) {
                         url = EDIT_COURSE_CONTENT;
                     } else {

@@ -7,13 +7,13 @@ public class CourseModel {
     private int categoryId;
     private String courseName;
     private String description;
-    private int status;
+    private String status;
     private double price;
     private String createdAt;
     private String updatedAt;
     private double duration;
 
-    public CourseModel(int courseId, int authorId, int categoryId, String courseName, String description, int status,
+    public CourseModel(int courseId, int authorId, int categoryId, String courseName, String description, String status,
             double price, String createdAt, String updatedAt, double duration) {
         super();
         this.courseId = courseId;
@@ -82,11 +82,11 @@ public class CourseModel {
         this.description = description;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

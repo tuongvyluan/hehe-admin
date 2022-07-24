@@ -28,6 +28,12 @@ public class TopicBUS {
         return list;
     }
     
+    public ArrayList<TopicDTO> getBySectionChecked(int sectionId) throws SQLException {
+        dao = new TopicDAO();
+        ArrayList<TopicDTO> list = dao.getBySectionChecked(sectionId);
+        return list;
+    }
+    
     public TopicModel get(int topicId)throws SQLException {
         dao=new TopicDAO();
         topicModel=dao.get(topicId);

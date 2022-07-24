@@ -109,7 +109,7 @@ public class CourseController extends HttpServlet {
                     String courseDesc = request.getParameter("txtCourseNewDescription");
                     boolean result = CourseDAO.editCourseDesc(courseToEdit, courseDesc);
                     if (result == true) {
-                        url = AUTHOR_HOME_PAGE;
+                        url = EDIT_COURSE_PAGE;
                     } else {
                         url = ERROR;
                     }

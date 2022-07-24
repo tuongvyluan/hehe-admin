@@ -149,15 +149,17 @@
                     </div>
                 </section>
                 <section class="description">
-                    <form id="form-<%= currentCourse.getCourseId()%>" action="MainController" method="POST">
+                    <form action="MainController" method="POST">
                         <input type="hidden" name="action" value="EditCourseDesc">
-                        <input type="hidden" name="CourseToEdit" value="<%= currentCourse.getCourseId() %>">
-                        <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId() %>">
-                        <h1>Description <i id="edit-input__description" class="fa fa-edit" onclick="editDes('input__description')" style="font-size: 25px; padding-left: 10px; cursor: pointer;"></i>
-                            <i id="save-input__description" class="fa fa-check" onclick="saveDes('input__description')" style="font-size: 25px;display: none; color: green;padding-left: 10px;cursor: pointer;"></i></h1>
-                        <p></p>
+                        <input type="hidden" name="CourseToEdit" value="<%= currentCourse.getCourseId()%>">
+                        <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
+                        <h1>
+                            Description 
+                            <i id="edit-<%= currentCourse.getDescription()%>" class="fa fa-edit" onclick="editDes('<%= currentCourse.getDescription()%>');" style="font-size: 25px; padding-left: 10px; cursor: pointer;"></i>
+                            <i id="save-<%= currentCourse.getDescription()%>" class="fa fa-check" onclick="saveDes('<%= currentCourse.getDescription()%>');" style="font-size: 25px;display: none; color: green;padding-left: 10px;cursor: pointer;"></i>
+                        </h1>  
                         <p>
-                            <textarea name="txtCourseNewDescription" id="input__description" onchange="submitCourseDescChange('<%= currentCourse.getCourseId()%>')" Class="input__description" name="" id="" cols="30" rows="10" disabled style="border: none; "><%= currentCourse.getDescription()%></textarea>
+                            <textarea name="txtCourseNewDescription" id="<%= currentCourse.getDescription()%>" onchange="this.form.submit();" Class="input__description" cols="30" rows="10" disabled style="border: none; "><%= currentCourse.getDescription()%></textarea>
                         </p>
                     </form>
 
@@ -168,10 +170,10 @@
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <%
                             SectionBUS sectionBUS = new SectionBUS();
-                            ArrayList<SectionDTO> sectionList = sectionBUS.getByCourse(courseId);
+                            ArrayList<SectionDTO> sectionList = sectionBUS.getByCourseChecked(courseId);
                             TopicBUS topicBUS = new TopicBUS();
                             for (SectionDTO section : sectionList) {
-                                ArrayList<TopicDTO> topicList = topicBUS.getBySection(section.getSectionId());
+                                ArrayList<TopicDTO> topicList = topicBUS.getBySectionChecked(section.getSectionId());
                         %>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="panelsStayOpen-heading2">
@@ -184,11 +186,11 @@
                                     aria-controls="panelsStayOpen-collapse2"
                                     >
                                     <div class="section__Name" style="display: flex;">
-                                        <form id="form-<%= section.getSectionId()%>" action="MainController" method="POST">
+                                        <form action="MainController" method="POST">
                                             <input type="hidden" name="action" value="EditSectionName">
                                             <input type="hidden" name="SectionToEdit" value="<%= section.getSectionId()%>">
                                             <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
-                                            <input id="<%= section.getSectionName()%>" class="section__Name__input" type="text" name="txtSectionName" onchange="submitSectionChange(<%= section.getSectionId()%>);" value="<%= section.getSectionName()%>" disabled style="border: none;">
+                                            <input id="<%= section.getSectionName()%>" class="section__Name__input" type="text" name="txtSectionName" onchange="this.form.submit();" value="<%= section.getSectionName()%>" disabled style="border: none;">
                                             <i id="edit-<%= section.getSectionName()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionName()%>')" style="font-size: 25px; padding-left: 10px"></i>
                                             <i id="save-<%= section.getSectionName()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionName()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
                                             <i id="delete-<%= section.getSectionName()%>"class="fa fa-trash-alt" onclick="deleteField('<%= section.getSectionId()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
@@ -207,11 +209,11 @@
                                             for (TopicDTO topic : topicList) {
                                         %>
                                         <li>
-                                            <form id="form-<%= topic.getTopicId()%>" action="MainController" method="POST">
+                                            <form action="MainController" method="POST">
                                                 <input type="hidden" name="action" value="EditTopicName">
                                                 <input type="hidden" name="TopicToEdit" value="<%= topic.getTopicId()%>">
                                                 <input type="hidden" name="courseId" value="<%= topic.getCourseId()%>">
-                                                <input id="<%= topic.getTopicName()%>" class="topic__Name__input" type="text" name="txtTopicName" value="<%= topic.getTopicName()%>" onchange="submitTopicChange(<%= topic.getTopicId()%>);" disabled style="border: none;width: 100%;">
+                                                <input id="<%= topic.getTopicName()%>" class="topic__Name__input" type="text" name="txtTopicName" value="<%= topic.getTopicName()%>" onchange="this.form.submit();" disabled style="border: none;width: 100%;">
                                                 <i id="edit-<%= topic.getTopicName()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
                                                 <i id="save-<%= topic.getTopicName()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicName()%>');" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
                                                 <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="deleteTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
@@ -222,7 +224,7 @@
                                             }
                                         %>
                                         <div>+ Add topic</div>
-                                        <form>
+                                        <form action="MainController" method="POST">
                                             <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
                                             <input type="hidden" name="txtTopicCourseId" value="<%= section.getCourseId()%>">
                                             <input type="hidden" name="txtTopicSectionId" value="<%= section.getSectionId()%>">
@@ -246,7 +248,7 @@
                                     aria-expanded="true"
                                     aria-controls="panelsStayOpen-collapse1"
                                     >
-                                    <form class="MainController" action="POST">
+                                    <form action="MainController" method="POST">
                                         <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
                                         <input type="hidden" name="txtSectionCourseId" value="<%= currentCourse.getCourseId()%>">
                                         <input class="add__section" type="text" name="txtSectionName" placeholder="Add course's section">
@@ -310,18 +312,6 @@
                 document.getElementById("save-" + id).style.display = "none";
                 document.getElementById("delete-" + id).style.display = "inline-block";
                 document.getElementById("open-" + id).style.display = "inline-block";
-            }
-            function submitCourseDescChange(id) {
-                var form = document.getElementById("form-" + id);
-                form.submit();
-            }
-            function submitSectionChange(id) {
-                var form = document.getElementById("form-" + id);
-                form.submit();
-            }
-            function submitTopicChange(id) {
-                var form = document.getElementById("form-" + id);
-                form.submit();
             }
             function editDes(id) {
                 document.getElementById(id).disabled = false;
