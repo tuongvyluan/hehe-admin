@@ -85,10 +85,10 @@ public class SectionController extends HttpServlet {
                 }
                 
                 case DELETE_SECTION: {
-                    int sectionToDelete = Integer.parseInt(request.getParameter("txtSectionToDelete"));
+                    int sectionToDelete = Integer.parseInt(request.getParameter("SectionToDelete"));
                     boolean result = SectionDAO.deleteSection(sectionToDelete);
                     if (result == true) {
-                        url = DELETE_SECTION_PAGE;
+                        url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
                     }
@@ -100,7 +100,7 @@ public class SectionController extends HttpServlet {
                     int sectionIdToAdd = Integer.parseInt(request.getParameter("txtSectionToAdd"));
                     boolean result = SectionDAO.AddSectionToCourse(courseIdToAddSection, sectionIdToAdd);
                     if (result == true) {
-                        url = ADD_SECTION_TO_COURSE_PAGE;
+                        url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
                     }

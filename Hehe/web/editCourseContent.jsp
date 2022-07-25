@@ -185,16 +185,22 @@
                                     aria-controls="panelsStayOpen-collapse2"
                                     >
                                     <div class="section__Name" style="display: flex;">
-                                        <form action="MainController" method="POST">
+                                        <form id="section-<%= section.getSectionId()%>" action="MainController" method="POST">
+                                            <input type="hidden" name="SectionToDelete" value="<%= section.getSectionId()%>">
+                                            <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
+                                            <input type="hidden" name="action" value="DeleteSection" >                                            
+                                        </form>
+                                        <form  action="MainController" method="POST">
                                             <input type="hidden" name="action" value="EditSectionName">
                                             <input type="hidden" name="SectionToEdit" value="<%= section.getSectionId()%>">
                                             <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
-                                            <input id="<%= section.getSectionName()%>" class="section__Name__input" type="text" name="txtSectionName" onchange="this.form.submit();" value="<%= section.getSectionName()%>" disabled style="border: none;">
-                                            <i id="edit-<%= section.getSectionName()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionName()%>')" style="font-size: 25px; padding-left: 10px"></i>
-                                            <i id="save-<%= section.getSectionName()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionName()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
-                                            <i id="delete-<%= section.getSectionName()%>"class="fa fa-trash-alt" onclick="deleteField('<%= section.getSectionId()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
+                                            <input id="<%= section.getSectionId()%>" class="section__Name__input" type="text" name="txtSectionName" onchange="this.form.submit();" value="<%= section.getSectionName()%>" disabled style="border: none;">
+                                            <i id="edit-<%= section.getSectionId()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionId()%>')" style="font-size: 25px; padding-left: 10px"></i>
+                                            <i id="save-<%= section.getSectionId()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionId()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
+                                            <i id="delete-<%= section.getSectionId()%>"class="fa fa-trash-alt" onclick="deleteField('<%= section.getSectionId()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
                                         </form>
                                     </div>
+
                                 </button>
                             </h2>
                             <div
@@ -210,21 +216,19 @@
                                         <li>
                                             <form action="MainController" method="POST">
                                                 <input type="hidden" name="action" value="EditTopicName">
+                                                <input type="hidden" name="action" value="DeleteTopic" >
                                                 <input type="hidden" name="TopicToEdit" value="<%= topic.getTopicId()%>">
                                                 <input type="hidden" name="courseId" value="<%= topic.getCourseId()%>">
-                                                <input id="<%= topic.getTopicName()%>" class="topic__Name__input" type="text" name="txtTopicName" value="<%= topic.getTopicName()%>" onchange="this.form.submit();" disabled style="border: none;width: 100%;">
-                                                <i id="edit-<%= topic.getTopicName()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
-                                                <i id="save-<%= topic.getTopicName()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicName()%>');" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
-                                                <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="deleteTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
-                                                <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>,<%= currentCourse.getCourseId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
+                                                <input id="<%= topic.getTopicId()%>" class="topic__Name__input" type="text" name="txtTopicName" value="<%= topic.getTopicName()%>" onchange="this.form.submit();" disabled style="border: none;width: 100%;">
+                                                <i id="edit-<%= topic.getTopicId()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicId()%>');" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
+                                                <i id="save-<%= topic.getTopicId()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicId()%>');" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
+                                                <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="deleteTopic('<%= topic.getTopicId()%>');" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
+                                                <i id="open-<%= topic.getTopicId()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>,<%= currentCourse.getCourseId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
                                             </form>
-                                            <form action="MainController" method="POST">
-                                                <!--<input type="hidden" name="action" value="DeleteTopic">-->
+                                            <form id="topic-<%= topic.getTopicId()%>" action="MainController" method="POST">
+                                                <input type="hidden" name="action" value="DeleteTopic">
                                                 <input type="hidden" name="TopicToDelete" value="<%= topic.getTopicId()%>">
                                                 <input type="hidden" name="courseId" value="<%= topic.getCourseId()%>">
-                                                <button type="submit" name="action" value="DeleteTopic" class="btn__deleteTopic">
-                                                    <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="<%--deleteTopic('<%= topic.getTopicId()%>');--%>" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
-                                                </button>
                                             </form>
                                         </li>
                                         <%
@@ -288,8 +292,13 @@
             function openTopic(topicId, courseId) {
                 location.href = "editTopicContent.jsp?topicId=" + topicId + "&courseId=" + courseId;
             }
-            function deleteTopic(id){
-                
+            function deleteField(sectionId) {
+                var form = document.getElementById("section-" + sectionId);
+                form.submit();
+            }
+            function deleteTopic(topicId) {
+                var form = document.getElementById("topic-" + topicId);
+                form.submit();
             }
             function editSection(id) {
                 document.getElementById(id).disabled = false;

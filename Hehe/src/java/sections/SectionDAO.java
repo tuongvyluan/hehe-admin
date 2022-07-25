@@ -232,7 +232,7 @@ public class SectionDAO {
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-                String sql = "DELETE FROM Section WHERE Id = ?";
+                String sql = "UPDATE Section SET Status = 'Inactive' WHERE Id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, sectionId);
                 int rs = pst.executeUpdate();

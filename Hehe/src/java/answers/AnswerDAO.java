@@ -11,7 +11,7 @@ public class AnswerDAO {
 
     // SQL query
     private final String ANSWER_DTO_FIELDS = "Id, QuizId, Content, IsCorrect, Status";
-    private final String GET_ANSWER_BY_QUIZ = "SELECT " + ANSWER_DTO_FIELDS + " FROM Answer Where QuizId=?";
+    private final String GET_ANSWER_BY_QUIZ = "SELECT " + ANSWER_DTO_FIELDS + " FROM Answer Where QuizId = ? AND Status = 'Active'";
     private AnswerDTO answerDTO;
 
     public ArrayList<AnswerDTO> getByQuiz(int quizId) throws SQLException {
