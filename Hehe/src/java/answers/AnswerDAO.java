@@ -72,14 +72,14 @@ public class AnswerDAO {
         return true;
     }
     
-    public static boolean deleteAnswer(int answerId) {
+    public static boolean removeAnswer(int answerId) {
         Connection cn = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
                 String sql = "UPDATE Answer SET Status = 'Inactive' WHERE Id = ?";
                 String sql1 = "DELETE FROM Answer WHERE Id=?";
-                PreparedStatement pst = cn.prepareStatement(sql1);
+                PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, answerId);
                 int rs = pst.executeUpdate();
                 cn.close();

@@ -20,11 +20,11 @@ public class AnswerController extends HttpServlet {
 
     //Action String
     private final String EDIT_ANSWER = "EditAnswer";
-    private final String DELETE_ANSWER = "DeleteAnswer";
+    private final String REMOVE_ANSWER = "RemoveAnswer";
     private final String ADD_ANSWER_TO_QUIZ = "AddAnswerToQuiz";
 
     //Destination String
-    private final String CREATE_TOPIC_CONTENT_PAGE = "createTopicContent.jsp";
+    private final String EDIT_TOPIC_CONTENT_PAGE = "editTopicContent.jsp";
     private final String ERROR = "error.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -40,18 +40,18 @@ public class AnswerController extends HttpServlet {
                     boolean answerIsCorrect = Boolean.parseBoolean(request.getParameter("answerIsCorrect"));
                     boolean result = AnswerDAO.editAnswer(answerIdToEditAnswer, answerContent, answerIsCorrect);
                     if (result == true) {
-                        url = CREATE_TOPIC_CONTENT_PAGE;
+                        url = EDIT_TOPIC_CONTENT_PAGE;
                     } else {
                         url = ERROR;
                     }
                     break;
                 }
 
-                case DELETE_ANSWER: {
-                    int answerIdToDeleteAnswer = Integer.parseInt(request.getParameter("answerId"));
-                    boolean result = AnswerDAO.deleteAnswer(answerIdToDeleteAnswer);
+                case REMOVE_ANSWER: {
+                    int answerIdToRemoveAnswer = Integer.parseInt(request.getParameter("answerId"));
+                    boolean result = AnswerDAO.removeAnswer(answerIdToRemoveAnswer);
                     if (result == true) {
-                        url = CREATE_TOPIC_CONTENT_PAGE;
+                        url = EDIT_TOPIC_CONTENT_PAGE;
                     } else {
                         url = ERROR;
                     }
@@ -64,7 +64,7 @@ public class AnswerController extends HttpServlet {
                     boolean answerIsCorrect = Boolean.parseBoolean(request.getParameter("answerIsCorrect"));
                     boolean result = AnswerDAO.addAnswerToQuiz(quizIdToAddAnswer, answerContent, answerIsCorrect);
                     if (result == true) {
-                        url = CREATE_TOPIC_CONTENT_PAGE;
+                        url = EDIT_TOPIC_CONTENT_PAGE;
                     } else {
                         url = ERROR;
                     }

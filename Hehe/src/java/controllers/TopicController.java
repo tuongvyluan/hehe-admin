@@ -20,7 +20,7 @@ public class TopicController extends HttpServlet {
 
     // Destination string:
     private final String CREATE_TOPIC_PAGE = "createTopic.jsp";
-    private final String CREATE_TOPIC_CONTENT_PAGE = "createTopicContent.jsp";
+    private final String EDIT_TOPIC_CONTENT_PAGE = "editTopicContent.jsp";
     private final String EDIT_TOPIC_PAGE = "editTopic.jsp";
     private final String DELETE_TOPIC_PAGE = "deleteTopic.jsp";
     private final String EDIT_COURSE_CONTENT = "editCourseContent.jsp";
@@ -108,7 +108,7 @@ public class TopicController extends HttpServlet {
                     String descriptionToAdd = request.getParameter("txtDescriptionToEdit");
                     boolean result = TopicDAO.editDescription(topicIdToEditDescription, descriptionToAdd);
                     if (result == true) {
-                        url = CREATE_TOPIC_CONTENT_PAGE;
+                        url = EDIT_TOPIC_CONTENT_PAGE;
                     } else {
                         url = ERROR;
                     }

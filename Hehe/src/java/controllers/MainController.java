@@ -44,7 +44,7 @@ public class MainController extends HttpServlet {
     private final String EDIT_QUIZ = "EditQuiz";
     private final String ADD_QUIZ_TO_TOPIC = "AddQuizToTopic";
     private final String EDIT_ANSWER = "EditAnswer";
-    private final String DELETE_ANSWER = "DeleteAnswer";
+    private final String REMOVE_ANSWER = "RemoveAnswer";
     private final String ADD_ANSWER_TO_QUIZ = "AddAnswerToQuiz";
     private final String LOG_OUT = "Logout";
 
@@ -194,7 +194,7 @@ public class MainController extends HttpServlet {
                     break;
                 }
                 
-                case DELETE_ANSWER: {
+                case REMOVE_ANSWER: {
                     url = ANSWER_CONTROLLER;
                     break;
                 }

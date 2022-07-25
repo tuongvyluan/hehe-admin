@@ -23,7 +23,7 @@ public class QuizController extends HttpServlet {
     private final String ADD_QUIZ_TO_TOPIC = "AddQuizToTopic";
 
     //Destination String
-    private final String CREATE_TOPIC_CONTENT_PAGE = "createTopicContent.jsp";
+    private final String EDIT_TOPIC_CONTENT_PAGE = "editTopicContent.jsp";
     private final String ERROR = "error.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -37,7 +37,7 @@ public class QuizController extends HttpServlet {
                     int topicIdToEditQuiz = Integer.parseInt(request.getParameter("TopicToEditQuiz"));
                     boolean result = QuizDAO.editQuiz(topicIdToEditQuiz, quizContent);
                     if (result == true) {
-                        url = CREATE_TOPIC_CONTENT_PAGE;
+                        url = EDIT_TOPIC_CONTENT_PAGE;
                     } else {
                         url = ERROR;
                     }
@@ -49,7 +49,7 @@ public class QuizController extends HttpServlet {
                     int topicIdToAddQuiz = Integer.parseInt(request.getParameter("TopicToAddQuiz"));
                     boolean result = QuizDAO.addQuiz(topicIdToAddQuiz, quizContent);
                     if (result == true) {
-                        url = CREATE_TOPIC_CONTENT_PAGE;
+                        url = EDIT_TOPIC_CONTENT_PAGE;
                     } else {
                         url = ERROR;
                     }

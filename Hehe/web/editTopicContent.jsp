@@ -1,3 +1,5 @@
+<%@page import="courses.CourseDAO"%>
+<%@page import="courses.CourseModel"%>
 <%@page import="answers.AnswerBUS"%>
 <%@page import="quizzes.QuizDTO"%>
 <%@page import="quizzes.QuizBUS"%>
@@ -17,6 +19,7 @@
 
     <head>
         <%
+            int courseId = Integer.parseInt(request.getParameter("courseId"));
             TopicModel topicModel = null;
             TopicBUS topicBUS = null;
             topicBUS = new TopicBUS();
@@ -45,11 +48,44 @@
         <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
         <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
         <meta name="generator" content="Nicepage 4.12.5, nicepage.com">
+        <!----======== CSS ======== -->
+        <link rel="stylesheet" href="css/styleSideNavBar.css">
+
+        <!----===== Boxicons CSS ===== -->
+        <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
         <title><%= topicModel.getTopicName()%></title>
     </head>
 
     <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode">
+        <nav class="sidebar close">
+            <header>
+                <div class="image-text">
+                    <span class="image">
+                        <a href="landing.jsp"><img src="images/logo-removebg-preview.png" alt=""></a>
+                    </span>
 
+                    <div class="text logo-text">
+                        <span class="name">Hehe Code</span>
+
+                    </div>
+                </div>
+
+            </header>
+            <div class="menu-bar">
+                
+
+                <div class="bottom-content">
+                    <li class="">
+                        <a href="editCourseContent.jsp?courseId=<%=courseId%>">
+                            <i class='bx bx-log-out icon' ></i>
+                            <span class="text nav-text">Back to course</span>
+                        </a>
+                    </li>
+
+
+                </div>
+            </div>
+        </nav>
         <main>
             <div class="container">
                 <div class="container__left">
@@ -69,6 +105,7 @@
                             </ul>
                             <%if (topicModel.getDescription().trim() != null) {%>
                             <form action="MainController" method="POST">
+                                <input type="hidden" name="courseId" value="<%=courseId%>"/>
                                 <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
                                 <input type="hidden" name="TopicToEditDescription" value="<%=topicModel.getTopicId()%>"/>
                                 <textarea id="" name="txtDescriptionToEdit" rows="25" cols="80"><%= topicModel.getDescription()%></textarea>
@@ -78,6 +115,7 @@
                             </form>
                             <%} else {%> 
                             <form action="MainController" method="POST">
+                                <input type="hidden" name="courseId" value="<%=courseId%>"/>
                                 <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
                                 <input type="hidden" name="TopicToEditDescription" value="<%=topicModel.getTopicId()%>"/>
                                 <textarea id="" name="txtDescriptionToEdit" rows="25" cols="80" placeholder="Input your content here"></textarea>
@@ -95,10 +133,17 @@
                                 if (quizDTO != null) {
                             %>
                             <form action="MainController" method="POST">
-                                <h3>Bài tập</h3>
+                                <ul style="text-align: justify;">
+                                    <li>
+                                        <h4>
+                                            <strong>Bài tập</strong>
+                                        </h4>
+                                    </li>
+                                </ul>
                                 <ul>
                                     <h4>Input your question</h4>
                                     <li class="lesson_question" id="question" style="list-style: none;width: 100%;">
+                                        <input type="hidden" name="courseId" value="<%=courseId%>"/>
                                         <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
                                         <input type="hidden" name="TopicToEditQuiz" value="<%=topicModel.getTopicId()%>"/>
                                         <textarea id="" name="txtQuizToEdit" rows="5" cols="80" placeholder="Input Your Question Here"><%=quizDTO.getContent()%></textarea>
@@ -114,6 +159,7 @@
                                 <ul>
                                     <h4>Input your question</h4>
                                     <li class="lesson_question" id="question" style="list-style: none;width: 100%;">
+                                        <input type="hidden" name="courseId" value="<%=courseId%>"/>
                                         <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
                                         <input type="hidden" name="TopicToAddQuiz" value="<%=topicModel.getTopicId()%>"/>
                                         <textarea id="" name="txtQuizToAdd" rows="5" cols="80" placeholder="Input Your Question Here" required></textarea>
@@ -136,10 +182,10 @@
                 <div class="container__right">
                     <div class="right-header">
                         <div class="reset-menu">
-                            <a class="reset-button" id="reset">
-                                <i class="fa-solid fa-rotate"></i>
-                                <span>Reset</span>
-                            </a>
+                            <!--                            <a class="reset-button" id="reset">
+                                                            <i class="fa-solid fa-rotate"></i>
+                                                            <span>Reset</span>
+                                                        </a>-->
                         </div>
                     </div>
                     <div class="answer">
@@ -162,6 +208,7 @@
                                     %>
                                     <li class="answer-select" id="answer-select">
                                         <form action="MainController" method="POST">
+                                            <input type="hidden" name="courseId" value="<%=courseId%>"/>
                                             <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
                                             <input type="hidden" name="quizToEditOrDeleteAnswer" value="<%=quizDTO.getQuizId()%>"/>
                                             <input type="hidden" name="answerId" value="<%=answerDTO.getAnswerId()%>"/>
@@ -182,7 +229,7 @@
                                                     <button type="submit" name="action" value="EditAnswer">Save change</button>
                                                 </div>
                                                 <div class="btn__editCourse">
-                                                    <button type="submit" name="action" value="DeleteAnswer">Delete</button>  
+                                                    <button type="submit" name="action" value="RemoveAnswer">Remove</button>  
                                                 </div>
                                             </div>
                                         </form>
@@ -191,6 +238,7 @@
                                     <% }%>
                                     <li class="answer-select answer__select__new" id="answer-select">
                                         <form action="MainController"  method="POST">
+                                            <input type="hidden" name="courseId" value="<%=courseId%>"/>
                                             <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
                                             <input type="hidden" name="quizToAddAnswer" value="<%=quizDTO.getQuizId()%>"/>
                                             <h4>Add new answer option</h4>
@@ -208,6 +256,7 @@
                                         if (quizDTO != null) {%>
                                     <li class="answer-select answer__select__new" id="answer-select">
                                         <form action="MainController" method="POST">
+                                            <input type="hidden" name="courseId" value="<%=courseId%>"/>
                                             <input type="hidden" name="topicId" value="<%=topicModel.getTopicId()%>"/>
                                             <input type="hidden" name="quizToAddAnswer" value="<%=quizDTO.getQuizId()%>"/>
                                             <h4>Add new answer option</h4>
@@ -238,10 +287,6 @@
                             <a class="next-button" id="nextbtn">
                                 <span>Next</span>
                                 <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                            <a class="submit-button" id="submitbtn" input type="submit" value="Submit">
-                                <i class="fa-solid fa-floppy-disk"></i>
-                                <span>Submit</span>
                             </a>
                         </div>
                     </div>

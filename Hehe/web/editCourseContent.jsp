@@ -52,7 +52,6 @@
                 <input type="hidden" name="action" value="EditCourse"/>
             </form>
             <%
-                //            CourseModel currentCourse = (CourseModel) session.getAttribute("CURRENT_COURSE");
                 int courseId = Integer.parseInt(request.getParameter("courseId"));
                 CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
             %>
@@ -217,7 +216,7 @@
                                                 <i id="edit-<%= topic.getTopicName()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
                                                 <i id="save-<%= topic.getTopicName()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicName()%>');" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
                                                 <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="deleteTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
-                                                <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
+                                                <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>,<%= currentCourse.getCourseId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
                                             </form>
                                         </li>
                                         <%
@@ -248,10 +247,10 @@
                                     aria-expanded="true"
                                     aria-controls="panelsStayOpen-collapse1"
                                     >
-                                    <form class="MainController" action="POST">
+                                    <form action="MainController" method="POST">
                                         <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
-                                        <input type="hidden" name="txtSectionCourseId" value="<%= currentCourse.getCourseId()%>">
-                                        <input class="add__section" type="text" name="txtSectionName" placeholder="Add course's section">
+                                        <input type="hidden" name="courseIdToAddSection" value="<%= currentCourse.getCourseId()%>">
+                                        <input class="add__section" type="text" name="txtSectionName" placeholder="Add course's section" required>
                                         <button class="btn__addSection" type="submit" name="action" value="CreateSection">Add section</button>
                                     </form>
                                 </button>
@@ -278,8 +277,8 @@
         <!-- Footer -->
         <!-- Footer -->
         <script>
-            function openTopic(id) {
-                location.href = "editTopicContent.jsp?topicId=" + id;
+            function openTopic(topicId, courseId) {
+                location.href = "editTopicContent.jsp?topicId=" + topicId + "&courseId=" + courseId;
             }
             function editSection(id) {
                 document.getElementById(id).disabled = false;
