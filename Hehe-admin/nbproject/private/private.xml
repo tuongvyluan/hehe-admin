@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/controllers/AuthorController.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/utils/MyUtils.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/admin/AdminBUS.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/vendor/perfect-scrollbar/perfect-scrollbar.min.js</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/controllers/test.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/loginAdmin.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/students/StudentModel.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/vendor/bootstrap/css/bootstrap.css</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/admin/AdminDAO.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/authorManagement.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/vendor/bootstrap/css/bootstrap.css.map</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/studentSearchManagement.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/login.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/authors/AuthorDTO.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/META-INF/context.xml</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/utils/testConnection.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/courses/CourseDTO.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/students/StudentDAO.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/controllers/MainControllerAdmin.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/course.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/controllers/CourseController.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/authors/AuthorBUS.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/vendor/bootstrap/css/bootstrap.min.css</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/courses/CourseModel.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/students/StudentBUS.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/vendor/perfect-scrollbar/perfect-scrollbar.css</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/authorSearchManagement.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/controllers/CourseControllerAdmin.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/authors/AuthorModel.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/courseSearchManagement.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/students/StudentDTO.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/js/validate.js</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/controllers/AdminController.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/studentInCourse.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/controllers/StudentController.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/authors/AuthorDAO.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/courseManagement.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/studentManagement.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/src/java/courses/CourseDAO.java</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/admin.jsp</file>
+            <file>file:/D:/Coding/SWP%202.2/Hehe-admin/web/registerAuthor.jsp</file>
+        </group>
+    </open-files>
+</project-private>
