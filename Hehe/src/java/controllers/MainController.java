@@ -47,6 +47,7 @@ public class MainController extends HttpServlet {
     private final String DELETE_ANSWER = "DeleteAnswer";
     private final String ADD_ANSWER_TO_QUIZ = "AddAnswerToQuiz";
     private final String LOG_OUT = "Logout";
+    private final String CHANGE_PASSWORD = "ChangePassword";
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
@@ -201,6 +202,11 @@ public class MainController extends HttpServlet {
 
                 case ADD_ANSWER_TO_QUIZ: {
                     url = ANSWER_CONTROLLER;
+                    break;
+                }
+                
+                case CHANGE_PASSWORD: {
+                    url = AUTHOR_CONTROLLER;
                     break;
                 }
                 

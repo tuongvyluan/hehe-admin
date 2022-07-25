@@ -17,9 +17,8 @@ public class AuthorDTO {
     private String email;
     private String phoneNumber;
 
-    public AuthorDTO(int authorId, String password, String firstName, String lastName, String email, String phoneNumber) {
+    public AuthorDTO(int authorId, String firstName, String lastName, String email, String phoneNumber) {
         this.authorId = authorId;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

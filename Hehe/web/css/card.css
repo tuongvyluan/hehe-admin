@@ -136,6 +136,23 @@ body {
     transition: all 0.3s ease;
 }
 
+.buttonDeleteCourse {
+    border: none;
+    font-size: 16px;
+    color: #FFF;
+    padding: 8px 16px;
+    background-color: #E60026;
+    border-radius: 6px;
+    margin-right: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.buttonDeleteCourse:hover {
+    background: #960018 ;
+}
+
 .buttonCourse:hover {
     background: #265DF2;
 }

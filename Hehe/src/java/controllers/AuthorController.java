@@ -16,39 +16,41 @@ public class AuthorController extends HttpServlet {
 
     private final String LOGIN_AUTHOR = "LoginAuthor";
     private final String LOG_OUT = "Logout";
+    private final String CHANGE_PASSWORD = "ChangePassword";
 
     private final String LOGIN = "loginAuthor.jsp";
     private final String ERROR = "error.jsp";
     private final String AUTHOR_HOME_PAGE = "landing.jsp";
+    private final String CHANGE_PASSWORD_PAGE = "changePassword.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session;
+            HttpSession session = null;
             AdminBUS adminBUS = new AdminBUS();
             String message;
-            AuthorDTO author;
+            AuthorDTO author = null;
             String id = request.getParameter("id");
             String action = request.getParameter("action");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             String url = null;
             switch (action) {
-                case LOGIN_AUTHOR: {
-                    session = request.getSession();
-                    author = AuthorDAO.loginAuthor(email, password);
-                    if (author != null) {
-                        session.setAttribute("LOGIN_AUTHOR", author);
-                        url = AUTHOR_HOME_PAGE;
-                    } else {
-                        request.setAttribute("ERROR","Invalid Username or Password");
-                        url = LOGIN;
-                    }
-                    break;
-                }
-                
+//                case LOGIN_AUTHOR: {
+//                    session = request.getSession();
+//                    author = AuthorDAO.loginAuthor(email, password);
+//                    if (author != null) {
+//                        session.setAttribute("LOGIN_AUTHOR", author);
+//                        url = AUTHOR_HOME_PAGE;
+//                    } else {
+//                        request.setAttribute("ERROR", "Invalid Username or Password");
+//                        url = LOGIN;
+//                    }
+//                    break;
+//                }
+
                 case LOG_OUT: {
                     session = request.getSession();
                     if (session != null) {
@@ -57,6 +59,26 @@ public class AuthorController extends HttpServlet {
                     }
                     break;
                 }
+
+//                case CHANGE_PASSWORD: {
+//                    
+//                    author = (AuthorDTO) session.getAttribute("LOGIN_AUTHOR");
+//                    String currentPass = request.getParameter("currentPassword");
+//                    String newPass = request.getParameter("newPassword");
+//                    String confirmPass = request.getParameter("confirmPassword");
+//                    if (author.getPassword().equalsIgnoreCase(currentPass)) {
+//                        if (newPass.equals(confirmPass)) {
+//                            AuthorDAO.changePassword(author.getAuthorId(), newPass);
+//                            url = AUTHOR_HOME_PAGE;
+//                        } else {
+//                            url = ERROR;
+//                        }
+//                    } else {
+//                        session.setAttribute("ERROR_CHANGE_PASSWORD", "Current password is wrong.");
+//                        url = CHANGE_PASSWORD_PAGE;
+//                    }
+//                    break;
+//                }
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

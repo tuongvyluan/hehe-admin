@@ -130,6 +130,7 @@ i{
 .btn__deleteTopic {
     border-style: none;
     background: none;
+    display: inline;
 }
 
 .enrollBtn{

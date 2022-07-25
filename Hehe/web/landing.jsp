@@ -61,10 +61,7 @@
 
             <div class="menu-bar">
                 <div class="menu">
-                    <li class="search-box">
-                        <i class="bx bx-search icon"></i>
-                        <input type="text" placeholder="Search..." />
-                    </li>
+                    
 
                     <ul class="menu-links">
                         <li class="nav-link">
@@ -84,6 +81,12 @@
                 </div>
 
                 <div class="bottom-content">
+                    <li class="">
+                        <a href="changePassword.jsp">
+                            <i class="bx bx-lock icon"></i>
+                            <span class="text nav-text">Change password</span>
+                        </a>
+                    </li>
                     <li class="">
                         <a href="MainController?action=Logout">
                             <i class="bx bx-log-out icon"></i>
@@ -129,6 +132,7 @@
                                 </div>
                                 <div class="card-content-detail">
                                     <a href="editCourseContent.jsp?courseId=<%= course.getCourseId() %>"><button class="buttonCourse" type="button">Edit</button></a>
+                                    <a href="CourseController?action=DeleteCourse&CourseToDelete=<%= course.getCourseId() %>"><button class="buttonDeleteCourse" type="button">Delete</button></a>
                                 </div>
                             </div>
                         </div>
@@ -141,206 +145,6 @@
             <%
                 }
             %>
-            <!--<div class="CategoryName">
-                <h2 style="font-size: 39px; padding-left: 1%">Category 1</h2>
-                <div class="row card-container">
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">
-                                    Programming with c 11111111111111111111111 111111111111112222
-                                </h2>
-                                <div class="description">
-                                    <p>Author: James Potters</p>
-                                    <p>Time to complete: 15 hours</p>
-                                </div>
-                                <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">
-                                    Programming with c 11111111111111111111111 111111111111112222
-                                </h2>
-                                <div class="description">
-                                    <p>Author: James Potters</p>
-                                    <p>Time to complete: 15 hours</p>
-                                </div>
-                                <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">
-                                    Programming with c 11111111111111111111111 111111111111112222
-                                </h2>
-                                <div class="description">
-                                    <p>Author: James Potters</p>
-                                    <p>Time to complete: 15 hours</p>
-                                </div>
-                                <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">
-                                    Programming with c 11111111111111111111111 111111111111112222
-                                </h2>
-                                <div class="description">
-                                    <p>Author: James Potters</p>
-                                    <p>Time to complete: 15 hours</p>
-                                </div>
-                                <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">
-                                    Programming with c 11111111111111111111111 111111111111112222
-                                </h2>
-                                <div class="description">
-                                    <p>Author: James Potters</p>
-                                    <p>Time to complete: 15 hours</p>
-                                </div>
-                                <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="CategoryName">
-                <h2 style="font-size: 39px; padding-left: 1%">Category 2</h2>
-                <div class="row card-container">
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">
-                                    Programming with c 11111111111111111111111 111111111111112222
-                                </h2>
-                                <div class="description">
-                                    <p>Author: James Potters</p>
-                                    <p>Time to complete: 15 hours</p>
-                                </div>
-                                <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">
-                                    Programming with c 11111111111111111111111 111111111111112222
-                                </h2>
-                                <div class="description">
-                                    <p>Author: James Potters</p>
-                                    <p>Time to complete: 15 hours</p>
-                                </div>
-                                <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">
-                                    Programming with c 11111111111111111111111 111111111111112222
-                                </h2>
-                                <div class="description">
-                                    <p>Author: James Potters</p>
-                                    <p>Time to complete: 15 hours</p>
-                                </div>
-                                <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">
-                                    Programming with c 11111111111111111111111 111111111111112222
-                                </h2>
-                                <div class="description">
-                                    <p>Author: James Potters</p>
-                                    <p>Time to complete: 15 hours</p>
-                                </div>
-                                <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-                            </div>
-                            <div class="card-content">
-                                <h2 class="name">
-                                    Programming with c 11111111111111111111111 111111111111112222
-                                </h2>
-                                <div class="description">
-                                    <p>Author: James Potters</p>
-                                    <p>Time to complete: 15 hours</p>
-                                </div>
-                                <div class="card-content-detail">
-                                    <button class="buttonCourse">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
         </section>
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

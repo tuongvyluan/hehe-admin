@@ -83,7 +83,7 @@ public class TopicController extends HttpServlet {
                     int topicIdToDelete = Integer.parseInt(request.getParameter("TopicToDelete"));
                     boolean result = TopicDAO.deleteTopic(topicIdToDelete);
                     if (result == true) {
-                        url = DELETE_TOPIC_PAGE;
+                        url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
                     }

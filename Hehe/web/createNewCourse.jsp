@@ -65,10 +65,7 @@
 
             <div class="menu-bar">
                 <div class="menu">
-                    <li class="search-box">
-                        <i class="bx bx-search icon"></i>
-                        <input type="text" placeholder="Search..." />
-                    </li>
+                    
 
                     <ul class="menu-links">
                         <li class="nav-link">
@@ -88,6 +85,12 @@
                 </div>
 
                 <div class="bottom-content">
+                    <li class="">
+                        <a href="changePassword.jsp">
+                            <i class="bx bx-lock icon"></i>
+                            <span class="text nav-text">Change password</span>
+                        </a>
+                    </li>
                     <li class="">
                         <a href="MainController?action=Logout">
                             <i class="bx bx-log-out icon"></i>

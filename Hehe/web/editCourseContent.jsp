@@ -71,10 +71,7 @@
 
                 <div class="menu-bar">
                     <div class="menu">
-                        <li class="search-box">
-                            <i class="bx bx-search icon"></i>
-                            <input type="text" placeholder="Search..." />
-                        </li>
+                        
 
                         <ul class="menu-links">
                             <li class="nav-link">
@@ -94,6 +91,12 @@
                     </div>
 
                     <div class="bottom-content">
+                        <li class="">
+                            <a href="changePassword.jsp">
+                                <i class="bx bx-lock icon"></i>
+                                <span class="text nav-text">Change password</span>
+                            </a>
+                        </li>
                         <li class="">
                             <a href="MainController?action=Logout">
                                 <i class="bx bx-log-out icon"></i>
@@ -162,11 +165,9 @@
                             <textarea name="txtCourseNewDescription" id="<%= currentCourse.getDescription()%>" onchange="this.form.submit();" Class="input__description" cols="30" rows="10" disabled style="border: none; "><%= currentCourse.getDescription()%></textarea>
                         </p>
                     </form>
-
                 </section>
                 <section class="lessonConntent">
                     <h1>Course Curriculum</h1>
-
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <%
                             SectionBUS sectionBUS = new SectionBUS();
@@ -216,7 +217,6 @@
                                                 <input id="<%= topic.getTopicName()%>" class="topic__Name__input" type="text" name="txtTopicName" value="<%= topic.getTopicName()%>" onchange="this.form.submit();" disabled style="border: none;width: 100%;">
                                                 <i id="edit-<%= topic.getTopicName()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
                                                 <i id="save-<%= topic.getTopicName()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicName()%>');" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
-                                                
                                                 <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
                                             </form>
                                             <form action="MainController" method="POST">
@@ -289,8 +289,8 @@
             function openTopic(id) {
                 location.href = "editTopicContent.jsp?topicId=" + id;
             }
-            function deleteTopic(id){
-                
+            function deleteTopic(id) {
+
             }
             function editSection(id) {
                 document.getElementById(id).disabled = false;

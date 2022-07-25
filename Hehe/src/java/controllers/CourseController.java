@@ -117,13 +117,11 @@ public class CourseController extends HttpServlet {
                 }
 
                 case DELETE_COURSE: {
-                    int courseToDeleteId = Integer.parseInt(request.getParameter("txtCourseToDelete"));
+                    int courseToDeleteId = Integer.parseInt(request.getParameter("CourseToDelete"));
                     boolean result = CourseDAO.deleteCourse(courseToDeleteId);
                     if (result == true) {
-//                        response.sendRedirect("home.jsp");
-                        url = DELETE_COURSE_PAGE;
+                        url = AUTHOR_HOME_PAGE;
                     } else {
-//                        response.sendRedirect("error.jsp");
                         url = ERROR;
                     }
                     break;
