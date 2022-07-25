@@ -126,6 +126,12 @@ i{
 .btn__submit{
     text-align: right;
 }
+
+.btn__deleteTopic {
+    border-style: none;
+    background: none;
+}
+
 .enrollBtn{
     border: none;
     border-radius: 20px;

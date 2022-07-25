@@ -216,8 +216,16 @@
                                                 <input id="<%= topic.getTopicName()%>" class="topic__Name__input" type="text" name="txtTopicName" value="<%= topic.getTopicName()%>" onchange="this.form.submit();" disabled style="border: none;width: 100%;">
                                                 <i id="edit-<%= topic.getTopicName()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
                                                 <i id="save-<%= topic.getTopicName()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicName()%>');" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
-                                                <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="deleteTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
+                                                
                                                 <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
+                                            </form>
+                                            <form action="MainController" method="POST">
+                                                <!--<input type="hidden" name="action" value="DeleteTopic">-->
+                                                <input type="hidden" name="TopicToDelete" value="<%= topic.getTopicId()%>">
+                                                <input type="hidden" name="courseId" value="<%= topic.getCourseId()%>">
+                                                <button type="submit" name="action" value="DeleteTopic" class="btn__deleteTopic">
+                                                    <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="<%--deleteTopic('<%= topic.getTopicId()%>');--%>" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
+                                                </button>
                                             </form>
                                         </li>
                                         <%
@@ -280,6 +288,9 @@
         <script>
             function openTopic(id) {
                 location.href = "editTopicContent.jsp?topicId=" + id;
+            }
+            function deleteTopic(id){
+                
             }
             function editSection(id) {
                 document.getElementById(id).disabled = false;

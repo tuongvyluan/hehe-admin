@@ -179,7 +179,7 @@ public class CourseDAO {
                         + "CO.CategoryId AS CategoryId, CO.[Name] AS CourseName, CO.Status AS CourseStatus, "
                         + "CO.Duration AS CourseDuration, CA.Name AS CategoryName, CA.Status AS CategoryStatus\n"
                         + "FROM Course CO JOIN Category CA ON CO.CategoryId = CA.Id \n"
-                        + "WHERE CO.AuthorId = ? AND CO.CategoryId = ?");
+                        + "WHERE CO.AuthorId = ? AND CO.CategoryId = ? AND CO.Status = 'Active'");
                 ptm.setInt(1, authorId);
                 ptm.setInt(2, categoryId);
                 rs = ptm.executeQuery();

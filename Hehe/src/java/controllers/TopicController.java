@@ -80,7 +80,7 @@ public class TopicController extends HttpServlet {
                 }
 
                 case DELETE_TOPIC: {
-                    int topicIdToDelete = Integer.parseInt(request.getParameter("txtTopicIdToDelete"));
+                    int topicIdToDelete = Integer.parseInt(request.getParameter("TopicToDelete"));
                     boolean result = TopicDAO.deleteTopic(topicIdToDelete);
                     if (result == true) {
                         url = DELETE_TOPIC_PAGE;
