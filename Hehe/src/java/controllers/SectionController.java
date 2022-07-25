@@ -44,11 +44,12 @@ public class SectionController extends HttpServlet {
             switch(action){
                 
                 case CREATE_SECTION: {
-                    int courseIdToAddSection = Integer.parseInt(request.getParameter("courseIdToAddSection"));
+                    int sectionCourseId = Integer.parseInt(request.getParameter("txtSectionCourseId"));
                     String sectionName = request.getParameter("txtSectionName");
                     String sectionDescription = "";
-                    int sectionDisplayIndex = SectionDAO.getDisplayIndex(courseIdToAddSection) + 1;
-                    boolean result = SectionDAO.createSection(courseIdToAddSection, sectionName, sectionDescription, sectionDisplayIndex);
+                    String status = "Active";
+                    int sectionDisplayIndex = SectionDAO.getDisplayIndex(sectionCourseId) + 1;
+                    boolean result = SectionDAO.createSection(sectionCourseId, sectionName, sectionDescription, status, sectionDisplayIndex);
                     if (result == true) {
                         url = EDIT_COURSE_CONTENT;
                     } else {

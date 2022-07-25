@@ -29,6 +29,9 @@ public class TopicDAO {
     private final String GET_TOPIC_BY_SECTION = "SELECT " + TOPIC_DTO_FIELDS
             + " FROM Topic WHERE SectionId=? ORDER BY DisplayIndex";
     
+    private final String GET_TOPIC_BY_SECTION_CHECKED = "SELECT " + TOPIC_DTO_FIELDS
+            + " FROM Topic WHERE SectionId = ? AND Status = 'Active' ORDER BY DisplayIndex";
+    
     private final String GET_TOPIC_BY_ID = "SELECT " + TOPIC_MODEL_FIELDS
             + " FROM Topic WHERE Id=?";
     
@@ -136,6 +139,43 @@ public class TopicDAO {
         return list;
     }
     
+    public ArrayList<TopicDTO> getBySectionChecked(int sectionId) throws SQLException {
+        ArrayList<TopicDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_TOPIC_BY_SECTION_CHECKED);
+                ptm.setInt(1, sectionId);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    topicDTO = new TopicDTO();
+                    topicDTO.setTopicId(rs.getInt("Id"));
+                    topicDTO.setCourseId(rs.getInt("CourseId"));
+                    topicDTO.setSectionId(sectionId);
+                    topicDTO.setTopicName(rs.getString("Name"));
+                    topicDTO.setDisplayIndex(rs.getInt("DisplayIndex"));
+                    list.add(topicDTO);
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+    
     public TopicModel get(int topicId) throws SQLException {
         TopicModel topic = null;
         Connection conn = null;
@@ -174,19 +214,20 @@ public class TopicDAO {
     }
 
     
-    public static boolean createTopic(int sectionId, int courseId, String name, String description, int displayIndex) {
+    public static boolean createTopic(int sectionId, int courseId, String name, String description,String status, int displayIndex) {
         Connection cn = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
                 String sql = "INSERT INTO Topic (SectionId, CourseId, Name, "
-                        + "Description, DisplayIndex) VALUES (?,?,?,?,?)"; 
+                        + "Description, Status, DisplayIndex) VALUES (?,?,?,?,?,?)"; 
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, sectionId);
                 pst.setInt(2, courseId);
                 pst.setString(3, name);
-                pst.setString(4, description);
-                pst.setInt(5, displayIndex);
+                pst.setString(4, description);                
+                pst.setString(5, status);
+                pst.setInt(6, displayIndex);
                 int rs = pst.executeUpdate();
                 cn.close();
             }

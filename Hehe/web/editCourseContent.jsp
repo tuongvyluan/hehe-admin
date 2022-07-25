@@ -169,10 +169,10 @@
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <%
                             SectionBUS sectionBUS = new SectionBUS();
-                            ArrayList<SectionDTO> sectionList = sectionBUS.getByCourse(courseId);
+                            ArrayList<SectionDTO> sectionList = sectionBUS.getByCourseChecked(courseId);
                             TopicBUS topicBUS = new TopicBUS();
                             for (SectionDTO section : sectionList) {
-                                ArrayList<TopicDTO> topicList = topicBUS.getBySection(section.getSectionId());
+                                ArrayList<TopicDTO> topicList = topicBUS.getBySectionChecked(section.getSectionId());
                         %>
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="panelsStayOpen-heading2">
@@ -218,12 +218,20 @@
                                                 <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="deleteTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
                                                 <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>,<%= currentCourse.getCourseId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
                                             </form>
+                                            <form action="MainController" method="POST">
+                                                <!--<input type="hidden" name="action" value="DeleteTopic">-->
+                                                <input type="hidden" name="TopicToDelete" value="<%= topic.getTopicId()%>">
+                                                <input type="hidden" name="courseId" value="<%= topic.getCourseId()%>">
+                                                <button type="submit" name="action" value="DeleteTopic" class="btn__deleteTopic">
+                                                    <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="<%--deleteTopic('<%= topic.getTopicId()%>');--%>" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
+                                                </button>
+                                            </form>
                                         </li>
                                         <%
                                             }
                                         %>
                                         <div>+ Add topic</div>
-                                        <form>
+                                        <form action="MainController" method="POST">
                                             <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
                                             <input type="hidden" name="txtTopicCourseId" value="<%= section.getCourseId()%>">
                                             <input type="hidden" name="txtTopicSectionId" value="<%= section.getSectionId()%>">
@@ -279,6 +287,9 @@
         <script>
             function openTopic(topicId, courseId) {
                 location.href = "editTopicContent.jsp?topicId=" + topicId + "&courseId=" + courseId;
+            }
+            function deleteTopic(id){
+                
             }
             function editSection(id) {
                 document.getElementById(id).disabled = false;
