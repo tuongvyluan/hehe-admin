@@ -97,7 +97,7 @@ public class StudentController extends HttpServlet {
                                     url = STUDENT_SEARCH;
                                 } else {
                                     request.setAttribute("errorNotFound", "User not found!!!");
-                                    url = STUDENT;
+                                    url = "StudentController?action=ViewStudent&pageNumber=1&rowsOfPage=15&search=";
                                 }
                             }
                         }

@@ -100,7 +100,7 @@ public class AuthorController extends HttpServlet {
                                     url = AUTHOR_SEARCH;
                                 } else {
                                     request.setAttribute("errorNotFound", "User not found!!!");
-                                    url = AUTHOR;
+                                    url = "AuthorController?action=ViewAuthor&pageNumber=1&rowsOfPage=15&search=";
                                 }
                             }
                         }

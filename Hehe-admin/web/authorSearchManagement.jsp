@@ -290,10 +290,29 @@
                             </a>
                         </li>
                         <li>
+                            <form  name="ViewCategory"  action="MainControllerAdmin" method="POST" id="category" aria-expanded="false" >
+                                <input type="hidden" name="action" value="ViewCategory"/>
+                                <input type="hidden" name="controller" value="Category"/>
+                                <input type="hidden" name="search" value="${requestScope.search}"/>
+                                <input type="hidden" name="pageNumber" value="1"/>
+                                <input type="hidden" name="rowsOfPage" value="15"/>
+                            </form>
+                            <a onClick="submit_form('category')" aria-expanded="false">
+                                <i class="icon-user menu-icon"></i><span class="nav-text">Category management</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="registerAuthor.jsp" aria-expanded="false">
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Author register</span>
                             </a>
                         </li>
+                        
+                        <li>
+                            <a href="addCategory.jsp" aria-expanded="false">
+                                <i class="icon-user menu-icon"></i><span class="nav-text">Add category</span>
+                            </a>
+                        </li>
+
 
                     </ul>
                 </div>

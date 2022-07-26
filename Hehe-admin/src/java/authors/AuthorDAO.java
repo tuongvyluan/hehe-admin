@@ -150,7 +150,7 @@ public class AuthorDAO {
             cn = DBUtils.getConnection();
             if (cn != null) {
                 String sql = "select [Id],[FirstName],[LastName],[Email],"
-                        + "[PhoneNumber],[Status] from Author where [FirstName] like CONCAT (?,'%') ";
+                        + "[PhoneNumber],[Status] from Author where [FirstName] like CONCAT ('%',?,'%') ";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, name);
 

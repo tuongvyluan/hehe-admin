@@ -274,7 +274,7 @@ public class CourseDAO {
             cn = DBUtils.getConnection();
             if (cn != null) {
                 String sql = "select Id, Name,"
-                        + "Description,Status, Price, Duration from Course where [Name] like CONCAT(?,'%')";
+                        + "Description,Status, Price, Duration from Course where [Name] like CONCAT('%',?,'%')";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, name);
 

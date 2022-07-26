@@ -13,12 +13,19 @@ public class CategoryModel {
     public CategoryModel() {
     }
 
-    public CategoryModel(int categoryId, String categoryName, String description) {
-        super();
+    public CategoryModel(int categoryId, String categoryName, String description, String status) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.description = description;
+        this.status = status;
     }
+
+//    public CategoryModel(int categoryId, String categoryName, String description) {
+//        super();
+//        this.categoryId = categoryId;
+//        this.categoryName = categoryName;
+//        this.description = description;
+//    }
 
     public String getStatus() {
         return status;

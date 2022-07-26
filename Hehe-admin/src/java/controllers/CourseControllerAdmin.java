@@ -97,7 +97,7 @@ public class CourseControllerAdmin extends HttpServlet {//controller
                                     url = COURSE_SEARCH;
                                 } else {
                                     request.setAttribute("errorNotFound", "Course not found!!!");
-                                    url = COURSE;
+                                    url = "CourseControllerAdmin?action=ViewCourse&pageNumber=1&rowsOfPage=15&search=";
                                 }
                             }
                         }

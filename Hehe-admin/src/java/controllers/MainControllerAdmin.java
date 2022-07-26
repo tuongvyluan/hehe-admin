@@ -30,8 +30,10 @@ public class MainControllerAdmin extends HttpServlet {
     private final String COURSE = "Course";
     private final String LOG_OUT = "LogOut";
     private final String AUTHOR_REGISTER = "RegisterAuthor";
-
     private final String CHANGE_STATUS = "ChangeStatus";
+    private final String CATEGORY = "AddCategory";
+    private final String VIEW_CATEGORY = "Category";
+    private final String UPDATE = "UpdateCategory";
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
@@ -39,6 +41,7 @@ public class MainControllerAdmin extends HttpServlet {
     private final String STUDENT_CONTROLLER = "StudentController";
     private final String AUTHOR_CONTROLLER = "AuthorController";
     private final String COURSE_CONTROLLER = "CourseControllerAdmin";
+    private final String CATEGORY_CONTROLLER = "CategoryController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -60,8 +63,20 @@ public class MainControllerAdmin extends HttpServlet {
                     url = ADMIN_CONTROLLER;
                     break;
                 }
+                case CATEGORY: {
+                    url = ADMIN_CONTROLLER;
+                    break;
+                }
                 case LOG_OUT: {
                     url = ADMIN_CONTROLLER;
+                    break;
+                }
+                case VIEW_CATEGORY: {
+                    url = CATEGORY_CONTROLLER;
+                    break;
+                }
+                case UPDATE: {
+                    url = CATEGORY_CONTROLLER;
                     break;
                 }
 

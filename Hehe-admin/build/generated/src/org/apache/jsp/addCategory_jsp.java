@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class registerAuthor_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class addCategory_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -358,44 +358,18 @@ public final class registerAuthor_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                <div class=\"container-fluid mt-3\">\n");
       out.write("\n");
       out.write("                    <h1>Add category</h1>\n");
-      out.write("                    <form name=\"Register\" method=\"POST\" action=\"MainControllerAdmin\" id=\"authorRegister\">\n");
-      out.write("                        <input hidden=\"\" name=\"action\" value=\"RegisterAuthor\">\n");
-      out.write("                        <input hidden=\"\" name=\"controller\" value=\"RegisterAuthor\">\n");
-      out.write("                        <div class=\"row\">\n");
-      out.write("                            <div class=\"col-lg-12\" >\n");
+      out.write("                    <div class=\"row\">\n");
+      out.write("                        <div class=\"col-lg-12\">\n");
       out.write("\n");
-      out.write("                                <div class=\"col-6\">\n");
-      out.write("                                    <span class=\"label-input100\">Email <span style=\"color: red\">*</span></span>\n");
-      out.write("                                    <input type=\"text\" name=\"txtemail\" class=\"form-control\" placeholder=\"Author email\">\n");
-      out.write("                                </div>\n");
-      out.write("                                <p></p>\n");
-      out.write("                                <div class=\"col-6\">\n");
-      out.write("                                    <span class=\"label-input100\">Password <span style=\"color: red\">*</span></span>\n");
-      out.write("                                    <input type=\"password\" name=\"txtpassword\" class=\"form-control\" placeholder=\"Author password\">\n");
-      out.write("                                </div>\n");
-      out.write("                                <p></p>\n");
-      out.write("                                <div class=\"col-6\">\n");
-      out.write("                                    <span class=\"label-input100\">First name <span style=\"color: red\">*</span></span>\n");
-      out.write("                                    <input type=\"text\" name=\"txtfirstName\" class=\"form-control\" placeholder=\"Author firstname\">\n");
-      out.write("                                </div>\n");
-      out.write("                                <p></p>\n");
-      out.write("                                <div class=\"col-6\">\n");
-      out.write("                                    <span class=\"label-input100\">Last name <span style=\"color: red\">*</span></span>\n");
-      out.write("                                    <input type=\"text\" name=\"txtlastName\" class=\"form-control\" placeholder=\"Author lastname\">\n");
-      out.write("                                </div>\n");
-      out.write("                                <p></p>\n");
-      out.write("                                <div class=\"col-6\">\n");
-      out.write("                                    <span class=\"label-input100\">Phone number <span style=\"color: red\">*</span></span>\n");
-      out.write("                                    <input type=\"text\" name=\"txtphoneNumber\" class=\"form-control\" placeholder=\"Author phone number\">\n");
-      out.write("                                </div>\n");
-      out.write("                                <p></p>\n");
       out.write("\n");
-      out.write("                                <div class=\"col-6\" onclick=\"submit_form('authorRegister')\">\n");
-      out.write("                                    <input style=\"position: right\" class=\"btn btn-primary m-1\" type=\"submit\" name=\"action\" value=\"Add category\"><br/>\n");
-      out.write("                                </div>\n");
+      out.write("                            <div class=\"col-3\">\n");
+      out.write("                                <span class=\"label-input100\">Email <span style=\"color: red\">*</span></span>\n");
+      out.write("                                <input type=\"search\" class=\"form-control\" placeholder=\"Search Dashboard\" aria-label=\"Search Dashboard\">\n");
       out.write("                            </div>\n");
+      out.write("\n");
+      out.write("\n");
       out.write("                        </div>\n");
-      out.write("                    </form>\n");
+      out.write("                    </div>\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <!-- #/ container -->\n");

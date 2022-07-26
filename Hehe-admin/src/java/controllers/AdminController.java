@@ -36,6 +36,7 @@ public class AdminController extends HttpServlet {
     private final String MANAGE_COURSE = "ManageCourse";
     private final String LOG_OUT = "LogOut";
     private final String REGISTER_AUTHOR = "RegisterAuthor";
+    private final String CATEGORY = "AddCategory";
 
     // Destination String
     private final String ERROR = "error.jsp";
@@ -45,6 +46,7 @@ public class AdminController extends HttpServlet {
     private final String AUTHOR = "authorManagement.jsp";
     private final String COURSE = "courseManagement.jsp";
     private final String AUTHOR_REGISTER = "registerAuthor.jsp";
+    private final String ADD_CATEGORY = "addCategory.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -92,15 +94,39 @@ public class AdminController extends HttpServlet {
                     session = request.getSession();
                     String authorEmail = request.getParameter("txtemail");
                     String authorPassword = request.getParameter("txtpassword");
-                    String status = request.getParameter("txtstatus");
-
+                    String status = "Active";
                     String firstName = request.getParameter("txtfirstName");
                     String lastName = request.getParameter("txtlastName");
                     String phone = request.getParameter("txtphoneNumber");
-                    if (authors.AuthorDAO.createAuthor(firstName, lastName, authorEmail, status, phone, authorPassword)) {
-                        url = HOME;
+                    if (!authorEmail.isEmpty() && !authorPassword.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !phone.isEmpty()) {
+                        if (authors.AuthorDAO.createAuthor(firstName, lastName, authorEmail, status, phone, authorPassword)) {
+                            url = HOME;
+                        } else {
+                            request.setAttribute("errorAuthor", "Create failed");
+                            url = AUTHOR_REGISTER;
+                        }
                     } else {
+                        request.setAttribute("errorAuthor", "Input cannot be empty");
                         url = AUTHOR_REGISTER;
+                    }
+                    break;
+                }
+
+                case CATEGORY: {
+                    session = request.getSession();
+                    String name = request.getParameter("txtname");
+                    String description = request.getParameter("txtdescription");
+                    String status = "Active";
+                    if (!name.isEmpty() && !description.isEmpty()) {
+                        if (categories.CategoryDAO.createCAtegory(name, description, status)) {
+                            url = HOME;
+                        } else {
+                            request.setAttribute("errorCategory", "Create failed");
+                            url = ADD_CATEGORY;
+                        }
+                    } else {
+                        request.setAttribute("errorCategory", "Input cannot be empty");
+                        url = ADD_CATEGORY;
                     }
                     break;
                 }

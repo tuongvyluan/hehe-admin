@@ -351,7 +351,7 @@ public class StudentDAO {
             cn = DBUtils.getConnection();
             if (cn != null) {
                 String sql = "select [Id],[FirstName],[LastName],[Email],"
-                        + "[PhoneNumber],[Status] from Student where [FirstName] LIKE CONCAT(?,'%')";
+                        + "[PhoneNumber],[Status] from Student where [FirstName] LIKE CONCAT('%',?,'%')";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, name);
 

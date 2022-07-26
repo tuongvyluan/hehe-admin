@@ -1,10 +1,10 @@
 SMAP
-registerAuthor_jsp.java
+addCategory_jsp.java
 JSP
 *S JSP
 *F
-+ 0 registerAuthor.jsp
-registerAuthor.jsp
++ 0 addCategory.jsp
+addCategory.jsp
 *L
 1,259:44
 260:303,3
@@ -12,5 +12,5 @@ registerAuthor.jsp
 272:317,3
 273,11:320
 284:331,3
-285,129:334
+285,103:334
 *E

@@ -47,16 +47,16 @@
             <div class="nav-header">
                 <div class="brand-logo">
                     <a href="admin.jsp">
-
-                        <span class="logo-compact"><img src="./images/logowhite-removebg-preview.png" alt=""></span>
+                        <span class="logo-compact" style="z-index:10;"><img src="./images/logowhite-removebg-preview.png" alt="logo"></span>
                         <span class="brand-title">
                             <img
-                                src="images/logowhite-removebg-preview.png"
+                                src="images/logo-removebg-preview1.png"
                                 alt=""
                                 class="img-fluid"
                                 height="10rem"
                                 />
                         </span>
+
                     </a>
                 </div>
             </div>
@@ -298,10 +298,27 @@
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Course management</span>
                             </a>
                         </li>
-                        
+                        <li>
+                            <form  name="ViewCategory"  action="MainControllerAdmin" method="POST" id="category" aria-expanded="false" >
+                                <input type="hidden" name="action" value="ViewCategory"/>
+                                <input type="hidden" name="controller" value="Category"/>
+                                <input type="hidden" name="search" value="${requestScope.search}"/>
+                                <input type="hidden" name="pageNumber" value="1"/>
+                                <input type="hidden" name="rowsOfPage" value="15"/>
+                            </form>
+                            <a onClick="submit_form('category')" aria-expanded="false">
+                                <i class="icon-user menu-icon"></i><span class="nav-text">Category management</span>
+                            </a>
+                        </li>
+
                         <li>
                             <a href="registerAuthor.jsp" aria-expanded="false">
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Author register</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="addCategory.jsp" aria-expanded="false">
+                                <i class="icon-user menu-icon"></i><span class="nav-text">Add category</span>
                             </a>
                         </li>
 

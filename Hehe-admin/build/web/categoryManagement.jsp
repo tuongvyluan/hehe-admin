@@ -1,3 +1,4 @@
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,16 +48,16 @@
             <div class="nav-header">
                 <div class="brand-logo">
                     <a href="admin.jsp">
-                        <span class="logo-compact" style="z-index:10;"><img src="./images/logowhite-removebg-preview.png" alt="logo"></span>
+
+                        <span class="logo-compact"><img src="./images/logowhite-removebg-preview.png" alt=""></span>
                         <span class="brand-title">
                             <img
-                                src="images/logo-removebg-preview1.png"
+                                src="images/logowhite-removebg-preview.png"
                                 alt=""
                                 class="img-fluid"
                                 height="10rem"
                                 />
                         </span>
-
                     </a>
                 </div>
             </div>
@@ -222,14 +223,11 @@
                                                 </a>
                                             </li>
 
-                                            <!--                                            <hr class="my-2">-->
+                                            <hr class="my-2">
                                             <li>
                                                 <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
                                             </li>
-                                            <li>
-
-                                                <a href="AdminController?action=LogOut"><i class="icon-key"></i> <span>Logout</span></a>
-                                            </li>
+                                            <li><a href="AdminController?action=LogOut"><i class="icon-key"></i> <span>Logout</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -245,16 +243,8 @@
             <!--**********************************
                 Sidebar start
             ***********************************-->
-            <div class="nk-sidebar">     
-
+            <div class="nk-sidebar">           
                 <div class="nk-nav-scroll">
-                    <form name="ViewStudent"  action="MainControllerAdmin" method="POST">
-                        <input type="hidden" name="action" value="ViewStudent"/>
-                        <input type="hidden" name="controller" value="Student"/>
-                        <input type="hidden" name="search" value="${requestScope.search}"/>
-                        <input type="hidden" name="pageNumber" value="1"/>
-                        <input type="hidden" name="rowsOfPage" value="15"/>
-                    </form>
                     <ul class="metismenu" id="menu">
                         <li class="nav-label">Dashboard</li>
                         <li>
@@ -275,7 +265,7 @@
                             </a>
                         </li>
                         <li>
-                            <form  name="ViewAuthor"  action="MainControllerAdmin" method="POST" id="author" aria-expanded="false"  >
+                            <form  name="ViewAuthor"  action="MainControllerAdmin" method="POST" id="author" aria-expanded="false" >
                                 <input type="hidden" name="action" value="ViewAuthor"/>
                                 <input type="hidden" name="controller" value="Author"/>
                                 <input type="hidden" name="search" value="${requestScope.search}"/>
@@ -298,6 +288,7 @@
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Course management</span>
                             </a>
                         </li>
+
                         <li>
                             <form  name="ViewCategory"  action="MainControllerAdmin" method="POST" id="category" aria-expanded="false" >
                                 <input type="hidden" name="action" value="ViewCategory"/>
@@ -310,7 +301,6 @@
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Category management</span>
                             </a>
                         </li>
-
                         <li>
                             <a href="registerAuthor.jsp" aria-expanded="false">
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Author register</span>
@@ -321,8 +311,6 @@
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Add category</span>
                             </a>
                         </li>
-
-
 
                     </ul>
                 </div>
@@ -337,74 +325,23 @@
             <div class="content-body">
 
                 <div class="container-fluid mt-3">
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card gradient-1">
-                                <div class="card-body">
-                                    <h3 class="card-title text-white">Number of course</h3>
-                                    <div class="d-inline-block">
-                                        <h2 class="text-white">200</h2>
-                                        <p class="text-white mb-0">Jan - March 2019</p>
-                                    </div>
-                                    <span class="float-right display-5 opacity-5"> 
-                                        <i class="fa fa-book"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card gradient-2">
-                                <div class="card-body">
-                                    <h3 class="card-title text-white">Number of user</h3>
-                                    <div class="d-inline-block">
-                                        <h2 class="text-white">8541</h2>
-                                        <p class="text-white mb-0">Jan - March 2019</p>
-                                    </div>
-                                    <span class="float-right display-5 opacity-5"><i class="fa fa-bar-chart"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card gradient-3">
-                                <div class="card-body">
-                                    <h3 class="card-title text-white">New Customers</h3>
-                                    <div class="d-inline-block">
-                                        <h2 class="text-white">4565</h2>
-                                        <p class="text-white mb-0">Jan - March 2019</p>
-                                    </div>
-                                    <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card gradient-4">
-                                <div class="card-body">
-                                    <h3 class="card-title text-white">Customer Satisfaction</h3>
-                                    <div class="d-inline-block">
-                                        <h2 class="text-white">99%</h2>
-                                        <p class="text-white mb-0">Jan - March 2019</p>
-                                    </div>
-                                    <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <form action="mainController" method="post">
+                    <h1>Category management</h1>
+                    <form action="CategoryController" method="post">
                         <div class="input-group icons">
 
-                            <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                            <input type="search" class="form-control" placeholder="Search category" aria-label="Search Dashboard" name="txtSearch">
                             <div class="drop-down animated flipInX d-md-none">
 
-                                <input type="text" name="search" value="${requestScope.search}" class="form-control" placeholder="Search">
-                                <input type="hidden" name="action" value="ViewStudent">
-                                <input type="hidden" name="controller" value="Student">
-                                <input type="hidden" name="pageNumber" value="1">
-                                <input type="hidden" name="rowsOfPage" value="15">
-                            </div>
-                            <input class="btn btn-primary m-1" type="submit" value="Search"><br/>${requestScope.errorNotFound}
 
+                            </div>
+                            <input class="btn btn-primary m-1" type="submit" name="action" value="Search"><br/>
                         </div>
-                        <!--<input type="text" name="txtSearch">
-                        <input type="submit" name="action" value="Search_Account"><br/>${requestScope.errorNotFound}-->
+                        <%
+                            String login_msg = (String) request.getAttribute("errorNotFound");
+                            if (login_msg != null) {
+                                out.println("<font color=red size=4px>" + login_msg + "</font>");
+                            }
+                        %>
                     </form>
                     <h1></h1>
 
@@ -424,129 +361,78 @@
 
 
 
-                    <!--                    <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="active-member">
-                                                            <div class="table-responsive">
-                                                                <table class="table table-xs mb-0">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>User</th>
-                                                                            <th>Email</th>
-                                                                            <th>Full name</th>
-                                                                            <th>Status</th>
-                                                                            <th>Phone</th>
-                                                                            <th>Role</th>
-                                                                            <th>Action</th>
-                    
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                    
-                                                                        </tr>
-                    
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>                        
-                                            </div>
-                                        </div>
-                    -->
-
-
-
-
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6">
+                        <div class="col-lg-12">
                             <div class="card">
-                                <div class="social-graph-wrapper widget-facebook">
-                                    <span class="s-icon"><i class="fa fa-facebook"></i></span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 border-right">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">89k</h4>
-                                            <p class="m-0">Friends</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">119k</h4>
-                                            <p class="m-0">Followers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="social-graph-wrapper widget-linkedin">
-                                    <span class="s-icon"><i class="fa fa-linkedin"></i></span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 border-right">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">89k</h4>
-                                            <p class="m-0">Friends</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">119k</h4>
-                                            <p class="m-0">Followers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="social-graph-wrapper widget-googleplus">
-                                    <span class="s-icon"><i class="fa fa-google-plus"></i></span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 border-right">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">89k</h4>
-                                            <p class="m-0">Friends</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">119k</h4>
-                                            <p class="m-0">Followers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="social-graph-wrapper widget-twitter">
-                                    <span class="s-icon"><i class="fa fa-twitter"></i></span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 border-right">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">89k</h4>
-                                            <p class="m-0">Friends</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                            <h4 class="m-1">119k</h4>
-                                            <p class="m-0">Followers</p>
+                                <div class="card-body">
+                                    <div class="active-member">
+                                        <div class="table-responsive">
+                                            <table class="table table-xs mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Name</th>
+                                                        <th>Description</th>
+                                                        <th>Status</th>
+                                                        <th>Delete</th>
+                                                        <th>Update</th>
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach var="cate" items="${requestScope.CATEGORY_LIST}">
+                                                    <form action="CategoryController" method="POST">
+                                                        <input type="hidden" name="action" value="UpdateCategory">
+                                                        <tr>
+                                                            
+                                                            <td><input style="width:50%;border: none;" type="text" name="cateId" value="${cate.getCategoryId()}" readonly></td>
+                                                            <td><input style="width:100%;border: none;border-bottom: 1px solid black;" type="text" name="cateName" value="${cate.getCategoryName()}" required></td>
+                                                            <td><input style="width:100%;border: none;border-bottom: 1px solid black;"  type="text" name="cateDes" value="${cate.getDescription()}" required></td>
+                                                            <td><c:out value="${cate.getStatus()}"></c:out></td>
+
+
+
+                                                                <td>
+                                                                <c:if test="${cate.getStatus() == 'Active'}">
+                                                                    <c:url var="mylink" value="CategoryController">
+                                                                        <c:param name="id" value="${cate.getCategoryId()}"></c:param>
+                                                                        <c:param name="status" value="${cate.getStatus()}"></c:param>
+                                                                        <c:param name="action" value="updateStatusAccount"></c:param>
+                                                                    </c:url>
+                                                                    <a class="btn btn-primary" href="${mylink}">Block</a>
+                                                                </c:if>
+                                                                <c:if test="${cate.getStatus() == 'Inactive'}">
+                                                                    <c:url var="mylink" value="CategoryController">
+                                                                        <c:param name="id" value="${cate.getCategoryId()}"></c:param>
+                                                                        <c:param name="status" value="${cate.getStatus()}"></c:param>
+                                                                        <c:param name="action" value="updateStatusAccount"></c:param>
+                                                                    </c:url>
+                                                                    <a class="btn btn-primary" href="${mylink}">Un-Block</a>
+                                                                </c:if>
+                                                            </td>
+                                                            <td>
+                                                                <input class="btn btn-primary" type="submit" value="Update">
+                                                            </td>
+
+
+                                                        </tr>
+                                                        </form>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                        
                         </div>
                     </div>
+
+
+
+
+
+
                 </div>
                 <!-- #/ container -->
             </div>
@@ -607,7 +493,6 @@
                                     form.submit();
                                 }
         </script>
-
     </body>
 
 </html>
