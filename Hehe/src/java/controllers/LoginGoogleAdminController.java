@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import accessGoogle.GooglePojo;
 import accessGoogle.GoogleUtils;
+import admin.AdminBUS;
+import admin.AdminDAO;
+import admin.AdminDTO;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.servlet.http.HttpSession;
@@ -25,19 +28,19 @@ import students.StudentModel;
 public class LoginGoogleAdminController extends HttpServlet {
 
     private final String HOME = "home.jsp";
-    private final String LOGIN = "login.jsp";
+    private final String ADMIN_HOME_PAGE = "admin.jsp";
+    private final String LOGIN = "loginAdmin.jsp";
 
     private static final long serialVersionUID = 1L;
 
     public LoginGoogleAdminController() {
         super();
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = LOGIN;
-        StudentError studentError = null;
         try {
             String code = request.getParameter("code");
             System.out.println(code);
@@ -49,29 +52,19 @@ public class LoginGoogleAdminController extends HttpServlet {
                 GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
                 String email = googlePojo.getEmail();
                 System.out.println(googlePojo.toString());
-                StudentBUS studentBUS = new StudentBUS();
-                StudentModel studentUser = studentBUS.checkLogin(email);
-                if (studentUser == null) {
-                    studentUser = new StudentModel();
-                    studentUser.setEmail(email);
-                    studentUser.setFirstName(email.split("@")[0]);
-                    studentUser.setPassword(email);
-                    studentUser.setDob(LocalDate.now());
-                    studentError = studentBUS.register(studentUser);
-                    if (studentError == null) {
-                        url = HOME;
-                        HttpSession session = request.getSession();
-                        session.setAttribute("LOGIN_STUDENT", studentUser.toDTO());
-                    }
+                AdminDTO admin = null;
+                AdminBUS adminBUS = new AdminBUS();
+                admin = AdminDAO.loginAdmin(email);
+                if (admin == null) {
+                    url = LOGIN;
                 } else {
-                    url = HOME;
+                    url = ADMIN_HOME_PAGE;
                     HttpSession session = request.getSession();
-                    session.setAttribute("LOGIN_STUDENT", studentUser.toDTO());
+                    session.setAttribute("LOGIN_ADMIN", admin);
                 }
-
             }
-        } catch (IOException | SQLException | ServletException e) {
-            System.out.println("Error at LoginGoogleController: " + e.toString());
+        } catch (IOException | ServletException e) {
+            System.out.println("Error at LoginGoogleAdminController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

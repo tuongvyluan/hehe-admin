@@ -60,6 +60,32 @@ public class AuthorDAO {
         return author;
     }
     
+    public static AuthorDTO loginAuthor(String email, String password)  {
+        Connection cn = null;
+        AuthorDTO acc = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "SELECT Id, FirstName, LastName, Email, PhoneNumber, "
+                        + "Status FROM Author WHERE [Email] = ? AND Password = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, email);
+                pst.setString(2, password);
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("Id");
+                    String firstName = rs.getString("FirstName");
+                    String lastName = rs.getString("LastName");
+                    String phoneNumber = rs.getString("PhoneNumber");
+                    acc = new AuthorDTO(id, firstName, lastName, email, phoneNumber);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return acc;
+    }
+    
     public static AuthorDTO loginAuthor(String email)  {
         Connection cn = null;
         AuthorDTO acc = null;

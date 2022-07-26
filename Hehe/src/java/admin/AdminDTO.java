@@ -6,9 +6,8 @@ public class AdminDTO {
     String password;
     String email;
 
-    public AdminDTO(int adminId, String password, String email) {
+    public AdminDTO(int adminId, String email) {
         this.adminId = adminId;
-        this.password = password;
         this.email = email;
     }
 

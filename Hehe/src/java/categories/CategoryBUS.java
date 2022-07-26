@@ -21,6 +21,12 @@ public class CategoryBUS {
         return list;
     }
     
+    public ArrayList<CategoryModel> getCategoriesChecked(int pageNumber, int rowsOfPage) throws SQLException {
+        dao = new CategoryDAO();
+        ArrayList<CategoryModel> list = dao.getChecked(pageNumber, rowsOfPage);
+        return list;
+    }
+    
     public ArrayList<CategoryModel> getCategories() throws SQLException {
         dao = new CategoryDAO();
         ArrayList<CategoryModel> list = dao.getCategories();

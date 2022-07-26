@@ -34,6 +34,9 @@ public class CategoryDAO {
     private String GET_CATEGORIES = DECLARE_PAGINATION + "SELECT " + FIELDS
             + " FROM Category ORDER BY UpdatedAt " + PAGINATION;
     
+    private String GET_CATEGORIES_CHECKED = DECLARE_PAGINATION + "SELECT " + FIELDS
+            + " FROM Category WHERE Status = 'Active' ORDER BY UpdatedAt " + PAGINATION;
+    
     private String GET_ALL_CATEGORIES = "SELECT " + FIELDS
             + " FROM Category ORDER BY UpdatedAt ";
 
@@ -54,6 +57,51 @@ public class CategoryDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(GET_CATEGORIES);
+                ptm.setInt(1, pageNumber);
+                ptm.setInt(2, rowsOfPage);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    categoryModel = new CategoryModel();
+                    categoryModel.setCategoryId(rs.getInt("Id"));
+                    categoryModel.setCategoryName(rs.getString("Name"));
+                    categoryModel.setDescription(rs.getString("Description"));
+                    list.add(categoryModel);
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+
+    }
+    
+    public ArrayList<CategoryModel> getChecked(int pageNumber, int rowsOfPage) throws SQLException {
+        ArrayList<CategoryModel> list = new ArrayList<>();
+        if (pageNumber <= 0) {
+            pageNumber = 1;
+        }
+
+        if (rowsOfPage <= 0) {
+            rowsOfPage = 1;
+        }
+
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_CATEGORIES_CHECKED);
                 ptm.setInt(1, pageNumber);
                 ptm.setInt(2, rowsOfPage);
                 rs = ptm.executeQuery();

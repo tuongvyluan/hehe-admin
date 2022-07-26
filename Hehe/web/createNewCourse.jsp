@@ -136,12 +136,8 @@
                         placeholder="Input course's name"
                         />
                     <label for="input__duration">Duration: </label>
-                    <input id="h" type="number" min="0" max="24" name="txtHour"/>
+                    <input id="h" type="number" min="0" max="24" step="0.01" name="txtHour"/>
                     <label for="h">hour(s)</label>
-                    <input id="m" type="number" min="0" max="59" name="txtMinute"/>
-                    <label for="m">minute(s)</label>
-                    <input id="s" type="number" min="0" max="59" name="txtSecond"/>
-                    <label for="s">second(s)</label>
                     <div class="banner__content__detail">
                         <span>Created by <%= author.getFirstName() + " " + author.getLastName()%> </span>
                     </div>

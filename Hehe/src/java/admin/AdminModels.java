@@ -49,7 +49,7 @@ public class AdminModels {
 
     // method
     public AdminDTO toDTO() {
-        return new AdminDTO(adminId, password, email);
+        return new AdminDTO(adminId, email);
     }
     
      

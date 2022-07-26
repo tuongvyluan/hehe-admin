@@ -71,7 +71,7 @@
 
                 <div class="menu-bar">
                     <div class="menu">
-                        
+
 
                         <ul class="menu-links">
                             <li class="nav-link">
@@ -107,14 +107,17 @@
                 </div>
             </nav>
             <div class="addCourse__title">Edit course</div>
-            <form action="MainController" method="POST">
-                <section class="banner">
-                    <div class="banner__content">
-                        <!-- <h3>Name of the course</h3> -->
-                        <div class="banner__content__category">
+            <section class="banner">
+                <div class="banner__content">
+                    <!-- <h3>Name of the course</h3> -->
+                    <div class="banner__content__category">
+                        <form action="MainController" method="POST">
+                            <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
+                            <input type="hidden" name="CourseToEdit" value="<%= currentCourse.getCourseId()%>">
+                            <label>Category: </label>
                             <select
                                 class="banner__content__category__input"
-                                name="txtCourseNewCategoryId"
+                                name="CourseNewCategoryId"
                                 id=""
                                 >
                                 <%
@@ -124,8 +127,15 @@
                                     int rowsOfPage = 10;
                                     CategoryBUS categoryBUS = null;
                                     categoryBUS = new CategoryBUS();
-                                    ArrayList<CategoryModel> categories = categoryBUS.getCategories(pageNumber, rowsOfPage);
+                                    ArrayList<CategoryModel> categories = categoryBUS.getCategoriesChecked(pageNumber, rowsOfPage);
                                     for (CategoryModel category : categories) {
+                                        if (category.getCategoryId() == currentCourse.getCategoryId()) {
+                                %>
+                                <option value="<%= category.getCategoryId()%>" selected="selected">
+                                    <%= category.getCategoryName()%>
+                                </option>
+                                <%
+                                    }
                                 %>
                                 <option value="<%= category.getCategoryId()%>">
                                     <%= category.getCategoryName()%>
@@ -134,208 +144,219 @@
                                     }
                                 %>
                             </select>
-                        </div>
-                        <input type="hidden" name="txtCourseToEdit" value="<%= currentCourse.getCourseId()%>">
-                        <input id="input__sectionName" class="input__sectionName" name="txtCourseNewName" type="text" value="<%= currentCourse.getCourseName()%>" disabled style="border: none;">
+                            <button type="submit" name="action" value="EditCourseCategory" class="btn__deleteTopic">
+                                <i class="fa fa-check" style="font-size: 25px; color: green;padding-left: 10px;cursor: pointer;"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <input type="hidden" name="CourseToEdit" value="<%= currentCourse.getCourseId()%>">
+                    <form action="MainController" method="POST">
+                        <input type="hidden" name="action" value="EditCourseName">
+                        <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
+                        <input type="hidden" name="CourseToEdit" value="<%= currentCourse.getCourseId()%>">
+                        <input id="input__sectionName" class="input__sectionName" name="CourseNewName" type="text" value="<%= currentCourse.getCourseName()%>" onchange="this.form.submit();" disabled style="border: none;">
                         <i id="edit-input__sectionName" class="fa fa-edit" onclick="editDes('input__sectionName')" style="font-size: 25px; padding-left: 10px; cursor: pointer;"></i>
                         <i id="save-input__sectionName" class="fa fa-check" onclick="saveDes('input__sectionName')" style="font-size: 25px;display: none; color: green;padding-left: 10px;cursor: pointer;"></i>
-                        <label for="input__duration">Duration: </label>
-                        <input id="h" type="number" min="0" max="24" name="txtNewHour"/>
-                        <label for="h">hour(s)</label>
-                        <input id="m" type="number" min="0" max="59" name="txtNewMinute"/>
-                        <label for="m">minute(s)</label>
-                        <input id="s" type="number" min="0" max="59" name="txtNewSecond"/>
-                        <label for="s">second(s)</label>
-                        <div class="banner__content__detail">
-                            <span>Created by <%= author.getFirstName() + " " + author.getLastName()%> </span>
-                        </div>
-                    </div>
-                </section>
-                <section class="description">
-                    <form action="MainController" method="POST">
-                        <input type="hidden" name="action" value="EditCourseDesc">
-                        <input type="hidden" name="CourseToEdit" value="<%= currentCourse.getCourseId()%>">
-                        <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
-                        <h1>
-                            Description 
-                            <i id="edit-<%= currentCourse.getDescription()%>" class="fa fa-edit" onclick="editDes('<%= currentCourse.getDescription()%>');" style="font-size: 25px; padding-left: 10px; cursor: pointer;"></i>
-                            <i id="save-<%= currentCourse.getDescription()%>" class="fa fa-check" onclick="saveDes('<%= currentCourse.getDescription()%>');" style="font-size: 25px;display: none; color: green;padding-left: 10px;cursor: pointer;"></i>
-                        </h1>  
-                        <p>
-                            <textarea name="txtCourseNewDescription" id="<%= currentCourse.getDescription()%>" onchange="this.form.submit();" Class="input__description" cols="30" rows="10" disabled style="border: none; "><%= currentCourse.getDescription()%></textarea>
-                        </p>
                     </form>
-                </section>
-                <section class="lessonConntent">
-                    <h1>Course Curriculum</h1>
-                    <div class="accordion" id="accordionPanelsStayOpenExample">
-                        <%
-                            SectionBUS sectionBUS = new SectionBUS();
-                            ArrayList<SectionDTO> sectionList = sectionBUS.getByCourseChecked(courseId);
-                            TopicBUS topicBUS = new TopicBUS();
-                            for (SectionDTO section : sectionList) {
-                                ArrayList<TopicDTO> topicList = topicBUS.getBySectionChecked(section.getSectionId());
-                        %>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-heading2">
-                                <button
-                                    class="accordion-button"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#panelsStayOpen-collapse2"
-                                    aria-expanded="true"
-                                    aria-controls="panelsStayOpen-collapse2"
-                                    >
-                                    <div class="section__Name" style="display: flex;">
-                                        <form action="MainController" method="POST">
-                                            <input type="hidden" name="action" value="EditSectionName">
-                                            <input type="hidden" name="SectionToEdit" value="<%= section.getSectionId()%>">
-                                            <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
-                                            <input id="<%= section.getSectionName()%>" class="section__Name__input" type="text" name="txtSectionName" onchange="this.form.submit();" value="<%= section.getSectionName()%>" disabled style="border: none;">
-                                            <i id="edit-<%= section.getSectionName()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionName()%>')" style="font-size: 25px; padding-left: 10px"></i>
-                                            <i id="save-<%= section.getSectionName()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionName()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
-                                            <i id="delete-<%= section.getSectionName()%>"class="fa fa-trash-alt" onclick="deleteField('<%= section.getSectionId()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
-                                        </form>
-                                    </div>
-                                </button>
-                            </h2>
-                            <div
-                                id="panelsStayOpen-collapse2"
-                                class="accordion-collapse collapse show"
-                                aria-labelledby="panelsStayOpen-heading2"
+                    <form action="MainController" method="POST">
+                        <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
+                        <input type="hidden" name="CourseToEdit" value="<%= currentCourse.getCourseId()%>">
+                        <label for="input__duration">Duration: </label>
+                        <input id="h" type="number" min="0" max="24" step="0.01" name="Duration" value="<%= currentCourse.getDuration()%>"/>
+                        <label for="h">hour(s)</label>
+                        <button type="submit" name="action" value="EditCourseDuration" class="btn__deleteTopic">
+                            <i class="fa fa-check" style="font-size: 25px; color: green;padding-left: 10px;cursor: pointer;"></i>
+                        </button>
+                    </form>
+                    <div class="banner__content__detail">
+                        <span>Created by <%= author.getFirstName() + " " + author.getLastName()%> </span>
+                    </div>
+                </div>
+            </section>
+            <section class="description">
+                <form action="MainController" method="POST">
+                    <input type="hidden" name="action" value="EditCourseDesc">
+                    <input type="hidden" name="CourseToEdit" value="<%= currentCourse.getCourseId()%>">
+                    <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
+                    <h1>
+                        Description 
+                        <i id="edit-<%= currentCourse.getDescription()%>" class="fa fa-edit" onclick="editDes('<%= currentCourse.getDescription()%>');" style="font-size: 25px; padding-left: 10px; cursor: pointer;"></i>
+                        <i id="save-<%= currentCourse.getDescription()%>" class="fa fa-check" onclick="saveDes('<%= currentCourse.getDescription()%>');" style="font-size: 25px;display: none; color: green;padding-left: 10px;cursor: pointer;"></i>
+                    </h1>  
+                    <p>
+                        <textarea name="txtCourseNewDescription" id="<%= currentCourse.getDescription()%>" onchange="this.form.submit();" Class="input__description" cols="30" rows="10" disabled style="border: none; "><%= currentCourse.getDescription()%></textarea>
+                    </p>
+                </form>
+            </section>
+            <section class="lessonConntent">
+                <h1>Course Curriculum</h1>
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <%
+                        SectionBUS sectionBUS = new SectionBUS();
+                        ArrayList<SectionDTO> sectionList = sectionBUS.getByCourseChecked(courseId);
+                        TopicBUS topicBUS = new TopicBUS();
+                        for (SectionDTO section : sectionList) {
+                            ArrayList<TopicDTO> topicList = topicBUS.getBySectionChecked(section.getSectionId());
+                    %>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-heading2">
+                            <button
+                                class="accordion-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapse2"
+                                aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapse2"
                                 >
-                                <div class="accordion-body">
-                                    <ol>
-                                        <%
-                                            for (TopicDTO topic : topicList) {
-                                        %>
-                                        <li>
-                                            <form action="MainController" method="POST">
-                                                <input type="hidden" name="action" value="EditTopicName">
-                                                <input type="hidden" name="TopicToEdit" value="<%= topic.getTopicId()%>">
-                                                <input type="hidden" name="courseId" value="<%= topic.getCourseId()%>">
-                                                <input id="<%= topic.getTopicName()%>" class="topic__Name__input" type="text" name="txtTopicName" value="<%= topic.getTopicName()%>" onchange="this.form.submit();" disabled style="border: none;width: 100%;">
-                                                <i id="edit-<%= topic.getTopicName()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
-                                                <i id="save-<%= topic.getTopicName()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicName()%>');" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
-                                                <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
-                                            </form>
-                                            <form action="MainController" method="POST">
-                                                <!--<input type="hidden" name="action" value="DeleteTopic">-->
-                                                <input type="hidden" name="TopicToDelete" value="<%= topic.getTopicId()%>">
-                                                <input type="hidden" name="courseId" value="<%= topic.getCourseId()%>">
-                                                <button type="submit" name="action" value="DeleteTopic" class="btn__deleteTopic">
-                                                    <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="<%--deleteTopic('<%= topic.getTopicId()%>');--%>" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <%
-                                            }
-                                        %>
-                                        <div>+ Add topic</div>
-                                        <form action="MainController" method="POST">
-                                            <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
-                                            <input type="hidden" name="txtTopicCourseId" value="<%= section.getCourseId()%>">
-                                            <input type="hidden" name="txtTopicSectionId" value="<%= section.getSectionId()%>">
-                                            <input class="input__topic" type="text" name="txtTopicName" placeholder="Input topic's name">
-                                            <button class="btn__addTopic" type="submit" name="action" value="CreateTopic">Add topic</button>
-                                        </form>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                        <%
-                            }
-                        %>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-heading1">
-                                <button
-                                    class="accordion-button"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#panelsStayOpen-collapse1"
-                                    aria-expanded="true"
-                                    aria-controls="panelsStayOpen-collapse1"
-                                    >
+                                <div class="section__Name" style="display: flex;">
                                     <form action="MainController" method="POST">
-                                        <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
-                                        <input type="hidden" name="txtSectionCourseId" value="<%= currentCourse.getCourseId()%>">
-                                        <input class="add__section" type="text" name="txtSectionName" placeholder="Add course's section">
-                                        <button class="btn__addSection" type="submit" name="action" value="CreateSection">Add section</button>
+                                        <input type="hidden" name="action" value="EditSectionName">
+                                        <input type="hidden" name="SectionToEdit" value="<%= section.getSectionId()%>">
+                                        <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
+                                        <input id="<%= section.getSectionName()%>" class="section__Name__input" type="text" name="txtSectionName" onchange="this.form.submit();" value="<%= section.getSectionName()%>" disabled style="border: none;">
+                                        <i id="edit-<%= section.getSectionName()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionName()%>')" style="font-size: 25px; padding-left: 10px"></i>
+                                        <i id="save-<%= section.getSectionName()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionName()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
+                                        <i id="delete-<%= section.getSectionName()%>"class="fa fa-trash-alt" onclick="deleteField('<%= section.getSectionId()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
                                     </form>
-                                </button>
-                            </h2>
-                            <div
-                                id="panelsStayOpen-collapse1"
-                                class="accordion-collapse collapse show"
-                                aria-labelledby="panelsStayOpen-heading1"
-                                >
-                                <div class="accordion-body">
-
                                 </div>
+                            </button>
+                        </h2>
+                        <div
+                            id="panelsStayOpen-collapse2"
+                            class="accordion-collapse collapse show"
+                            aria-labelledby="panelsStayOpen-heading2"
+                            >
+                            <div class="accordion-body">
+                                <ol>
+                                    <%
+                                        for (TopicDTO topic : topicList) {
+                                    %>
+                                    <li>
+                                        <form action="MainController" method="POST">
+                                            <input type="hidden" name="action" value="EditTopicName">
+                                            <input type="hidden" name="TopicToEdit" value="<%= topic.getTopicId()%>">
+                                            <input type="hidden" name="courseId" value="<%= topic.getCourseId()%>">
+                                            <input id="<%= topic.getTopicName()%>" class="topic__Name__input" type="text" name="txtTopicName" value="<%= topic.getTopicName()%>" onchange="this.form.submit();" disabled style="border: none;width: 100%;">
+                                            <i id="edit-<%= topic.getTopicName()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
+                                            <i id="save-<%= topic.getTopicName()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicName()%>');" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
+                                            <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
+                                        </form>
+                                        <form action="MainController" method="POST">
+                                            <!--<input type="hidden" name="action" value="DeleteTopic">-->
+                                            <input type="hidden" name="TopicToDelete" value="<%= topic.getTopicId()%>">
+                                            <input type="hidden" name="courseId" value="<%= topic.getCourseId()%>">
+                                            <button type="submit" name="action" value="DeleteTopic" class="btn__deleteTopic">
+                                                <i id="delete-<%= topic.getTopicName()%>"class="fa fa-trash-alt" onclick="<%--deleteTopic('<%= topic.getTopicId()%>');--%>" style="font-size: 12px; color: red; padding-left: 10px; cursor: pointer;"> Delete</i>
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <%
+                                        }
+                                    %>
+                                    <div>+ Add topic</div>
+                                    <form action="MainController" method="POST">
+                                        <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
+                                        <input type="hidden" name="txtTopicCourseId" value="<%= section.getCourseId()%>">
+                                        <input type="hidden" name="txtTopicSectionId" value="<%= section.getSectionId()%>">
+                                        <input class="input__topic" type="text" name="txtTopicName" placeholder="Input topic's name">
+                                        <button class="btn__addTopic" type="submit" name="action" value="CreateTopic">Add topic</button>
+                                    </form>
+                                </ol>
                             </div>
                         </div>
                     </div>
-                </section>
-                <div class="btn__submit">
-                    <button class="enrollBtn" type="submit" name="action" value="EditCourse" onclick="submit_form('edit')">Save change</button>
-                    <!--<a href="MainController?action=EditCourse">Meow</a>-->
-                    <!--<input type="submit" class="btn btn-primary" name="action" value="EditCourse">-->
+                    <%
+                        }
+                    %>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-heading1">
+                            <button
+                                class="accordion-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapse1"
+                                aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapse1"
+                                >
+                                <form action="MainController" method="POST">
+                                    <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
+                                    <input type="hidden" name="txtSectionCourseId" value="<%= currentCourse.getCourseId()%>">
+                                    <input class="add__section" type="text" name="txtSectionName" placeholder="Add course's section">
+                                    <button class="btn__addSection" type="submit" name="action" value="CreateSection">Add section</button>
+                                </form>
+                            </button>
+                        </h2>
+                        <div
+                            id="panelsStayOpen-collapse1"
+                            class="accordion-collapse collapse show"
+                            aria-labelledby="panelsStayOpen-heading1"
+                            >
+                            <div class="accordion-body">
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </section>
+            <!--            <div class="btn__submit">
+                            <button class="enrollBtn" type="submit" name="action" value="EditCourse" onclick="submit_form('edit')">Save change</button>
+                            <a href="MainController?action=EditCourse">Meow</a>
+                            <input type="submit" class="btn btn-primary" name="action" value="EditCourse">
+                        </div>-->
         </div>
         <!-- Footer -->
         <!-- Footer -->
         <script>
-            function openTopic(id) {
-                location.href = "editTopicContent.jsp?topicId=" + id;
-            }
-            function deleteTopic(id) {
+                                                function openTopic(id) {
+                                                    location.href = "editTopicContent.jsp?topicId=" + id;
+                                                }
+                                                function deleteTopic(id) {
 
-            }
-            function editSection(id) {
-                document.getElementById(id).disabled = false;
-                document.getElementById(id).style.border = "1px solid grey";
-                document.getElementById("edit-" + id).style.display = "none";
-                document.getElementById("save-" + id).style.display = "block";
-                document.getElementById("delete-" + id).style.display = "none";
-            }
-            function saveSection(id) {
-                document.getElementById(id).disabled = true;
-                document.getElementById(id).style.border = "none";
-                document.getElementById(id).style.backgroundColor = "inherit";
-                document.getElementById("edit-" + id).style.display = "block";
-                document.getElementById("save-" + id).style.display = "none";
-                document.getElementById("delete-" + id).style.display = "block";
-            }
-            function editTopic(id) {
-                document.getElementById(id).disabled = false;
-                document.getElementById(id).style.border = "1px solid grey";
-                document.getElementById("edit-" + id).style.display = "none";
-                document.getElementById("save-" + id).style.display = "inline-block";
-                document.getElementById("delete-" + id).style.display = "none";
-                document.getElementById("open-" + id).style.display = "none";
-            }
-            function saveTopic(id) {
-                document.getElementById(id).disabled = true;
-                document.getElementById(id).style.border = "none";
-                document.getElementById(id).style.backgroundColor = "inherit";
-                document.getElementById("edit-" + id).style.display = "inline-block";
-                document.getElementById("save-" + id).style.display = "none";
-                document.getElementById("delete-" + id).style.display = "inline-block";
-                document.getElementById("open-" + id).style.display = "inline-block";
-            }
-            function editDes(id) {
-                document.getElementById(id).disabled = false;
-                document.getElementById(id).style.border = "1px solid grey";
-                document.getElementById("edit-" + id).style.display = "none";
-                document.getElementById("save-" + id).style.display = "inline-block";
-            }
-            function saveDes(id) {
-                document.getElementById(id).disabled = true;
-                document.getElementById(id).style.border = "none";
-                document.getElementById("edit-" + id).style.display = "inline-block";
-                document.getElementById("save-" + id).style.display = "none";
-            }
+                                                }
+                                                function editSection(id) {
+                                                    document.getElementById(id).disabled = false;
+                                                    document.getElementById(id).style.border = "1px solid grey";
+                                                    document.getElementById("edit-" + id).style.display = "none";
+                                                    document.getElementById("save-" + id).style.display = "block";
+                                                    document.getElementById("delete-" + id).style.display = "none";
+                                                }
+                                                function saveSection(id) {
+                                                    document.getElementById(id).disabled = true;
+                                                    document.getElementById(id).style.border = "none";
+                                                    document.getElementById(id).style.backgroundColor = "inherit";
+                                                    document.getElementById("edit-" + id).style.display = "block";
+                                                    document.getElementById("save-" + id).style.display = "none";
+                                                    document.getElementById("delete-" + id).style.display = "block";
+                                                }
+                                                function editTopic(id) {
+                                                    document.getElementById(id).disabled = false;
+                                                    document.getElementById(id).style.border = "1px solid grey";
+                                                    document.getElementById("edit-" + id).style.display = "none";
+                                                    document.getElementById("save-" + id).style.display = "inline-block";
+                                                    document.getElementById("delete-" + id).style.display = "none";
+                                                    document.getElementById("open-" + id).style.display = "none";
+                                                }
+                                                function saveTopic(id) {
+                                                    document.getElementById(id).disabled = true;
+                                                    document.getElementById(id).style.border = "none";
+                                                    document.getElementById(id).style.backgroundColor = "inherit";
+                                                    document.getElementById("edit-" + id).style.display = "inline-block";
+                                                    document.getElementById("save-" + id).style.display = "none";
+                                                    document.getElementById("delete-" + id).style.display = "inline-block";
+                                                    document.getElementById("open-" + id).style.display = "inline-block";
+                                                }
+                                                function editDes(id) {
+                                                    document.getElementById(id).disabled = false;
+                                                    document.getElementById(id).style.border = "1px solid grey";
+                                                    document.getElementById("edit-" + id).style.display = "none";
+                                                    document.getElementById("save-" + id).style.display = "inline-block";
+                                                }
+                                                function saveDes(id) {
+                                                    document.getElementById(id).disabled = true;
+                                                    document.getElementById(id).style.border = "none";
+                                                    document.getElementById("edit-" + id).style.display = "inline-block";
+                                                    document.getElementById("save-" + id).style.display = "none";
+                                                }
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </script>
@@ -350,10 +371,10 @@
         crossorigin="anonymous"
     ></script>
     <script>
-            function submit_form(form_id) {
-                var form = document.getElementById(form_id);
-                form.submit();
-            }
+                                                function submit_form(form_id) {
+                                                    var form = document.getElementById(form_id);
+                                                    form.submit();
+                                                }
     </script>
 </body>
 </html>

@@ -28,7 +28,8 @@ import students.StudentModel;
 public class LoginGoogleAuthorController extends HttpServlet {
 
     private final String HOME = "home.jsp";
-    private final String LOGIN = "login.jsp";
+    private final String AUTHOR_HOME_PAGE = "landing.jsp";
+    private final String LOGIN = "loginAuthor.jsp";
 
     private static final long serialVersionUID = 1L;
 
@@ -55,21 +56,16 @@ public class LoginGoogleAuthorController extends HttpServlet {
                 AuthorDTO author = null;
                 AuthorBUS authorBUS = new AuthorBUS();
                 author = AuthorDAO.loginAuthor(email);
-//                StudentBUS studentBUS = new StudentBUS();
-//                StudentModel studentUser = studentBUS.checkLogin(email);
                 if (author == null) {
-                    boolean result = AuthorDAO.addAuthor(email, email, email.split("@")[0]);
-                    url = HOME;
-                    HttpSession session = request.getSession();
-                    session.setAttribute("LOGIN_AUTHOR", author);
+                    url = LOGIN;
                 } else {
-                    url = HOME;
+                    url = AUTHOR_HOME_PAGE;
                     HttpSession session = request.getSession();
                     session.setAttribute("LOGIN_AUTHOR", author);
                 }
             }
-        } catch (IOException | SQLException | ServletException e) {
-            System.out.println("Error at LoginGoogleController: " + e.toString());
+        } catch (IOException | ServletException e) {
+            System.out.println("Error at LoginGoogleAuthorController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

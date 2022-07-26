@@ -21,7 +21,7 @@ import topics.TopicDAO;
 public class test {
 
     public static void main(String[] args) throws SQLException {
-        boolean result = TopicDAO.createTopic(1, 1, "ABC", "", "Active", 9);
+        boolean result = CourseDAO.editCourseDuration(1, 1.9);
         if (result == true) {
             System.out.println("Ok");
         } else {

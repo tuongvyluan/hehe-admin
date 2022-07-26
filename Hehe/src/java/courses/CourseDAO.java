@@ -342,17 +342,15 @@ public class CourseDAO {
         return true;
     }
 
-    public static boolean editCourse(int courseId, int newCategoryId, String newName, String newDescription, double newDuration) {
+    public static boolean editCourse(int courseId, int newCategoryId, double newDuration) {
         Connection cn = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-                String sql = "UPDATE Course SET CategoryId = ?, Name = ?, Description = ?, Duration = ? "
+                String sql = "UPDATE Course SET CategoryId = ?, Duration = ? "
                         + "WHERE Id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, newCategoryId);
-                pst.setString(2, newName);
-                pst.setString(3, newDescription);
                 pst.setDouble(4, newDuration);
                 pst.setInt(5, courseId);
                 int rs = pst.executeUpdate();
@@ -373,6 +371,44 @@ public class CourseDAO {
                 String sql = "UPDATE Course SET Name = ? WHERE Id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, newName);
+                pst.setInt(2, courseId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean editCourseDuration(int courseId, double duration) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Course SET Duration = ? WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setDouble(1, duration);
+                pst.setInt(2, courseId);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean editCourseCategory(int courseId, int newCategoryId) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Course SET CategoryId = ? WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, newCategoryId);
                 pst.setInt(2, courseId);
                 int rs = pst.executeUpdate();
                 cn.close();

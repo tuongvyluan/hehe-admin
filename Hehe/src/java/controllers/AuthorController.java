@@ -38,18 +38,18 @@ public class AuthorController extends HttpServlet {
             String password = request.getParameter("password");
             String url = null;
             switch (action) {
-//                case LOGIN_AUTHOR: {
-//                    session = request.getSession();
-//                    author = AuthorDAO.loginAuthor(email, password);
-//                    if (author != null) {
-//                        session.setAttribute("LOGIN_AUTHOR", author);
-//                        url = AUTHOR_HOME_PAGE;
-//                    } else {
-//                        request.setAttribute("ERROR", "Invalid Username or Password");
-//                        url = LOGIN;
-//                    }
-//                    break;
-//                }
+                case LOGIN_AUTHOR: {
+                    session = request.getSession();
+                    author = AuthorDAO.loginAuthor(email, password);
+                    if (author != null) {
+                        session.setAttribute("LOGIN_AUTHOR", author);
+                        url = AUTHOR_HOME_PAGE;
+                    } else {
+                        request.setAttribute("ERROR", "Invalid Username or Password");
+                        url = LOGIN;
+                    }
+                    break;
+                }
 
                 case LOG_OUT: {
                     session = request.getSession();
@@ -59,26 +59,6 @@ public class AuthorController extends HttpServlet {
                     }
                     break;
                 }
-
-//                case CHANGE_PASSWORD: {
-//                    
-//                    author = (AuthorDTO) session.getAttribute("LOGIN_AUTHOR");
-//                    String currentPass = request.getParameter("currentPassword");
-//                    String newPass = request.getParameter("newPassword");
-//                    String confirmPass = request.getParameter("confirmPassword");
-//                    if (author.getPassword().equalsIgnoreCase(currentPass)) {
-//                        if (newPass.equals(confirmPass)) {
-//                            AuthorDAO.changePassword(author.getAuthorId(), newPass);
-//                            url = AUTHOR_HOME_PAGE;
-//                        } else {
-//                            url = ERROR;
-//                        }
-//                    } else {
-//                        session.setAttribute("ERROR_CHANGE_PASSWORD", "Current password is wrong.");
-//                        url = CHANGE_PASSWORD_PAGE;
-//                    }
-//                    break;
-//                }
             }
             request.getRequestDispatcher(url).forward(request, response);
         }
