@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import authors.AuthorDAO;
 import courses.CourseBUS;
 import courses.CourseDAO;
 import courses.CourseDTO;
@@ -21,11 +22,11 @@ import topics.TopicDAO;
 public class test {
 
     public static void main(String[] args) throws SQLException {
-        boolean result = CourseDAO.editCourseDuration(1, 1.9);
+        boolean result = AuthorDAO.changePassword(1, "123");
         if (result == true) {
             System.out.println("Ok");
         } else {
-            System.out.println("Cc");
+            System.out.println("Ko");
         }
     }
 }

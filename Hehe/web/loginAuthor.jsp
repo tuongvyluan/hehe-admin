@@ -70,10 +70,15 @@
                             </div>
                         </div>
                     </form>
+                    <div class="txt1 text-center p-t-30 p-b-20">
+                        <span>
+                            Or Login Using
+                        </span>
+                    </div>
                     <div class="flex-c-m">
                         <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/Hehe-admin/login-google-author&response_type=code
                            &client_id=894467286073-gu13he3q90ma2on3nfjigafidbtvpgur.apps.googleusercontent.com&approval_prompt=force" class="login100-social-item bg3" style="text-decoration: none;">
-                            <i class="fa-brands fa-google"></i>
+                            <i class="fa fa-google"></i>
                         </a>
                     </div>
                 </div>

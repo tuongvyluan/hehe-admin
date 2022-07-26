@@ -59,6 +59,24 @@ public class AuthorController extends HttpServlet {
                     }
                     break;
                 }
+                
+                case CHANGE_PASSWORD: {
+                    int authorId = Integer.parseInt(request.getParameter("authorId"));
+                    String newPassword = request.getParameter("newPassword");
+                    String confirmPassword = request.getParameter("confirmPassword");
+                    if (newPassword.equals(confirmPassword)) {
+                        boolean result = AuthorDAO.changePassword(authorId, newPassword);
+                        if (result == true) {
+                            url = AUTHOR_HOME_PAGE;
+                        } else {
+                            url = ERROR;
+                        }
+                    } else {
+                        request.setAttribute("ERROR_CHANGE_PASSWORD", "New password and confirmation is different.");
+                        url = CHANGE_PASSWORD_PAGE;
+                    }                   
+                    break;
+                }
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

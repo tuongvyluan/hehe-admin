@@ -67,33 +67,33 @@
 
                         <br>
                         <%
-                                    String login_msg = (String) request.getAttribute("error");
-                                    if (login_msg != null) {
-                                        out.println("<font color=red size=4px>" + login_msg + "</font>");
-                                    }
-                                %>
+                            String login_msg = (String) request.getAttribute("error");
+                            if (login_msg != null) {
+                                out.println("<font color=red size=4px>" + login_msg + "</font>");
+                            }
+                        %>
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
-                                
+
                                 <button type="submit" class="login100-form-btn">
                                     Login
                                 </button>
                             </div>
                         </div>
-                        
-                         <div class="txt1 text-center p-t-30 p-b-20">
-              <span>
-                Or Login Using
-              </span>
-            </div>
 
-            <div class="flex-c-m">
-              <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/Hehe-admin/login-google-admin&response_type=code
-                                       &client_id=894467286073-gu13he3q90ma2on3nfjigafidbtvpgur.apps.googleusercontent.com&approval_prompt=force" class="login100-social-item bg3">
-                <i class="fa fa-google"></i>
-              </a>
-            </div>
+                        <div class="txt1 text-center p-t-30 p-b-20">
+                            <span>
+                                Or Login Using
+                            </span>
+                        </div>
+
+                        <div class="flex-c-m">
+                            <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/Hehe-admin/login-google-admin&response_type=code
+                               &client_id=894467286073-gu13he3q90ma2on3nfjigafidbtvpgur.apps.googleusercontent.com&approval_prompt=force" class="login100-social-item bg3">
+                                <i class="fa fa-google"></i>
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>

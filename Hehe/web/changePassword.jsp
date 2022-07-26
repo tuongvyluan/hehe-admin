@@ -96,19 +96,31 @@
         <div class="home">
             <%
                 AuthorDTO author = (AuthorDTO) session.getAttribute("LOGIN_AUTHOR");
-                String error = (String) session.getAttribute("ERROR_CHANGE_PASSWORD");
+                String error = (String) request.getAttribute("ERROR_CHANGE_PASSWORD");
                 int authorId = author.getAuthorId();
             %>
-            <form action="MainController" method="POST">
-                <input type="hidden" name="authorId" value="<%= authorId %>">
-                <label>Current password</label>
-                <input type="password" name="currentPassword">
-                <label>New password</label>
-                <input type="password" name="newPassword">
-                <label>Confirm password</label>
-                <input type="password" name="confirmPassword">
-                <button type="submit" name="action" value="ChangePassword">Submit</button>
+            <div class="container">
+                <form action="MainController" method="POST">
+                <input type="hidden" name="check" value="0">
+                <input type="hidden" name="authorId" value="<%= authorId%>">
+                <label><h1>New password </h1></label>
+                <input class="form-control" type="password" name="newPassword">
+                <br>
+                <label><h1>Confirm password </h1></label>
+                <input class="form-control" type="password" name="confirmPassword">
+                <br>
+                <button style="font-size: 20px" class="btn btn-primary" type="submit" name="action" value="ChangePassword">Submit</button>
             </form>
+            </div>
+            <%
+                if (error != null) {
+            %>
+            <script>
+                window.alert("New password and confirmation must be the same.");
+            </script>
+            <%
+                }
+            %>
         </div>
     </body>
 </html>

@@ -45,7 +45,7 @@
 
         <title>Author Home Page</title>
     </head>
-    <body>
+    <body onload="addColor()">
         <nav class="sidebar">
             <header>
                 <div class="image-text">
@@ -156,6 +156,37 @@
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"
         ></script>
+        <script>
+    const colorRandom = document.querySelectorAll(".overlay");
+    const backgroundPink =
+      "linear-gradient(to top left, #1877f2 0%, #FF6CB0 80%)";
+    const backgroundBlue =
+      "linear-gradient(to top left, #1877f2 0%, #66ffff  80%)";
+    const backgroundYellow =
+      "linear-gradient(to top left, #1877f2 0%, #F9F871  80%)";
+    const backgroundGreen =
+      "linear-gradient(to top left, #1877f2 0%, #6EFACC 80%)";
+    const backgroundViolet =
+      "linear-gradient(to top left, #1877f2 0%, #CB6BDF 80%)";
+    const backgroundRed =
+      "linear-gradient(to top left, #1877f2 0%, #FF907E 80%)";
+    const backColor = [
+      backgroundPink,
+      backgroundBlue,
+      backgroundRed,
+      backgroundYellow,
+      backgroundGreen,
+      backgroundViolet,
+    ];
+
+    function addColor() {
+      let x = 0;
+      colorRandom.forEach((e) => {
+        e.style.background = backColor[x % 6];
+        x = x + 1;
+      });
+    }
+  </script>
     </body>
 </html>
 

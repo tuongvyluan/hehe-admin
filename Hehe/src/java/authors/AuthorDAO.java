@@ -195,47 +195,22 @@ public class AuthorDAO {
         return check;
     }
     
-//    public static AuthorDTO comparePassword(int id, String Password)  {
-//        Connection cn = null;
-//        AuthorDTO acc = null;
-//        try {
-//            cn = DBUtils.getConnection();
-//            if (cn != null) {
-//                String sql = "SELECT Password FROM Author WHERE [Email] = ? and [Password] = ?";
-//                PreparedStatement pst = cn.prepareStatement(sql);
-//                pst.setString(1, email);
-//                pst.setString(2, password);
-//                ResultSet rs = pst.executeQuery();
-//                if (rs.next()) {
-//                    int id = rs.getInt("Id");
-//                    String firstName = rs.getString("FirstName");
-//                    String lastName = rs.getString("LastName");
-//                    String phoneNumber = rs.getString("PhoneNumber");
-//                    acc = new AuthorDTO(id, password, firstName, lastName, email, phoneNumber);
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return acc;
-//    }
-    
-    public static AuthorDTO changePassword(int id, String newPassword)  {
+    public static boolean changePassword(int authorId, String newPassword) {
         Connection cn = null;
-        AuthorDTO acc = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
                 String sql = "UPDATE Author SET Password = ? WHERE Id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setInt(1, id);
-                pst.setString(2, newPassword);
+                pst.setString(1, newPassword);
+                pst.setInt(2, authorId);
                 int rs = pst.executeUpdate();
                 cn.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        return acc;
+        return true;
     }
 }
