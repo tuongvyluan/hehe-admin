@@ -4,8 +4,10 @@
  */
 package controllers;
 
+import admin.AdminDTO;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +20,11 @@ import students.StudentDTO;
  *
  * @author Luan Tuong Vy
  */
+@WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
 
     // Controller param
+    private final String ADMIN = "Admin";
     private final String STUDENT = "Student";
     private final String AUTHOR = "Author";
     private final String COURSE = "Course";
@@ -51,10 +55,10 @@ public class MainController extends HttpServlet {
     private final String ADD_ANSWER_TO_QUIZ = "AddAnswerToQuiz";
     private final String LOG_OUT = "Logout";
     private final String CHANGE_PASSWORD = "ChangePassword";
+    
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
-    private final String STUDENT_CONTROLLER = "StudentController";
     private final String AUTHOR_CONTROLLER = "AuthorController";
     private final String COURSE_CONTROLLER = "CourseController";
     private final String SECTION_CONTROLLER = "SectionController";
@@ -70,23 +74,10 @@ public class MainController extends HttpServlet {
         HttpSession session = request.getSession();
         StudentDTO currentStudent = (StudentDTO) session.getAttribute("LOGIN_STUDENT");
         try {
-            String controller = request.getParameter("action");
-            switch (controller) {
-                case STUDENT: {
-                    url = STUDENT_CONTROLLER;
-                    break;
-                }
+            String controller = request.getParameter("controller");
+            System.out.println("controller: " + controller);
 
-                case AUTHOR: {
-                    url = AUTHOR_CONTROLLER;
-                    break;
-                }
-
-                case COURSE: {
-                    url = COURSE_CONTROLLER;
-                    break;
-                }
-                
+            switch (controller) {                
                 case LOGIN_AUTHOR:{
                     url = AUTHOR_CONTROLLER;
                     break;

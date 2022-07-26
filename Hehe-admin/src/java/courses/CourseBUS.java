@@ -6,6 +6,7 @@ package courses;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -34,16 +35,28 @@ public class CourseBUS {
         courseModel = dao.get(courseId);
         return courseModel;
     }
-    
+
     public ArrayList<CourseDTO> getCoursesByAuthor(int authorId) throws SQLException {
         dao = new CourseDAO();
         ArrayList<CourseDTO> list = dao.getByAuthor(authorId);
         return list;
     }
-    
+
     public ArrayList<CourseDTO> getCoursesByAuthorCate(int authorId, int categoryId) throws SQLException {
         dao = new CourseDAO();
         ArrayList<CourseDTO> list = dao.getByAuthorCate(authorId, categoryId);
+        return list;
+    }
+
+    public CourseDTO getCourse(int id) {
+        CourseDTO crs = null;
+        // TODO Auto-generated method stub
+        return crs;
+    }
+
+    public List<CourseModel> get(int pageNumber, int rowsOfPage) throws SQLException {
+        CourseDAO crs = new CourseDAO();
+        List<CourseModel> list = crs.getModels(pageNumber, rowsOfPage);
         return list;
     }
 }

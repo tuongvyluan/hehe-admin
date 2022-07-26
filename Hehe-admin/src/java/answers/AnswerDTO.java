@@ -1,7 +1,6 @@
 package answers;
 
 public class AnswerDTO {
-
     int answerId;
     int quizId;
     String content;

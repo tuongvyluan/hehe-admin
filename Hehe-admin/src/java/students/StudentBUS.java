@@ -1,6 +1,7 @@
 package students;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,5 +49,11 @@ public class StudentBUS {
             }
         }
         return error;
+    }
+
+    public List<StudentModel> get(int pageNumber, int rowsOfPage) throws SQLException {
+        StudentDAO stu = new StudentDAO();
+        List<StudentModel> list = stu.get(pageNumber, rowsOfPage);
+        return list;
     }
 }

@@ -17,42 +17,44 @@ import utils.DBUtils;
  */
 public class AdminDAO {
 
-//    public static AdminDTO getAdmin(String Email, String Password) {
-//        Connection cn = null;
-//        AdminDTO acc = null;
-//        try {
-//            cn = DBUtils.getConnection();
-//            if (cn != null) {
-//                String sql = "SELECT FirstName, LastName, Email, Password, PhoneNumber, "
-//                        + "Status FROM Author WHERE [Email] = ? and [Password] = ?";
-//                PreparedStatement pst = cn.prepareStatement(sql);
-//                pst.setString(1, Email);
-//                pst.setString(2, Password);
-//                ResultSet rs = pst.executeQuery();
-//                if (rs.next()) {
-//                    int AccID = rs.getInt("Id");
-//                    acc = new AdminDTO(AccID, Email);
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return acc;
-//    }
-
-    public static AdminDTO loginAdmin(String email) {
+    public static AdminDTO loginAdmin(String Email, String Password) {
         Connection cn = null;
         AdminDTO acc = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-                String sql = "SELECT Id, Email Status FROM Admin WHERE [Email] = ?";
+                String sql = "select * from Admin where [Email] = ? and "
+                        + "[Password] = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, email);
+                pst.setString(1, Email);
+                pst.setString(2, Password);
                 ResultSet rs = pst.executeQuery();
                 if (rs.next()) {
-                    int id = rs.getInt("Id");
-                    acc = new AdminDTO(id, email);
+                    int AccID = rs.getInt("Id");
+                    acc = new AdminDTO(AccID, Email, Password);
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return acc;
+    }
+    
+    public static AdminDTO loginAdmin(String Email) {
+        Connection cn = null;
+        AdminDTO acc = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "select * from Admin where [Email] = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, Email);
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()) {
+                    int AccID = rs.getInt("Id");
+                    acc = new AdminDTO(AccID, Email);
+
                 }
             }
         } catch (Exception e) {

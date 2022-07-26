@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/AuthorController.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/categories/CategoryDAO.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/courses/CourseBUS.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/courses/CourseDAO.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/loginAdmin.jsp</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/authors/AuthorBUS.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/register.jsp</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/admin/AdminDAO.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/LoginGoogleAdminController.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/utils/DBUtils.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/MainControllerAdmin.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/admin/AdminDTO.java</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/MainController.java</file>
+        </group>
     </open-files>
 </project-private>

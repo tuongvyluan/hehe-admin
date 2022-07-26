@@ -37,6 +37,15 @@ public class StudentModel {
         this.updatedAt = updatedAt;
     }
 
+    public StudentModel(int id, String firstName, String lastName, String email, String phoneNumber, String status) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.status = status;
+    }
+
     public StudentModel(String firstName, String lastName, LocalDate dob, String email, String password, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -1,5 +1,7 @@
 package authors;
 
+import java.time.LocalDate;
+
 public class AuthorModel {
 
     private int authorId;
@@ -8,20 +10,32 @@ public class AuthorModel {
     private String phoneNumber;
     private String email;
     private String password;
+    private String status;
     private String createdAt;
     private String updatedAt;
 
-    public AuthorModel(int authorId, String firstName, String lastName, String phoneName, String email,
-            String password, String createdAt, String updatedAt) {
-        super();
+    public AuthorModel(int authorId, String firstName, String lastName, String phoneNumber, String email, String password, String status, String createdAt, String updatedAt) {
         this.authorId = authorId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phoneNumber = phoneName;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
+        this.status = status;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public AuthorModel() {
+    } 
+
+    public AuthorModel(int authorId, String firstName, String lastName, String phoneNumber, String email, String status) {
+        this.authorId = authorId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.status = status;
     }
 
     public int getAuthorId() {
@@ -72,6 +86,14 @@ public class AuthorModel {
         this.password = password;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getCreatedAt() {
         return createdAt;
     }
@@ -87,9 +109,10 @@ public class AuthorModel {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
-
+    
     @Override
     public String toString() {
-        return "AuthorModel{" + "authorId=" + authorId + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneName=" + phoneNumber + ", email=" + email + ", password=" + password + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
+        return "AuthorModel{" + "authorId=" + authorId + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
     }
+
 }

@@ -46,7 +46,7 @@ public class StudentDAO {
         if (pageNumber <= 0) {
             pageNumber = 1;
         }
-        
+
         if (rowsOfPage <= 0) {
             rowsOfPage = 1;
         }
@@ -290,5 +290,86 @@ public class StudentDAO {
             }
         }
         return student;
+    }
+
+    public static boolean editStudent(int id, String newFirstName, String newLastName, String newEmail, String newPassword, String newPhoneNumber) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE Student SET  FirstName = ?, LastName = ?, Email = ?, Password = ?, PhoneNumber = ? "
+                        + "WHERE Id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, newFirstName);
+                pst.setString(2, newLastName);
+                pst.setString(3, newEmail);
+                pst.setString(4, newPassword);
+                pst.setString(5, newPhoneNumber);
+                pst.setInt(6, id);
+                int rs = pst.executeUpdate();
+                cn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean updateStudentStatus(int id, String status) {
+        Connection cn = null;
+        StudentModel stu = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "update Student set Status = ? where [Id] = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, status);
+                pst.setInt(2, id);
+                pst.executeUpdate();
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static List<StudentModel> getStudentBySearch(String name) {
+        ArrayList<StudentModel> list = new ArrayList<>();
+        Connection cn = null;
+        StudentModel stu = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "select [Id],[FirstName],[LastName],[Email],"
+                        + "[PhoneNumber],[Status] from Student where [FirstName] LIKE CONCAT('%',?,'%')";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, name);
+
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("Id");
+                    String FirstName = rs.getString("FirstName");
+                    String LastName = rs.getString("LastName");
+                    String Email = rs.getString("Email");
+                    String Status = rs.getString("Status");
+                    String Phone = rs.getString("PhoneNumber");
+                    stu = new StudentModel(id, FirstName, LastName, Email, Phone, Status);
+                    list.add(stu);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

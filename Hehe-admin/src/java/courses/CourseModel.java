@@ -1,4 +1,4 @@
-package courses;
+        package courses;
 
 public class CourseModel {
 
@@ -13,9 +13,19 @@ public class CourseModel {
     private String updatedAt;
     private double duration;
 
-    public CourseModel(int courseId, int authorId, int categoryId, String courseName, String description, String status,
-            double price, String createdAt, String updatedAt, double duration) {
-        super();
+    public CourseModel() {
+    }
+
+    public CourseModel(int courseId, String courseName, String description, String status, double price, double duration) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.description = description;
+        this.status = status;
+        this.price = price;
+        this.duration = duration;
+    }
+
+    public CourseModel(int courseId, int authorId, int categoryId, String courseName, String description, String status, double price, String createdAt, String updatedAt, double duration) {
         this.courseId = courseId;
         this.authorId = authorId;
         this.categoryId = categoryId;
@@ -25,20 +35,6 @@ public class CourseModel {
         this.price = price;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.duration = duration;
-    }
-
-    public CourseModel() {
-
-    }
-
-    public CourseModel(int courseId, int authorId, int categoryId, String courseName, String description, double price, double duration) {
-        this.courseId = courseId;
-        this.authorId = authorId;
-        this.categoryId = categoryId;
-        this.courseName = courseName;
-        this.description = description;
-        this.price = price;
         this.duration = duration;
     }
 
@@ -121,6 +117,8 @@ public class CourseModel {
     public void setDuration(double duration) {
         this.duration = duration;
     }
+
+        
 
     public CourseDTO toDTO() {
         return new CourseDTO(courseId, categoryId, courseName);

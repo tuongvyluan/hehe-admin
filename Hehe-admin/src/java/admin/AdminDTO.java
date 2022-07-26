@@ -11,6 +11,12 @@ public class AdminDTO {
         this.email = email;
     }
 
+    public AdminDTO(int adminId, String password, String email) {
+        this.adminId = adminId;
+        this.password = password;
+        this.email = email;
+    }
+
     public int getAdminId() {
         return adminId;
     }
