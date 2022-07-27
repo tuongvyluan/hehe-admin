@@ -45,7 +45,7 @@ public class LoginGoogleAdminController extends HttpServlet {
             String code = request.getParameter("code");
             System.out.println(code);
             if (code == null || code.isEmpty()) {
-                RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher(LOGIN);
                 dis.forward(request, response);
             } else {
                 String accessToken = GoogleUtils.getTokenAdmin(code);

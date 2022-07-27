@@ -11,18 +11,18 @@
             type="image/png"
             sizes="16x16"
             href="images/favicon.png"
-        />
+            />
         <!-- Pignose Calender -->
         <link
             href="./plugins/pg-calendar/css/pignose.calendar.min.css"
             rel="stylesheet"
-        />
+            />
         <!-- Chartist -->
         <link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css" />
         <link
             rel="stylesheet"
             href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css"
-        />
+            />
         <!-- Custom Stylesheet -->
         <link href="css/style_admin.css" rel="stylesheet" />
         <script
@@ -38,14 +38,14 @@
         <div id="preloader">
             <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
-                    <circle
-                        class="path"
-                        cx="50"
-                        cy="50"
-                        r="20"
-                        fill="none"
-                        stroke-width="3"
-                        stroke-miterlimit="10"
+                <circle
+                    class="path"
+                    cx="50"
+                    cy="50"
+                    r="20"
+                    fill="none"
+                    stroke-width="3"
+                    stroke-miterlimit="10"
                     />
                 </svg>
             </div>
@@ -65,17 +65,17 @@
                 <div class="brand-logo">
                     <a href="admin.jsp">
                         <span class="logo-compact"
-                            ><img
+                              ><img
                                 src="./images/logowhite-removebg-preview.png"
                                 alt=""
-                        /></span>
+                                /></span>
                         <span class="brand-title">
                             <img
                                 src="images/logowhite-removebg-preview.png"
                                 alt=""
                                 class="img-fluid"
                                 height="10rem"
-                            />
+                                />
                         </span>
                     </a>
                 </div>
@@ -92,8 +92,8 @@
                     <div class="nav-control">
                         <div class="hamburger">
                             <span class="toggle-icon"
-                                ><i class="icon-menu"></i
-                            ></span>
+                                  ><i class="icon-menu"></i
+                                ></span>
                         </div>
                     </div>
                     <div class="header-left"></div>
@@ -103,23 +103,23 @@
                                 <a
                                     href="javascript:void(0)"
                                     data-toggle="dropdown"
-                                >
+                                    >
                                     <i class="mdi mdi-email-outline"></i>
                                     <span class="badge badge-pill gradient-1"
-                                        >3</span
+                                          >3</span
                                     >
                                 </a>
                                 <div
                                     class="drop-down animated fadeIn dropdown-menu"
-                                >
+                                    >
                                     <div
                                         class="dropdown-content-heading d-flex justify-content-between"
-                                    >
+                                        >
                                         <span class="">3 New Messages</span>
                                         <a
                                             href="javascript:void()"
                                             class="d-inline-block"
-                                        >
+                                            >
                                             <span
                                                 class="badge badge-pill gradient-1"
                                                 >3</span
@@ -134,23 +134,23 @@
                                                         class="float-left mr-3 avatar-img"
                                                         src="images/avatar/1.jpg"
                                                         alt=""
-                                                    />
+                                                        />
                                                     <div
                                                         class="notification-content"
-                                                    >
+                                                        >
                                                         <div
                                                             class="notification-heading"
-                                                        >
+                                                            >
                                                             Saiful Islam
                                                         </div>
                                                         <div
                                                             class="notification-timestamp"
-                                                        >
+                                                            >
                                                             08 Hours ago
                                                         </div>
                                                         <div
                                                             class="notification-text"
-                                                        >
+                                                            >
                                                             Hi Teddy, Just
                                                             wanted to let you
                                                             ...
@@ -164,23 +164,23 @@
                                                         class="float-left mr-3 avatar-img"
                                                         src="images/avatar/2.jpg"
                                                         alt=""
-                                                    />
+                                                        />
                                                     <div
                                                         class="notification-content"
-                                                    >
+                                                        >
                                                         <div
                                                             class="notification-heading"
-                                                        >
+                                                            >
                                                             Adam Smith
                                                         </div>
                                                         <div
                                                             class="notification-timestamp"
-                                                        >
+                                                            >
                                                             08 Hours ago
                                                         </div>
                                                         <div
                                                             class="notification-text"
-                                                        >
+                                                            >
                                                             Can you do me a
                                                             favour?
                                                         </div>
@@ -193,23 +193,23 @@
                                                         class="float-left mr-3 avatar-img"
                                                         src="images/avatar/3.jpg"
                                                         alt=""
-                                                    />
+                                                        />
                                                     <div
                                                         class="notification-content"
-                                                    >
+                                                        >
                                                         <div
                                                             class="notification-heading"
-                                                        >
+                                                            >
                                                             Barak Obama
                                                         </div>
                                                         <div
                                                             class="notification-timestamp"
-                                                        >
+                                                            >
                                                             08 Hours ago
                                                         </div>
                                                         <div
                                                             class="notification-text"
-                                                        >
+                                                            >
                                                             Hi Teddy, Just
                                                             wanted to let you
                                                             ...
@@ -223,23 +223,23 @@
                                                         class="float-left mr-3 avatar-img"
                                                         src="images/avatar/4.jpg"
                                                         alt=""
-                                                    />
+                                                        />
                                                     <div
                                                         class="notification-content"
-                                                    >
+                                                        >
                                                         <div
                                                             class="notification-heading"
-                                                        >
+                                                            >
                                                             Hilari Clinton
                                                         </div>
                                                         <div
                                                             class="notification-timestamp"
-                                                        >
+                                                            >
                                                             08 Hours ago
                                                         </div>
                                                         <div
                                                             class="notification-text"
-                                                        >
+                                                            >
                                                             Hello
                                                         </div>
                                                     </div>
@@ -253,25 +253,25 @@
                                 <a
                                     href="javascript:void(0)"
                                     data-toggle="dropdown"
-                                >
+                                    >
                                     <i class="mdi mdi-bell-outline"></i>
                                     <span class="badge badge-pill gradient-2"
-                                        >3</span
+                                          >3</span
                                     >
                                 </a>
                                 <div
                                     class="drop-down animated fadeIn dropdown-menu dropdown-notfication"
-                                >
+                                    >
                                     <div
                                         class="dropdown-content-heading d-flex justify-content-between"
-                                    >
+                                        >
                                         <span class=""
-                                            >2 New Notifications</span
+                                              >2 New Notifications</span
                                         >
                                         <a
                                             href="javascript:void()"
                                             class="d-inline-block"
-                                        >
+                                            >
                                             <span
                                                 class="badge badge-pill gradient-2"
                                                 >5</span
@@ -286,14 +286,14 @@
                                                         class="mr-3 avatar-icon bg-success-lighten-2"
                                                         ><i
                                                             class="icon-present"
-                                                        ></i
-                                                    ></span>
+                                                            ></i
+                                                        ></span>
                                                     <div
                                                         class="notification-content"
-                                                    >
+                                                        >
                                                         <h6
                                                             class="notification-heading"
-                                                        >
+                                                            >
                                                             Events near you
                                                         </h6>
                                                         <span
@@ -310,14 +310,14 @@
                                                         class="mr-3 avatar-icon bg-danger-lighten-2"
                                                         ><i
                                                             class="icon-present"
-                                                        ></i
-                                                    ></span>
+                                                            ></i
+                                                        ></span>
                                                     <div
                                                         class="notification-content"
-                                                    >
+                                                        >
                                                         <h6
                                                             class="notification-heading"
-                                                        >
+                                                            >
                                                             Event Started
                                                         </h6>
                                                         <span
@@ -333,14 +333,14 @@
                                                         class="mr-3 avatar-icon bg-success-lighten-2"
                                                         ><i
                                                             class="icon-present"
-                                                        ></i
-                                                    ></span>
+                                                            ></i
+                                                        ></span>
                                                     <div
                                                         class="notification-content"
-                                                    >
+                                                        >
                                                         <h6
                                                             class="notification-heading"
-                                                        >
+                                                            >
                                                             Event Ended
                                                             Successfully
                                                         </h6>
@@ -357,14 +357,14 @@
                                                         class="mr-3 avatar-icon bg-danger-lighten-2"
                                                         ><i
                                                             class="icon-present"
-                                                        ></i
-                                                    ></span>
+                                                            ></i
+                                                        ></span>
                                                     <div
                                                         class="notification-content"
-                                                    >
+                                                        >
                                                         <h6
                                                             class="notification-heading"
-                                                        >
+                                                            >
                                                             Events to Join
                                                         </h6>
                                                         <span
@@ -384,26 +384,26 @@
                                     href="javascript:void(0)"
                                     class="log-user"
                                     data-toggle="dropdown"
-                                >
+                                    >
                                     <span>English</span>
                                     <i
                                         class="fa fa-angle-down f-s-14"
                                         aria-hidden="true"
-                                    ></i>
+                                        ></i>
                                 </a>
                                 <div
                                     class="drop-down dropdown-language animated fadeIn dropdown-menu"
-                                >
+                                    >
                                     <div class="dropdown-content-body">
                                         <ul>
                                             <li>
                                                 <a href="javascript:void()"
-                                                    >English</a
+                                                   >English</a
                                                 >
                                             </li>
                                             <li>
                                                 <a href="javascript:void()"
-                                                    >Dutch</a
+                                                   >Dutch</a
                                                 >
                                             </li>
                                         </ul>
@@ -414,23 +414,23 @@
                                 <div
                                     class="user-img c-pointer position-relative"
                                     data-toggle="dropdown"
-                                >
+                                    >
                                     <span class="activity active"></span>
                                     <img
                                         src="images/hehe.png"
                                         height="40"
                                         width="40"
                                         alt=""
-                                    />
+                                        />
                                 </div>
                                 <div
                                     class="drop-down dropdown-profile animated fadeIn dropdown-menu"
-                                >
+                                    >
                                     <div class="dropdown-content-body">
                                         <ul>
                                             <li>
                                                 <a href="app-profile.html"
-                                                    ><i class="icon-user"></i>
+                                                   ><i class="icon-user"></i>
                                                     <span>Profile</span></a
                                                 >
                                             </li>
@@ -438,11 +438,11 @@
                                                 <a href="javascript:void()">
                                                     <i
                                                         class="icon-envelope-open"
-                                                    ></i>
+                                                        ></i>
                                                     <span>Inbox</span>
                                                     <div
                                                         class="badge gradient-3 badge-pill gradient-1"
-                                                    >
+                                                        >
                                                         3
                                                     </div>
                                                 </a>
@@ -451,7 +451,7 @@
                                             <!--                                            <hr class="my-2">-->
                                             <li>
                                                 <a href="page-lock.html"
-                                                    ><i class="icon-lock"></i>
+                                                   ><i class="icon-lock"></i>
                                                     <span>Lock Screen</span></a
                                                 >
                                             </li>
@@ -483,24 +483,24 @@
                         name="ViewStudent"
                         action="MainControllerAdmin"
                         method="POST"
-                    >
+                        >
                         <input
                             type="hidden"
                             name="action"
                             value="ViewStudent"
-                        />
+                            />
                         <input
                             type="hidden"
                             name="controller"
                             value="Student"
-                        />
+                            />
                         <input
                             type="hidden"
                             name="search"
                             value="${requestScope.search}"
-                        />
+                            />
                         <input type="hidden" name="pageNumber" value="1" />
-                        <input type="hidden" name="rowsOfPage" value="15" />
+                        <input type="hidden" name="rowsOfPage" value="200" />
                     </form>
                     <ul class="metismenu" id="menu">
                         <li class="nav-label">Dashboard</li>
@@ -517,40 +517,40 @@
                                 method="POST"
                                 id="duong"
                                 aria-expanded="false"
-                            >
+                                >
                                 <input
                                     type="hidden"
                                     name="action"
                                     value="ViewStudent"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="controller"
                                     value="Student"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="search"
                                     value="${requestScope.search}"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="pageNumber"
                                     value="1"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="rowsOfPage"
-                                    value="15"
-                                />
+                                    value="200"
+                                    />
                             </form>
                             <a
                                 onClick="submit_form('duong')"
                                 aria-expanded="false"
-                            >
+                                >
                                 <i class="icon-user menu-icon"></i
                                 ><span class="nav-text"
-                                    >Student management</span
+                                       >Student management</span
                                 >
                             </a>
                         </li>
@@ -561,37 +561,37 @@
                                 method="POST"
                                 id="author"
                                 aria-expanded="false"
-                            >
+                                >
                                 <input
                                     type="hidden"
                                     name="action"
                                     value="ViewAuthor"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="controller"
                                     value="Author"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="search"
                                     value="${requestScope.search}"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="pageNumber"
                                     value="1"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="rowsOfPage"
-                                    value="15"
-                                />
+                                    value="200"
+                                    />
                             </form>
                             <a
                                 onClick="submit_form('author')"
                                 aria-expanded="false"
-                            >
+                                >
                                 <i class="icon-user menu-icon"></i
                                 ><span class="nav-text">Author management</span>
                             </a>
@@ -603,37 +603,37 @@
                                 method="POST"
                                 id="course"
                                 aria-expanded="false"
-                            >
+                                >
                                 <input
                                     type="hidden"
                                     name="action"
                                     value="ViewCourse"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="controller"
                                     value="Course"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="search"
                                     value="${requestScope.search}"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="pageNumber"
                                     value="1"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="rowsOfPage"
-                                    value="15"
-                                />
+                                    value="200"
+                                    />
                             </form>
                             <a
                                 onClick="submit_form('course')"
                                 aria-expanded="false"
-                            >
+                                >
                                 <i class="icon-user menu-icon"></i
                                 ><span class="nav-text">Course management</span>
                             </a>
@@ -645,40 +645,40 @@
                                 method="POST"
                                 id="category"
                                 aria-expanded="false"
-                            >
+                                >
                                 <input
                                     type="hidden"
                                     name="action"
                                     value="ViewCategory"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="controller"
                                     value="Category"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="search"
                                     value="${requestScope.search}"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="pageNumber"
                                     value="1"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="rowsOfPage"
-                                    value="15"
-                                />
+                                    value="200"
+                                    />
                             </form>
                             <a
                                 onClick="submit_form('category')"
                                 aria-expanded="false"
-                            >
+                                >
                                 <i class="icon-user menu-icon"></i
                                 ><span class="nav-text"
-                                    >Category management</span
+                                       >Category management</span
                                 >
                             </a>
                         </li>
@@ -722,9 +722,9 @@
                                     </div>
                                     <span
                                         class="float-right display-5 opacity-5"
-                                    >
+                                        >
                                         <i class="fa fa-book"></i
-                                    ></span>
+                                        ></span>
                                 </div>
                             </div>
                         </div>
@@ -743,7 +743,7 @@
                                     <span
                                         class="float-right display-5 opacity-5"
                                         ><i class="fa fa-bar-chart"></i
-                                    ></span>
+                                        ></span>
                                 </div>
                             </div>
                         </div>
@@ -762,7 +762,7 @@
                                     <span
                                         class="float-right display-5 opacity-5"
                                         ><i class="fa fa-users"></i
-                                    ></span>
+                                        ></span>
                                 </div>
                             </div>
                         </div>
@@ -781,7 +781,7 @@
                                     <span
                                         class="float-right display-5 opacity-5"
                                         ><i class="fa fa-heart"></i
-                                    ></span>
+                                        ></span>
                                 </div>
                             </div>
                         </div>
@@ -793,7 +793,7 @@
                                 class="form-control"
                                 placeholder="Search Dashboard"
                                 aria-label="Search Dashboard"
-                            />
+                                />
                             <div class="drop-down animated flipInX d-md-none">
                                 <input
                                     type="text"
@@ -801,33 +801,33 @@
                                     value="${requestScope.search}"
                                     class="form-control"
                                     placeholder="Search"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="action"
                                     value="ViewStudent"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="controller"
                                     value="Student"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="pageNumber"
                                     value="1"
-                                />
+                                    />
                                 <input
                                     type="hidden"
                                     name="rowsOfPage"
                                     value="15"
-                                />
+                                    />
                             </div>
                             <input
                                 class="btn btn-primary m-1"
                                 type="submit"
                                 value="Search"
-                            /><br />${requestScope.errorNotFound}
+                                /><br />${requestScope.errorNotFound}
                         </div>
                         <!--<input type="text" name="txtSearch">
                         <input type="submit" name="action" value="Search_Account"><br/>${requestScope.errorNotFound}-->
@@ -881,16 +881,16 @@
                             <div class="card">
                                 <div
                                     class="social-graph-wrapper widget-facebook"
-                                >
+                                    >
                                     <span class="s-icon"
-                                        ><i class="fa fa-facebook"></i
-                                    ></span>
+                                          ><i class="fa fa-facebook"></i
+                                        ></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-6 border-right">
                                         <div
                                             class="pt-3 pb-3 pl-0 pr-0 text-center"
-                                        >
+                                            >
                                             <h4 class="m-1">89k</h4>
                                             <p class="m-0">Friends</p>
                                         </div>
@@ -898,7 +898,7 @@
                                     <div class="col-6">
                                         <div
                                             class="pt-3 pb-3 pl-0 pr-0 text-center"
-                                        >
+                                            >
                                             <h4 class="m-1">119k</h4>
                                             <p class="m-0">Followers</p>
                                         </div>
@@ -910,16 +910,16 @@
                             <div class="card">
                                 <div
                                     class="social-graph-wrapper widget-linkedin"
-                                >
+                                    >
                                     <span class="s-icon"
-                                        ><i class="fa fa-linkedin"></i
-                                    ></span>
+                                          ><i class="fa fa-linkedin"></i
+                                        ></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-6 border-right">
                                         <div
                                             class="pt-3 pb-3 pl-0 pr-0 text-center"
-                                        >
+                                            >
                                             <h4 class="m-1">89k</h4>
                                             <p class="m-0">Friends</p>
                                         </div>
@@ -927,7 +927,7 @@
                                     <div class="col-6">
                                         <div
                                             class="pt-3 pb-3 pl-0 pr-0 text-center"
-                                        >
+                                            >
                                             <h4 class="m-1">119k</h4>
                                             <p class="m-0">Followers</p>
                                         </div>
@@ -939,16 +939,16 @@
                             <div class="card">
                                 <div
                                     class="social-graph-wrapper widget-googleplus"
-                                >
+                                    >
                                     <span class="s-icon"
-                                        ><i class="fa fa-google-plus"></i
-                                    ></span>
+                                          ><i class="fa fa-google-plus"></i
+                                        ></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-6 border-right">
                                         <div
                                             class="pt-3 pb-3 pl-0 pr-0 text-center"
-                                        >
+                                            >
                                             <h4 class="m-1">89k</h4>
                                             <p class="m-0">Friends</p>
                                         </div>
@@ -956,7 +956,7 @@
                                     <div class="col-6">
                                         <div
                                             class="pt-3 pb-3 pl-0 pr-0 text-center"
-                                        >
+                                            >
                                             <h4 class="m-1">119k</h4>
                                             <p class="m-0">Followers</p>
                                         </div>
@@ -968,16 +968,16 @@
                             <div class="card">
                                 <div
                                     class="social-graph-wrapper widget-twitter"
-                                >
+                                    >
                                     <span class="s-icon"
-                                        ><i class="fa fa-twitter"></i
-                                    ></span>
+                                          ><i class="fa fa-twitter"></i
+                                        ></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-6 border-right">
                                         <div
                                             class="pt-3 pb-3 pl-0 pr-0 text-center"
-                                        >
+                                            >
                                             <h4 class="m-1">89k</h4>
                                             <p class="m-0">Friends</p>
                                         </div>
@@ -985,7 +985,7 @@
                                     <div class="col-6">
                                         <div
                                             class="pt-3 pb-3 pl-0 pr-0 text-center"
-                                        >
+                                            >
                                             <h4 class="m-1">119k</h4>
                                             <p class="m-0">Followers</p>
                                         </div>
@@ -1009,7 +1009,7 @@
                     <p>
                         Copyright &copy; Designed & Developed by
                         <a href="https://themeforest.net/user/quixlab"
-                            >Quixlab</a
+                           >Quixlab</a
                         >
                         2018
                     </p>
@@ -1052,10 +1052,10 @@
 
         <script src="./js/dashboard/dashboard-1.js"></script>
         <script>
-            function submit_form(form_id) {
-                var form = document.getElementById(form_id);
-                form.submit();
-            }
+                                    function submit_form(form_id) {
+                                        var form = document.getElementById(form_id);
+                                        form.submit();
+                                    }
         </script>
     </body>
 </html>

@@ -25,8 +25,8 @@ public class CourseDAO {
 
     //Fields
     private final String COURSE_DTO_FIELDS = "Id, Name, CategoryId";
-    private final String COURSE_MODEL_FIELDS = "Id, Name, CategoryId, AuthorId,"
-            + "Description, Price, Duration";
+    private final String COURSE_MODEL_FIELDS = "Id, Name,"
+            + "Description,Status, Price, Duration";
 
     //Pagination
     private final String DECLARE_PAGINATION = "DECLARE @PageNumber as INT "
@@ -498,7 +498,7 @@ public class CourseDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GET_COURSES);
+                ptm = conn.prepareStatement(GET_COURSES_MODEL);
                 ptm.setInt(1, pageNumber);
                 ptm.setInt(2, rowsOfPage);
                 rs = ptm.executeQuery();

@@ -51,7 +51,7 @@ public class CategoryController extends HttpServlet {
                 HttpSession session = request.getSession();
                 AdminDTO admin;
                 if (session != null) {
-                    admin = (AdminDTO) session.getAttribute("ADMIN");
+                    admin = (AdminDTO) session.getAttribute("LOGIN_ADMIN");
                     if (admin != null) {
                         url = HOME;
                         AdminBUS adminBUS = new AdminBUS();
@@ -86,7 +86,7 @@ public class CategoryController extends HttpServlet {
                                     CategoryDAO.updateCategoryStatus(id, "Active");
                                 }
 
-                                url = "CategoryController?action=ViewCategory&pageNumber=1&rowsOfPage=15&search=";
+                                url = "CategoryController?action=ViewCategory&pageNumber=1&rowsOfPage=200&search=";
                                 break;
                             }
                             case SEARCH: {
@@ -97,7 +97,7 @@ public class CategoryController extends HttpServlet {
                                     url = CATEGORY_SEARCH;
                                 } else {
                                     request.setAttribute("errorNotFound", "Category not found!!!");
-                                    url = "CategoryController?action=ViewCategory&pageNumber=1&rowsOfPage=15&search=";
+                                    url = "CategoryController?action=ViewCategory&pageNumber=1&rowsOfPage=200&search=";
                                 }
                                 break;
                             }
@@ -119,7 +119,7 @@ public class CategoryController extends HttpServlet {
                                     request.setAttribute("errorCategory", "Input cannot be empty");
                                     url = CATEGORY;
                                 }
-                                url = "CategoryController?action=ViewCategory&pageNumber=1&rowsOfPage=15&search=";
+                                url = "CategoryController?action=ViewCategory&pageNumber=1&rowsOfPage=200&search=";
                                 break;
                             }
                         }

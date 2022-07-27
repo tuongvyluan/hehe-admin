@@ -66,6 +66,7 @@ public class CategoryDAO {
                     categoryModel.setCategoryId(rs.getInt("Id"));
                     categoryModel.setCategoryName(rs.getString("Name"));
                     categoryModel.setDescription(rs.getString("Description"));
+                    categoryModel.setStatus(rs.getString("Status"));
                     list.add(categoryModel);
                 }
             }

@@ -72,7 +72,7 @@ public class AdminController extends HttpServlet {
                     session = request.getSession();
                     admin = AdminDAO.loginAdmin(email, password);
                     if (admin != null) {
-                        session.setAttribute("ADMIN", admin);
+                        session.setAttribute("LOGIN_ADMIN", admin);
                         System.out.println("3");
                         url = HOME;
                     } else {

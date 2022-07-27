@@ -258,7 +258,7 @@
                                 <input type="hidden" name="controller" value="Student"/>
                                 <input type="hidden" name="search" value="${requestScope.search}"/>
                                 <input type="hidden" name="pageNumber" value="1"/>
-                                <input type="hidden" name="rowsOfPage" value="15"/>
+                                <input type="hidden" name="rowsOfPage" value="200"/>
                             </form>
                             <a onClick="submit_form('duong')"  aria-expanded="false">
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Student management</span>
@@ -270,7 +270,7 @@
                                 <input type="hidden" name="controller" value="Author"/>
                                 <input type="hidden" name="search" value="${requestScope.search}"/>
                                 <input type="hidden" name="pageNumber" value="1"/>
-                                <input type="hidden" name="rowsOfPage" value="15"/>
+                                <input type="hidden" name="rowsOfPage" value="200"/>
                             </form>
                             <a onClick="submit_form('author')" aria-expanded="false">
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Author management</span>
@@ -282,7 +282,7 @@
                                 <input type="hidden" name="controller" value="Course"/>
                                 <input type="hidden" name="search" value="${requestScope.search}"/>
                                 <input type="hidden" name="pageNumber" value="1"/>
-                                <input type="hidden" name="rowsOfPage" value="15"/>
+                                <input type="hidden" name="rowsOfPage" value="200"/>
                             </form>
                             <a onClick="submit_form('course')" aria-expanded="false">
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Course management</span>
@@ -294,7 +294,7 @@
                                 <input type="hidden" name="controller" value="Category"/>
                                 <input type="hidden" name="search" value="${requestScope.search}"/>
                                 <input type="hidden" name="pageNumber" value="1"/>
-                                <input type="hidden" name="rowsOfPage" value="15"/>
+                                <input type="hidden" name="rowsOfPage" value="200"/>
                             </form>
                             <a onClick="submit_form('category')" aria-expanded="false">
                                 <i class="icon-user menu-icon"></i><span class="nav-text">Category management</span>

@@ -52,7 +52,7 @@ public class StudentController extends HttpServlet {
                 HttpSession session = request.getSession();
                 AdminDTO admin;
                 if (session != null) {
-                    admin = (AdminDTO) session.getAttribute("ADMIN");
+                    admin = (AdminDTO) session.getAttribute("LOGIN_ADMIN");
                     if (admin != null) {
                         url = HOME;
                         AdminBUS adminBUS = new AdminBUS();
@@ -87,7 +87,7 @@ public class StudentController extends HttpServlet {
                                     students.StudentDAO.updateStudentStatus(id, "Active");
                                 }
 
-                                url = "StudentController?action=ViewStudent&pageNumber=1&rowsOfPage=15&search=";
+                                url = "StudentController?action=ViewStudent&pageNumber=1&rowsOfPage=200&search=";
                                 break;
                             }
                             case SEARCH :{
@@ -98,7 +98,7 @@ public class StudentController extends HttpServlet {
                                     url = STUDENT_SEARCH;
                                 } else {
                                     request.setAttribute("errorNotFound", "User not found!!!");
-                                    url = "StudentController?action=ViewStudent&pageNumber=1&rowsOfPage=15&search=";
+                                    url = "StudentController?action=ViewStudent&pageNumber=1&rowsOfPage=200&search=";
                                 }
                             }
                         }

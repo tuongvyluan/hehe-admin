@@ -23,12 +23,11 @@ public class AuthorDAO {
             + "phoneNumber, status, createdAt, updatedAt";
 
 //
-
     private final String GET_AUTHOR = "SELECT FirstName, LastName, Email FROM Author WHERE Id=?";
     private final String CREATE_AUTHOR = "INSERT INTO Author "
             + "(status, email, password, firstName, lastName) VALUES "
             + "('ACTIVE', ?, ?, ?, ?)";
-    
+
     private final String CHECK_GOOGLE_LOGIN = "SELECT " + AUTHOR_MODEL_FIELDS
             + " FROM Author WHERE email=? AND Status='ACTIVE'";
     private final String PAGINATION = "OFFSET (@PageNumber - 1) * @RowsOfPage "
@@ -36,7 +35,6 @@ public class AuthorDAO {
 
     private final String GET_AUTHORS = "SELECT " + AUTHOR_MODEL_FIELDS + " FROM Author ORDER BY createdAt "
             + PAGINATION;
-    
 
     private final String DECLARE_PAGINATION = "DECLARE @PageNumber as INT " + "DECLARE @RowsOfPage as INT " + "SET @PageNumber = ? "
             + "SET @RowsOfPage = ? ";
@@ -75,8 +73,8 @@ public class AuthorDAO {
         }
         return author;
     }
-    
-    public static AuthorDTO loginAuthor(String email, String password)  {
+
+    public static AuthorDTO loginAuthor(String email, String password) {
         Connection cn = null;
         AuthorDTO acc = null;
         try {
@@ -101,8 +99,8 @@ public class AuthorDAO {
         }
         return acc;
     }
-    
-    public static AuthorDTO loginAuthor(String email)  {
+
+    public static AuthorDTO loginAuthor(String email) {
         Connection cn = null;
         AuthorDTO acc = null;
         try {
@@ -126,7 +124,7 @@ public class AuthorDAO {
         }
         return acc;
     }
-    
+
     public static boolean addAuthor(String email, String password, String firstName) throws SQLException {
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -152,7 +150,7 @@ public class AuthorDAO {
         }
         return check;
     }
-    
+
     public boolean add(AuthorDTO author) throws SQLException {
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -179,7 +177,7 @@ public class AuthorDAO {
         }
         return check;
     }
-    
+
     public boolean checkEmail(String email) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -210,7 +208,7 @@ public class AuthorDAO {
         }
         return check;
     }
-    
+
     public static boolean changePassword(int authorId, String newPassword) {
         Connection cn = null;
         try {
@@ -240,16 +238,14 @@ public class AuthorDAO {
             rowsOfPage = 1;
         }
 
-
-Connection conn = null;
+        Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
 
-
-ptm = conn.prepareStatement(DECLARE_PAGINATION + GET_AUTHORS);
+                ptm = conn.prepareStatement(DECLARE_PAGINATION + GET_AUTHORS);
                 ptm.setInt(1, pageNumber);
                 ptm.setInt(2, rowsOfPage);
                 rs = ptm.executeQuery();
@@ -264,8 +260,7 @@ ptm = conn.prepareStatement(DECLARE_PAGINATION + GET_AUTHORS);
                     author.setStatus(rs.getString("status"));
                     list.add(author);
 
-
-        }
+                }
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -281,9 +276,7 @@ ptm = conn.prepareStatement(DECLARE_PAGINATION + GET_AUTHORS);
             }
         }
 
-
-
-    return list;
+        return list;
     }
 
     public static boolean updateAuthorStatus(int id, String status) {
@@ -344,17 +337,11 @@ ptm = conn.prepareStatement(DECLARE_PAGINATION + GET_AUTHORS);
     }
 
     public static boolean createAuthor(String firstName, String lastName, String email, String status, String phoneNumber, String password) {
-
-
-
-Connection cn = null;
+        Connection cn = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-
-
-
-String sql = "INSERT INTO Author (FirstName, LastName,Password, Email, Status, PhoneNumber) VALUES (?,?,?,?,?,?)";
+                String sql = "INSERT INTO Author (FirstName, LastName,Password, Email, Status, PhoneNumber) VALUES (?,?,?,?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, firstName);
                 pst.setString(2, lastName);
@@ -363,8 +350,7 @@ String sql = "INSERT INTO Author (FirstName, LastName,Password, Email, Status, P
                 pst.setString(5, status);
                 pst.setString(6, phoneNumber);
 
-
-int rs = pst.executeUpdate();
+                int rs = pst.executeUpdate();
                 cn.close();
             }
         } catch (Exception e) {

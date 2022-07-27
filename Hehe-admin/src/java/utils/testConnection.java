@@ -40,18 +40,18 @@ public class testConnection {
 //        else System.out.println("K tim duoc");
 
 //test add author
-//        boolean tmp = AuthorDAO.createAuthor("kent", "vu","123", "duong@gmail.com", "Active", "0199199911");
-//        if(tmp) System.out.println("Add roi ne: \n" + tmp);
-//        else System.out.println("khong add duoc r");
+        boolean tmp = AuthorDAO.createAuthor("kent", "vu","123", "duong@gmail.com", "Active", "0199199911");
+        if(tmp) System.out.println("Add roi ne: \n" + tmp);
+        else System.out.println("khong add duoc r");
 
 //test add cate
 //boolean tmp = categories.CategoryDAO.createCAtegory("hehe", "hehe", "Active");
 //if(tmp) System.out.println("add duoc ne");
 //else System.out.println("k add duoc");
 //test update cate
-boolean tmp = categories.CategoryDAO.updateCategory(6, "Haha", "haha");
-if(tmp) System.out.println("update duoc ne");
-else System.out.println("k update duoc");
+//boolean tmp = categories.CategoryDAO.updateCategory(6, "Haha", "haha");
+//if(tmp) System.out.println("update duoc ne");
+//else System.out.println("k update duoc");
         
     }
 }

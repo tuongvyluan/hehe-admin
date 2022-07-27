@@ -65,7 +65,7 @@ public class AuthorController extends HttpServlet {
                 AdminDTO admin;
                 AuthorBUS authorBUS = new AuthorBUS();
                 if (session != null) {
-                    admin = (AdminDTO) session.getAttribute("ADMIN");
+                    admin = (AdminDTO) session.getAttribute("LOGIN_ADMIN");
                     if (admin != null) {
                         url = HOME;
                         switch (action) {
@@ -95,7 +95,7 @@ public class AuthorController extends HttpServlet {
                                     authors.AuthorDAO.updateAuthorStatus(id, "Active");
                                 }
 
-                                url = "AuthorController?action=ViewAuthor&pageNumber=1&rowsOfPage=15&search=";
+                                url = "AuthorController?action=ViewAuthor&pageNumber=1&rowsOfPage=200&search=";
                                 break;
                             }
                             case SEARCH: {
@@ -106,8 +106,9 @@ public class AuthorController extends HttpServlet {
                                     url = AUTHOR_SEARCH;
                                 } else {
                                     request.setAttribute("errorNotFound", "User not found!!!");
-                                    url = "AuthorController?action=ViewAuthor&pageNumber=1&rowsOfPage=15&search=";
+                                    url = "AuthorController?action=ViewAuthor&pageNumber=1&rowsOfPage=200&search=";
                                 }
+                                break;
                             }
 
                             case LOGIN_AUTHOR: {

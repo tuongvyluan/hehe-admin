@@ -51,7 +51,7 @@ public class CourseControllerAdmin extends HttpServlet {//controller
                 HttpSession session = request.getSession();
                 AdminDTO admin;
                 if (session != null) {
-                    admin = (AdminDTO) session.getAttribute("ADMIN");
+                    admin = (AdminDTO) session.getAttribute("LOGIN_ADMIN");
                     if (admin != null) {
                         url = HOME;
                         AdminBUS adminBUS = new AdminBUS();
@@ -86,7 +86,7 @@ public class CourseControllerAdmin extends HttpServlet {//controller
                                     courses.CourseDAO.updateCourseStatus(id, "Active");
                                 }
 
-                                url = "CourseControllerAdmin?action=ViewCourse&pageNumber=1&rowsOfPage=15&search=";
+                                url = "CourseControllerAdmin?action=ViewCourse&pageNumber=1&rowsOfPage=200&search=";
                                 break;
                             }
                             case SEARCH: {
@@ -97,7 +97,7 @@ public class CourseControllerAdmin extends HttpServlet {//controller
                                     url = COURSE_SEARCH;
                                 } else {
                                     request.setAttribute("errorNotFound", "Course not found!!!");
-                                    url = "CourseControllerAdmin?action=ViewCourse&pageNumber=1&rowsOfPage=15&search=";
+                                    url = "CourseControllerAdmin?action=ViewCourse&pageNumber=1&rowsOfPage=200&search=";
                                 }
                             }
                         }
