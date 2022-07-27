@@ -148,14 +148,12 @@
                 <p>
                     <textarea
                         class="input__description"
-                        name=""
                         id=""
                         cols="30"
                         rows="10"
                         name="txtCourseDescription"
                         placeholder="Input course's description"
-                        ></textarea
-                    >
+                    ></textarea>
                 </p>
             </section>
 

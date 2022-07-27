@@ -24,7 +24,7 @@ public class AnswerController extends HttpServlet {
     private final String ADD_ANSWER_TO_QUIZ = "AddAnswerToQuiz";
 
     //Destination String
-    private final String CREATE_TOPIC_CONTENT_PAGE = "createTopicContent.jsp";
+    private final String EDIT_TOPIC_CONTENT = "editTopicContent.jsp";
     private final String ERROR = "error.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -40,7 +40,7 @@ public class AnswerController extends HttpServlet {
                     boolean answerIsCorrect = Boolean.parseBoolean(request.getParameter("answerIsCorrect"));
                     boolean result = AnswerDAO.editAnswer(answerIdToEditAnswer, answerContent, answerIsCorrect);
                     if (result == true) {
-                        url = CREATE_TOPIC_CONTENT_PAGE;
+                        url = EDIT_TOPIC_CONTENT;
                     } else {
                         url = ERROR;
                     }
@@ -51,7 +51,7 @@ public class AnswerController extends HttpServlet {
                     int answerIdToDeleteAnswer = Integer.parseInt(request.getParameter("answerId"));
                     boolean result = AnswerDAO.deleteAnswer(answerIdToDeleteAnswer);
                     if (result == true) {
-                        url = CREATE_TOPIC_CONTENT_PAGE;
+                        url = EDIT_TOPIC_CONTENT;
                     } else {
                         url = ERROR;
                     }
@@ -64,7 +64,7 @@ public class AnswerController extends HttpServlet {
                     boolean answerIsCorrect = Boolean.parseBoolean(request.getParameter("answerIsCorrect"));
                     boolean result = AnswerDAO.addAnswerToQuiz(quizIdToAddAnswer, answerContent, answerIsCorrect);
                     if (result == true) {
-                        url = CREATE_TOPIC_CONTENT_PAGE;
+                        url = EDIT_TOPIC_CONTENT;
                     } else {
                         url = ERROR;
                     }

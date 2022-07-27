@@ -5,6 +5,8 @@
 package controllers;
 
 import admin.AdminDTO;
+import courses.CourseDAO;
+import courses.CourseModel;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -55,17 +57,19 @@ public class MainController extends HttpServlet {
     private final String ADD_ANSWER_TO_QUIZ = "AddAnswerToQuiz";
     private final String LOG_OUT = "Logout";
     private final String CHANGE_PASSWORD = "ChangePassword";
-    
+    private final String VIEW_COURSE_TO_EDIT = "ViewCourseToEdit";
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
     private final String AUTHOR_CONTROLLER = "AuthorController";
+    private final String AUTHOR_ONLY_CONTROLLER = "AuthorOnlyController";
     private final String COURSE_CONTROLLER = "CourseController";
     private final String SECTION_CONTROLLER = "SectionController";
     private final String STUDENT_IN_COURSE_CONTROLLER = "StudentInCourseController";
     private final String TOPIC_CONTROLLER = "TopicController";
     private final String QUIZ_CONTROLLER = "QuizController";
     private final String ANSWER_CONTROLLER = "AnswerController";
+    private final String EDIT_COURSE_CONTENT = "editCourseContent.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -73,13 +77,13 @@ public class MainController extends HttpServlet {
         String url = ERROR;
         HttpSession session = request.getSession();
         StudentDTO currentStudent = (StudentDTO) session.getAttribute("LOGIN_STUDENT");
+        
         try {
-            String controller = request.getParameter("controller");
-            System.out.println("controller: " + controller);
-
-            switch (controller) {                
+            String action = request.getParameter("action");
+            System.out.println(action);
+            switch (action) {                
                 case LOGIN_AUTHOR:{
-                    url = AUTHOR_CONTROLLER;
+                    url = AUTHOR_ONLY_CONTROLLER;
                     break;
                 }
 
@@ -101,6 +105,14 @@ public class MainController extends HttpServlet {
 
                 case CREATE_COURSE: {
                     url = COURSE_CONTROLLER;
+                    break;
+                }
+                
+                case VIEW_COURSE_TO_EDIT: {
+                    int courseId = Integer.parseInt(request.getParameter("courseId"));
+                    CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
+                    request.setAttribute("CURRENT_COURSE", currentCourse);
+                    url = EDIT_COURSE_CONTENT;
                     break;
                 }
 
@@ -215,12 +227,12 @@ public class MainController extends HttpServlet {
                 }
                 
                 case CHANGE_PASSWORD: {
-                    url = AUTHOR_CONTROLLER;
+                    url = AUTHOR_ONLY_CONTROLLER;
                     break;
                 }
                 
                 case LOG_OUT: {
-                    url = AUTHOR_CONTROLLER;
+                    url = AUTHOR_ONLY_CONTROLLER;
                     break;
                 }
             }

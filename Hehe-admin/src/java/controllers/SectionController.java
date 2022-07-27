@@ -5,8 +5,13 @@
  */
 package controllers;
 
+import courses.CourseDAO;
+import courses.CourseModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,14 +23,14 @@ import sections.SectionDAO;
  * @author Harry
  */
 public class SectionController extends HttpServlet {
-    
+
     // Action String
     private final String CREATE_SECTION = "CreateSection";
     private final String EDIT_SECTION = "EditSection";
     private final String EDIT_SECTION_NAME = "EditSectionName";
     private final String DELETE_SECTION = "DeleteSection";
     private final String ADD_SECTION_TO_COURSE = "AddSectionToCourse";
-    
+
     // Destination String
     private final String ERROR = "error.jsp";
     private final String CREATE_COURSE_PAGE = "createCourse.jsp";
@@ -41,23 +46,25 @@ public class SectionController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action");
             String url = "";
-            switch(action){
-                
+            switch (action) {
+
                 case CREATE_SECTION: {
-                    int sectionCourseId = Integer.parseInt(request.getParameter("txtSectionCourseId"));
+                    int courseId = Integer.parseInt(request.getParameter("courseId"));
                     String sectionName = request.getParameter("txtSectionName");
                     String sectionDescription = "";
                     String status = "Active";
-                    int sectionDisplayIndex = SectionDAO.getDisplayIndex(sectionCourseId) + 1;
-                    boolean result = SectionDAO.createSection(sectionCourseId, sectionName, sectionDescription, status, sectionDisplayIndex);
-                    if (result == true) {
+                    int sectionDisplayIndex = SectionDAO.getDisplayIndex(courseId) + 1;
+                    boolean result = SectionDAO.createSection(courseId, sectionName, sectionDescription, status, sectionDisplayIndex);
+                    CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
+                    request.setAttribute("CURRENT_COURSE", currentCourse);
+                    if (currentCourse != null) {
                         url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
                     }
                     break;
                 }
-                
+
                 case EDIT_SECTION: {
                     int sectionId = Integer.parseInt(request.getParameter("txtSectionToEdit"));
                     String sectionNewName = request.getParameter("txtSectionNewName");
@@ -71,31 +78,37 @@ public class SectionController extends HttpServlet {
                     }
                     break;
                 }
-                
+
                 case EDIT_SECTION_NAME: {
                     int sectionId = Integer.parseInt(request.getParameter("SectionToEdit"));
+                    int courseId = Integer.parseInt(request.getParameter("courseId"));
                     String sectionNewName = request.getParameter("txtSectionName");
                     boolean result = SectionDAO.editSectionName(sectionId, sectionNewName);
-                    if (result == true) {
+                    CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
+                    request.setAttribute("CURRENT_COURSE", currentCourse);
+                    if (currentCourse != null) {
                         url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
                     }
                     break;
                 }
-                
+
                 case DELETE_SECTION: {
+                    int courseId = Integer.parseInt(request.getParameter("courseId"));
                     int sectionToDelete = Integer.parseInt(request.getParameter("SectionToDelete"));
                     boolean result = SectionDAO.deleteSection(sectionToDelete);
-                    if (result == true) {
+                    CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
+                    request.setAttribute("CURRENT_COURSE", currentCourse);
+                    if (currentCourse != null) {
                         url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
                     }
                     break;
                 }
-                
-                case ADD_SECTION_TO_COURSE:{
+
+                case ADD_SECTION_TO_COURSE: {
                     int courseIdToAddSection = Integer.parseInt(request.getParameter("txtCourseToAddSection"));
                     int sectionIdToAdd = Integer.parseInt(request.getParameter("txtSectionToAdd"));
                     boolean result = SectionDAO.AddSectionToCourse(courseIdToAddSection, sectionIdToAdd);
@@ -108,7 +121,9 @@ public class SectionController extends HttpServlet {
                 }
             }
             request.getRequestDispatcher(url).forward(request, response);
-        } 
+        } catch (SQLException ex) {
+            Logger.getLogger(SectionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

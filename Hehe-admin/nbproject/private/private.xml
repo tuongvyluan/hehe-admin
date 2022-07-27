@@ -4,22 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/AuthorController.java</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/courseSearchManagement.jsp</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/studentManagement.jsp</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/LoginGoogleAdminController.java</file>
             <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/AdminController.java</file>
             <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/admin.jsp</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/courseManagement.jsp</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/CategoryController.java</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/loginAdmin.jsp</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/authors/AuthorBUS.java</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/CourseControllerAdmin.java</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/CourseController.java</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/categoryManagement.jsp</file>
             <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/authorManagement.jsp</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/studentSearchManagement.jsp</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/categorySearchManagement.jsp</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/src/java/controllers/StudentController.java</file>
-            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/authorSearchManagement.jsp</file>
+            <file>file:/C:/Users/Harry/Documents/Programming/SWP391/Hehe-prototype/Hehe-admin/web/loginAdmin.jsp</file>
         </group>
     </open-files>
 </project-private>

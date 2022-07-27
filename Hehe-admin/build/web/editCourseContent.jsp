@@ -52,9 +52,8 @@
                 <input type="hidden" name="action" value="EditCourse"/>
             </form>
             <%
-                //            CourseModel currentCourse = (CourseModel) session.getAttribute("CURRENT_COURSE");
-                int courseId = Integer.parseInt(request.getParameter("courseId"));
-                CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
+                CourseModel currentCourse = (CourseModel) request.getAttribute("CURRENT_COURSE");
+                int courseId = currentCourse.getCourseId();
             %>
             <nav class="sidebar">
                 <header>
@@ -184,7 +183,14 @@
                         <i id="save-<%= currentCourse.getDescription()%>" class="fa fa-check" onclick="saveDes('<%= currentCourse.getDescription()%>');" style="font-size: 25px;display: none; color: green;padding-left: 10px;cursor: pointer;"></i>
                     </h1>  
                     <p>
-                        <textarea name="txtCourseNewDescription" id="<%= currentCourse.getDescription()%>" onchange="this.form.submit();" Class="input__description" cols="30" rows="10" disabled style="border: none; "><%= currentCourse.getDescription()%></textarea>
+                        <textarea name="txtCourseNewDescription" 
+                                  id="<%= currentCourse.getDescription()%>" 
+                                  onchange="this.form.submit();" 
+                                  Class="input__description" 
+                                  cols="30" rows="10" 
+                                  disabled style="border: none; ">
+                            <%= currentCourse.getDescription()%>
+                        </textarea>
                     </p>
                 </form>
             </section>
@@ -199,14 +205,14 @@
                             ArrayList<TopicDTO> topicList = topicBUS.getBySectionChecked(section.getSectionId());
                     %>
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="panelsStayOpen-heading2">
+                        <h2 class="accordion-header" id="panelsStayOpen-heading<%= section.getSectionId() %>">
                             <button
                                 class="accordion-button"
                                 type="button"
                                 data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapse2"
+                                data-bs-target="#panelsStayOpen-collapse<%= section.getSectionId() %>"
                                 aria-expanded="true"
-                                aria-controls="panelsStayOpen-collapse2"
+                                aria-controls="panelsStayOpen-collapse<%= section.getSectionId() %>"
                                 >
                                 <div class="section__Name" style="display: flex;">
                                     <form action="MainController" method="POST">
@@ -216,15 +222,20 @@
                                         <input id="<%= section.getSectionName()%>" class="section__Name__input" type="text" name="txtSectionName" onchange="this.form.submit();" value="<%= section.getSectionName()%>" disabled style="border: none;">
                                         <i id="edit-<%= section.getSectionName()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionName()%>')" style="font-size: 25px; padding-left: 10px"></i>
                                         <i id="save-<%= section.getSectionName()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionName()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
-                                        <i id="delete-<%= section.getSectionName()%>"class="fa fa-trash-alt" onclick="deleteField('<%= section.getSectionId()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
-                                    </form>
+                                        <i id="delete-<%= section.getSectionName()%>"class="fa fa-trash-alt" onclick="deleteSection('deleteSection-<%= section.getSectionId() %>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
+                                    </form>                                    
                                 </div>
+                                    <form action="MainController" method="POST" id="deleteSection-<%= section.getSectionId() %>">
+                                        <input type="hidden" name="action" value="DeleteSection">
+                                        <input type="hidden" name="SectionToDelete" value="<%= section.getSectionId()%>">
+                                        <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
+                                    </form>
                             </button>
                         </h2>
                         <div
-                            id="panelsStayOpen-collapse2"
+                            id="panelsStayOpen-collapse<%= section.getSectionId() %>"
                             class="accordion-collapse collapse show"
-                            aria-labelledby="panelsStayOpen-heading2"
+                            aria-labelledby="panelsStayOpen-heading<%= section.getSectionId() %>"
                             >
                             <div class="accordion-body">
                                 <ol>
@@ -269,27 +280,26 @@
                         }
                     %>
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="panelsStayOpen-heading1">
+                        <h2 class="accordion-header" id="panelsStayOpen-heading0">
                             <button
                                 class="accordion-button"
                                 type="button"
                                 data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapse1"
+                                data-bs-target="#panelsStayOpen-collapse0"
                                 aria-expanded="true"
-                                aria-controls="panelsStayOpen-collapse1"
+                                aria-controls="panelsStayOpen-collapse0"
                                 >
                                 <form action="MainController" method="POST">
                                     <input type="hidden" name="courseId" value="<%= currentCourse.getCourseId()%>">
-                                    <input type="hidden" name="txtSectionCourseId" value="<%= currentCourse.getCourseId()%>">
                                     <input class="add__section" type="text" name="txtSectionName" placeholder="Add course's section">
                                     <button class="btn__addSection" type="submit" name="action" value="CreateSection">Add section</button>
                                 </form>
                             </button>
                         </h2>
                         <div
-                            id="panelsStayOpen-collapse1"
+                            id="panelsStayOpen-collapse0"
                             class="accordion-collapse collapse show"
-                            aria-labelledby="panelsStayOpen-heading1"
+                            aria-labelledby="panelsStayOpen-heading0"
                             >
                             <div class="accordion-body">
 
@@ -310,8 +320,9 @@
                                                 function openTopic(id) {
                                                     location.href = "editTopicContent.jsp?topicId=" + id;
                                                 }
-                                                function deleteTopic(id) {
-
+                                                function deleteSection(id) {
+                                                    var form = document.getElementById(id);
+                                                    form.submit();
                                                 }
                                                 function editSection(id) {
                                                     document.getElementById(id).disabled = false;

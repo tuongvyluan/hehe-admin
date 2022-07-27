@@ -222,15 +222,17 @@ public class CourseDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "SELECT TOP 1 Id, AuthorId, CategoryId, Name, Status, Duration FROM Course ORDER BY Id DESC";
+                st = conn.createStatement();
+                String sql = "SELECT TOP 1 Id, AuthorId, CategoryId, Name, Status, Duration, Description FROM Course ORDER BY Id DESC";
                 rs = st.executeQuery(sql);
                 if (rs.next()) {
                     course = new CourseModel();
                     course.setCourseId(rs.getInt("Id"));
                     course.setAuthorId(rs.getInt("AuthorId"));
-                    course.setCategoryId(rs.getInt("CourseId"));
+                    course.setCategoryId(rs.getInt("CategoryId"));
                     course.setCourseName(rs.getString("Name"));
                     course.setDuration(rs.getDouble("Duration"));
+                    course.setDescription(rs.getString("Description"));
                 }
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -323,8 +325,9 @@ public class CourseDAO {
         return course;
     }
 
-    public static boolean createCourse(int authorId, int categoryId, String name, String description, String status, double price, double duration) {
+    public static CourseModel createCourse(int authorId, int categoryId, String name, String description, String status, double price, double duration) {
         Connection cn = null;
+        CourseModel course = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
@@ -338,13 +341,15 @@ public class CourseDAO {
                 pst.setDouble(6, price);
                 pst.setDouble(7, duration);
                 int rs = pst.executeUpdate();
+                if (rs == 1) {
+                    course = getNewestCourse();
+                }
                 cn.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return course;
     }
 
     public static boolean editCourse(int courseId, int newCategoryId, double newDuration) {

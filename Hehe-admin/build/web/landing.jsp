@@ -131,7 +131,12 @@
                                     <p>Time to complete: <%= course.getDuration() %> hours</p>
                                 </div>
                                 <div class="card-content-detail">
-                                    <a href="editCourseContent.jsp?courseId=<%= course.getCourseId() %>"><button class="buttonCourse" type="button">Edit</button></a>
+                                    <form action="MainController" method="POST">
+                                        <input type="hidden" name="action" value="ViewCourseToEdit">
+                                        <input type="hidden" name="courseId" value="<%= course.getCourseId() %>">
+                                        <input type="submit" class="buttonCourse" value="Edit">
+                                    </form>
+                                    <%--<a href="editCourseContent.jsp?courseId=<%= course.getCourseId() %>"><button class="buttonCourse" type="button">Edit</button></a>--%>
                                     <a href="CourseController?action=DeleteCourse&CourseToDelete=<%= course.getCourseId() %>"><button class="buttonDeleteCourse" type="button">Delete</button></a>
                                 </div>
                             </div>

@@ -1,7 +1,12 @@
 package controllers;
 
+import courses.CourseDAO;
+import courses.CourseModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +25,7 @@ public class TopicController extends HttpServlet {
 
     // Destination string:
     private final String CREATE_TOPIC_PAGE = "createTopic.jsp";
-    private final String CREATE_TOPIC_CONTENT_PAGE = "createTopicContent.jsp";
+    private final String EDIT_TOPIC_CONTENT = "editTopicContent.jsp";
     private final String EDIT_TOPIC_PAGE = "editTopic.jsp";
     private final String DELETE_TOPIC_PAGE = "deleteTopic.jsp";
     private final String EDIT_COURSE_CONTENT = "editCourseContent.jsp";
@@ -35,6 +40,7 @@ public class TopicController extends HttpServlet {
             String url = "";
             switch (action) {
                 case CREATE_TOPIC: {
+                    int courseId = Integer.parseInt(request.getParameter("courseId"));
                     String topicName = request.getParameter("txtTopicName");
                     String topicDescription = "";
                     int topicCourseId = Integer.parseInt(request.getParameter("txtTopicCourseId"));
@@ -42,7 +48,9 @@ public class TopicController extends HttpServlet {
                     int topicDisplayIndex = TopicDAO.getDisplayIndex(topicCourseId, topicSectionId) + 1;
                     String status = "Active";
                     boolean result = TopicDAO.createTopic(topicSectionId, topicCourseId, topicName, topicDescription, status, topicDisplayIndex);
-                    if (result == true) {
+                    CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
+                    request.setAttribute("CURRENT_COURSE", currentCourse);
+                    if (currentCourse != null) {
                         url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
@@ -68,10 +76,13 @@ public class TopicController extends HttpServlet {
                 }
                 
                 case EDIT_TOPIC_NAME: {
+                    int courseId = Integer.parseInt(request.getParameter("courseId"));
                     int topicIdToEdit = Integer.parseInt(request.getParameter("TopicToEdit"));
                     String topicName = request.getParameter("txtTopicName");
                     boolean result = TopicDAO.editTopicName(topicIdToEdit, topicName);
-                    if (result == true) {
+                    CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
+                    request.setAttribute("CURRENT_COURSE", currentCourse);
+                    if (currentCourse != null) {
                         url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
@@ -80,9 +91,12 @@ public class TopicController extends HttpServlet {
                 }
 
                 case DELETE_TOPIC: {
+                    int courseId = Integer.parseInt(request.getParameter("courseId"));
                     int topicIdToDelete = Integer.parseInt(request.getParameter("TopicToDelete"));
                     boolean result = TopicDAO.deleteTopic(topicIdToDelete);
-                    if (result == true) {
+                    CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
+                    request.setAttribute("CURRENT_COURSE", currentCourse);
+                    if (currentCourse != null) {
                         url = EDIT_COURSE_CONTENT;
                     } else {
                         url = ERROR;
@@ -109,7 +123,7 @@ public class TopicController extends HttpServlet {
                     String descriptionToAdd = request.getParameter("txtDescriptionToEdit");
                     boolean result = TopicDAO.editDescription(topicIdToEditDescription, descriptionToAdd);
                     if (result == true) {
-                        url = CREATE_TOPIC_CONTENT_PAGE;
+                        url = EDIT_TOPIC_CONTENT;
                     } else {
                         url = ERROR;
                     }
@@ -117,6 +131,8 @@ public class TopicController extends HttpServlet {
                 }
             }
             request.getRequestDispatcher(url).forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(TopicController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
