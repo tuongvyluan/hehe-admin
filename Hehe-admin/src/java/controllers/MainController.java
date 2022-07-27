@@ -58,6 +58,7 @@ public class MainController extends HttpServlet {
     private final String LOG_OUT = "Logout";
     private final String CHANGE_PASSWORD = "ChangePassword";
     private final String VIEW_COURSE_TO_EDIT = "ViewCourseToEdit";
+    private final String BACK_TO_EDIT_COURSE = "backToEditCourse";
 
     // Controller, Destination String
     private final String ERROR = "error.jsp";
@@ -77,12 +78,12 @@ public class MainController extends HttpServlet {
         String url = ERROR;
         HttpSession session = request.getSession();
         StudentDTO currentStudent = (StudentDTO) session.getAttribute("LOGIN_STUDENT");
-        
+
         try {
             String action = request.getParameter("action");
             System.out.println(action);
-            switch (action) {                
-                case LOGIN_AUTHOR:{
+            switch (action) {
+                case LOGIN_AUTHOR: {
                     url = AUTHOR_ONLY_CONTROLLER;
                     break;
                 }
@@ -107,7 +108,7 @@ public class MainController extends HttpServlet {
                     url = COURSE_CONTROLLER;
                     break;
                 }
-                
+
                 case VIEW_COURSE_TO_EDIT: {
                     int courseId = Integer.parseInt(request.getParameter("courseId"));
                     CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
@@ -120,22 +121,22 @@ public class MainController extends HttpServlet {
                     url = COURSE_CONTROLLER;
                     break;
                 }
-                
+
                 case EDIT_COURSE_NAME: {
                     url = COURSE_CONTROLLER;
                     break;
                 }
-                
+
                 case EDIT_COURSE_DURATION: {
                     url = COURSE_CONTROLLER;
                     break;
                 }
-                
+
                 case EDIT_COURSE_CATEGORY: {
                     url = COURSE_CONTROLLER;
                     break;
                 }
-                
+
                 case EDIT_COURSE_DESC: {
                     url = COURSE_CONTROLLER;
                     break;
@@ -155,7 +156,7 @@ public class MainController extends HttpServlet {
                     url = SECTION_CONTROLLER;
                     break;
                 }
-                
+
                 case EDIT_SECTION_NAME: {
                     url = SECTION_CONTROLLER;
                     break;
@@ -180,7 +181,7 @@ public class MainController extends HttpServlet {
                     url = TOPIC_CONTROLLER;
                     break;
                 }
-                
+
                 case EDIT_TOPIC_NAME: {
                     url = TOPIC_CONTROLLER;
                     break;
@@ -215,7 +216,7 @@ public class MainController extends HttpServlet {
                     url = ANSWER_CONTROLLER;
                     break;
                 }
-                
+
                 case DELETE_ANSWER: {
                     url = ANSWER_CONTROLLER;
                     break;
@@ -225,12 +226,20 @@ public class MainController extends HttpServlet {
                     url = ANSWER_CONTROLLER;
                     break;
                 }
-                
+
                 case CHANGE_PASSWORD: {
                     url = AUTHOR_ONLY_CONTROLLER;
                     break;
                 }
-                
+
+                case BACK_TO_EDIT_COURSE: {
+                    int courseId = Integer.parseInt(request.getParameter("courseId"));
+                    CourseModel currentCourse = CourseDAO.getCurrentCourse(courseId);
+                    request.setAttribute("CURRENT_COURSE", currentCourse);
+                    url = EDIT_COURSE_CONTENT;
+                    break;
+                }
+
                 case LOG_OUT: {
                     url = AUTHOR_ONLY_CONTROLLER;
                     break;

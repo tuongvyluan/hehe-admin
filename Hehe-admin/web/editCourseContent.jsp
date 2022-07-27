@@ -205,14 +205,14 @@
                             ArrayList<TopicDTO> topicList = topicBUS.getBySectionChecked(section.getSectionId());
                     %>
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="panelsStayOpen-heading<%= section.getSectionId() %>">
+                        <h2 class="accordion-header" id="panelsStayOpen-heading<%= section.getSectionId()%>">
                             <button
                                 class="accordion-button"
                                 type="button"
                                 data-bs-toggle="collapse"
-                                data-bs-target="#panelsStayOpen-collapse<%= section.getSectionId() %>"
+                                data-bs-target="#panelsStayOpen-collapse<%= section.getSectionId()%>"
                                 aria-expanded="true"
-                                aria-controls="panelsStayOpen-collapse<%= section.getSectionId() %>"
+                                aria-controls="panelsStayOpen-collapse<%= section.getSectionId()%>"
                                 >
                                 <div class="section__Name" style="display: flex;">
                                     <form action="MainController" method="POST">
@@ -222,20 +222,20 @@
                                         <input id="<%= section.getSectionName()%>" class="section__Name__input" type="text" name="txtSectionName" onchange="this.form.submit();" value="<%= section.getSectionName()%>" disabled style="border: none;">
                                         <i id="edit-<%= section.getSectionName()%>" class="fa fa-edit" onclick="editSection('<%= section.getSectionName()%>')" style="font-size: 25px; padding-left: 10px"></i>
                                         <i id="save-<%= section.getSectionName()%>" class="fa fa-check" onclick="saveSection('<%= section.getSectionName()%>')" style="font-size: 25px;display: none; color: green;padding-left: 10px"></i>
-                                        <i id="delete-<%= section.getSectionName()%>"class="fa fa-trash-alt" onclick="deleteSection('deleteSection-<%= section.getSectionId() %>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
+                                        <i id="delete-<%= section.getSectionName()%>"class="fa fa-trash-alt" onclick="deleteSection('deleteSection-<%= section.getSectionId()%>')" style="font-size: 25px; color: red; padding-left: 10px;"></i>
                                     </form>                                    
                                 </div>
-                                    <form action="MainController" method="POST" id="deleteSection-<%= section.getSectionId() %>">
-                                        <input type="hidden" name="action" value="DeleteSection">
-                                        <input type="hidden" name="SectionToDelete" value="<%= section.getSectionId()%>">
-                                        <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
-                                    </form>
+                                <form action="MainController" method="POST" id="deleteSection-<%= section.getSectionId()%>">
+                                    <input type="hidden" name="action" value="DeleteSection">
+                                    <input type="hidden" name="SectionToDelete" value="<%= section.getSectionId()%>">
+                                    <input type="hidden" name="courseId" value="<%= section.getCourseId()%>">
+                                </form>
                             </button>
                         </h2>
                         <div
-                            id="panelsStayOpen-collapse<%= section.getSectionId() %>"
+                            id="panelsStayOpen-collapse<%= section.getSectionId()%>"
                             class="accordion-collapse collapse show"
-                            aria-labelledby="panelsStayOpen-heading<%= section.getSectionId() %>"
+                            aria-labelledby="panelsStayOpen-heading<%= section.getSectionId()%>"
                             >
                             <div class="accordion-body">
                                 <ol>
@@ -250,7 +250,7 @@
                                             <input id="<%= topic.getTopicName()%>" class="topic__Name__input" type="text" name="txtTopicName" value="<%= topic.getTopicName()%>" onchange="this.form.submit();" disabled style="border: none;width: 100%;">
                                             <i id="edit-<%= topic.getTopicName()%>" class="fa fa-edit" onclick="editTopic('<%= topic.getTopicName()%>');" style="font-size: 12px; padding-left: 10px; cursor: pointer;"> Edit</i>
                                             <i id="save-<%= topic.getTopicName()%>" class="fa fa-check" onclick="saveTopic('<%= topic.getTopicName()%>');" style="font-size: 12px;display: none; color: green;padding-left: 10px; cursor: pointer;"> Save</i>
-                                            <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
+                                            <i id="open-<%= topic.getTopicName()%>"class="fa fa-book-open" onclick="openTopic(<%= topic.getTopicId()%>,<%= currentCourse.getCourseId()%>);" style="font-size: 12px; color: #1877F2; padding-left: 10px; cursor: pointer;"> Open content</i>
                                         </form>
                                         <form action="MainController" method="POST">
                                             <!--<input type="hidden" name="action" value="DeleteTopic">-->
@@ -317,8 +317,8 @@
         <!-- Footer -->
         <!-- Footer -->
         <script>
-                                                function openTopic(id) {
-                                                    location.href = "editTopicContent.jsp?topicId=" + id;
+                                                function openTopic(topicId, courseId) {
+                                                    location.href = "editTopicContent.jsp?topicId=" + topicId + "&courseId=" + courseId;
                                                 }
                                                 function deleteSection(id) {
                                                     var form = document.getElementById(id);
